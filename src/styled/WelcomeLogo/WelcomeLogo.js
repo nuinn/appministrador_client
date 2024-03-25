@@ -19,6 +19,7 @@ const WelcomeLogo = styled.div`
   }
   & h2 {
     color: white;
+    font-size: 1.5em;
   }
 `;
 

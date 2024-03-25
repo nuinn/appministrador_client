@@ -12,8 +12,8 @@ import StyledHomeImageContainer from './styled/HomeImageContainer.js'
 function App() {
   const navigate = useNavigate()
   const user = {
-    name: "Marc",
-    admin: false,
+    firstName: "Marc",
+    admin: true,
   }
 
   return (
@@ -21,7 +21,7 @@ function App() {
       <main>
         <StyledWelcomeLogo>
           <h2>
-						¡Hola <br /> {user.name.split(" ")[0]}!
+						¡Hola <br /> {user.firstName.split(" ")[0]}!
 					</h2>
           <img src={appLogo} alt="" />
         </StyledWelcomeLogo>
