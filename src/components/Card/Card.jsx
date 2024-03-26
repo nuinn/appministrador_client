@@ -8,15 +8,14 @@ function Card(props) {
   return (
     <StyledCard>
       <RoundImage className='roundedImage' image={data.image} />
-
       <div className='descriptionContainer'>
         { type === 'communities' &&
         <StyledDescription>
-          <h3 className="secondary-color">{data.address}</h3>
-          <p className="grey-color">{`Propietarios: ${data.n_propie}`}</p>
-          <p className="grey-color">{`Inquilinos: ${data.n_inquilinos}`}</p>
-          <p className="grey-color">{`Presidente: ${data.president.name}`}</p>
-          <p className="grey-color">{`Contacto: ${data.president.mobile_num}`}</p>
+          <h3>{data.address}</h3>
+          <p>{`Propietarios: ${data.n_propie}`}</p>
+          <p>{`Inquilinos: ${data.n_inquilinos}`}</p>
+          <p>{`Presidente: ${data.president.name}`}</p>
+          <p>{`Contacto: ${data.president.mobile_num}`}</p>
         </StyledDescription>
         }
       </div>

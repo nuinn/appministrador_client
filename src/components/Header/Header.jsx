@@ -5,11 +5,9 @@ import transparentBrand from '../../assets/transparentBrand.png'
 function Header() {
   const navigate = useNavigate()
   return (
-    <>
-      <StyledHeader >
-        <img onClick={ () => navigate('/') } src={transparentBrand} alt="Tu AppMinistrador logo" />
-      </StyledHeader>
-    </>
+    <StyledHeader >
+      <img onClick={ () => navigate('/') } src={transparentBrand} alt="Tu AppMinistrador logo" />
+    </StyledHeader>
   )
 }
 

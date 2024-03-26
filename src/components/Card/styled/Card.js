@@ -7,6 +7,7 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   margin-top: 16px;
+  cursor: pointer;
 
   & .roundedImage {
       position: absolute;
@@ -31,7 +32,6 @@ const Card = styled.div`
       width: 300px;
       height: 128px;
       border: 1px solid #f0f0f0;
-
   }
 `;
 

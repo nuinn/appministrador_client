@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 const Description = styled.div`
-  padding: 24px;
+  padding: 24px 0;
   font-size: 14px;
+  width: 200px;
+  padding-left: 50px;
 
   & p {
       margin: 0;
@@ -15,8 +17,10 @@ const Description = styled.div`
 
   & h3 {
       margin: 0;
+      margin-bottom: 6px;
       font-size: 1.17em;
       color: var(--secondary-color);
+      text-wrap: wrap;
   }
 `;
 
