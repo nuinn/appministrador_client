@@ -11,12 +11,31 @@ function Card(props) {
       <div className='descriptionContainer'>
         { type === 'communities' &&
         <StyledDescription>
-          <h3>{data.address}</h3>
-          <p>{`Propietarios: ${data.n_propie}`}</p>
-          <p>{`Inquilinos: ${data.n_inquilinos}`}</p>
-          <p>{`Presidente: ${data.president.name}`}</p>
-          <p>{`Contacto: ${data.president.mobile_num}`}</p>
+          <div className="titlebar">
+            <h3>{data.address}</h3>
+          </div>
+          <div className="content">
+            <p>{`Propietarios: ${data.n_propie}`}</p>
+            <p>{`Inquilinos: ${data.n_inquilinos}`}</p>
+            <p>{`Presidente: ${data.president.name}`}</p>
+            <p>{`Contacto: ${data.president.mobile_num}`}</p>
+          </div>
         </StyledDescription>
+        }
+        { type === 'incidents' &&
+        <>
+          <StyledDescription>
+            <div className="titlebar">
+              <h3>{data.title}</h3>
+              <h4>{data.community}</h4>
+            </div>
+            <div className="content">
+              <p>{data.description.substring(0, 65)+"..."}</p>
+              <h5>{data.provider}</h5>
+            </div>
+          </StyledDescription>
+          <span>{data.date}</span>
+        </>
         }
       </div>
     </StyledCard>

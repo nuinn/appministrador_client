@@ -11,6 +11,10 @@ function AppRouter() {
     {
       element: <Search type='communities' />,
       path: '/comunidades'
+    },
+    {
+      element: <Search type='incidents' />,
+      path: '/incidencias'
     }
   ])
 }

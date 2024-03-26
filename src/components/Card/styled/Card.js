@@ -5,6 +5,7 @@ const Card = styled.div`
   width: 366px;
   height: 128px;
   display: flex;
+  // flex-direction: column;
   align-items: center;
   margin-top: 16px;
   cursor: pointer;
@@ -21,17 +22,31 @@ const Card = styled.div`
   }
 
   .descriptionContainer {
-      left: 60px;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
-      position: relative;
-      border-radius: 8px;
-      width: 300px;
-      height: 128px;
-      border: 1px solid #f0f0f0;
+    left: 60px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
+    border-radius: 8px;
+    width: 300px;
+    height: 128px;
+    border: 1px solid #f0f0f0;
+
+
+    & span {
+      margin-right: 10px;
+      margin-top: 100px;
+      align-self: flex-end;
+      color: var(--grey-color);
+      font-size: 10px;
+      font-style: italic;
+      position: absolute;
+    }
+
+
   }
 `;
 
