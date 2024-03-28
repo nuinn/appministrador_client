@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Card = styled.div`
   position: relative;
-  width: 366px;
+  width: 20em;
   height: 128px;
   display: flex;
   // flex-direction: column;
@@ -31,7 +31,7 @@ const Card = styled.div`
     box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
     position: relative;
     border-radius: 8px;
-    width: 300px;
+    width: 18em;
     height: 128px;
     border: 1px solid #f0f0f0;
 

@@ -4,8 +4,7 @@ const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 18px;
-  // width: 100vw;
+  padding: 18px 2em 18px 0px;
 `;
 
 export default CardsContainer;

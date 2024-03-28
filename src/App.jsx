@@ -4,7 +4,7 @@ import './App.css'
 import StyledWelcomeLogo from './styled/WelcomeLogo/WelcomeLogo.js'
 import StyledButtonsContainer from './styled/ButtonsContainer/ButtonsContainer.js'
 import StyledHomeButton from './styled/HomeButton/HomeButton.js'
-import appLogo from './assets/transparentLogo.png'
+import appLogo from './assets/logos/transparentWhiteLogoBrand.png'
 import backgroundImg from '../src/assets/images/homeImage.png'
 import homeIcons from './files/homeIcons.js'
 import StyledHomeImageContainer from './styled/HomeImageContainer.js'
@@ -23,7 +23,7 @@ function App() {
           <h2>
 						¡Hola <br /> {user.firstName.split(" ")[0]}!
 					</h2>
-          <img src={appLogo} alt="" />
+          <img src={appLogo} alt="Tu Appministrador Logo" />
         </StyledWelcomeLogo>
         <StyledButtonsContainer>
           {homeIcons

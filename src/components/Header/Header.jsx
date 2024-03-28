@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import StyledHeader from '../Header/Styled/Header.js'
-import transparentBrand from '../../assets/transparentBrand.png'
+import transparentBrand from '../../assets/logos/transparentWhiteBrand.png'
 
 function Header() {
   const navigate = useNavigate()
