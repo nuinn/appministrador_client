@@ -1,4 +1,4 @@
-import StyledCard from './styled/Card'
+import StyledCard from './styled/Card.js'
 import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 

@@ -5,10 +5,11 @@ const Card = styled.div`
   width: 20em;
   height: 128px;
   display: flex;
-  // flex-direction: column;
   align-items: center;
   margin-top: 16px;
+
   cursor: pointer;
+
 
   & .roundedImage {
       position: absolute;
