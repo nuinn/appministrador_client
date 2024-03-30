@@ -12,7 +12,7 @@ const HomeImageContainer = styled.div`
     width: 100%;
     height: 100%;
     filter: contrast(70%) brightness(80%);
-    left: -10px;
+    // left: -10px;
     // bottom: 10px;
     // transform: scale(1.1);
   }
