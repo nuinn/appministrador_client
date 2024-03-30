@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom'
 import App from './App'
 import Search from './pages/Search/Search.jsx'
+import ReportIncident from './pages/ReportIncident/ReportIncident.jsx'
 
 function AppRouter() {
   return useRoutes([
@@ -15,6 +16,10 @@ function AppRouter() {
     {
       element: <Search type='incidents' />,
       path: '/incidencias'
+    },
+    {
+      element: <ReportIncident />,
+      path: '/reportarincidencia'
     }
   ])
 }
