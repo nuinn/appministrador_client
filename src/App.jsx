@@ -1,5 +1,4 @@
 import 'react-router-dom'
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './App.css'
 import StyledWelcomeLogo from './components/styled/WelcomeLogo/WelcomeLogo.js'
@@ -10,35 +9,26 @@ import Login from './components/Login/Login.jsx'
 import appLogo from './assets/logos/transparentWhiteLogoBrand.png'
 import backgroundImg from '../src/assets/images/homeImage.png'
 import homeIcons from './files/homeIcons.js'
+import { useLoggedUserContext } from './contexts/loggedUserContext.jsx'
 
 function App() {
-  const [user, setUser] = useState(false)
   const navigate = useNavigate()
-
-  const marc = {
-    firstName: "Marc",
-    admin: true,
-  }
-  // useEffect(() => {
-  //   setUser(marc)
-  // }, [])
-
-  console.log(localStorage.token)
+  const { loggedUser } = useLoggedUserContext()
 
   return (
     <>
       <main>
-        {user &&
+        {loggedUser &&
         <>
           <StyledWelcomeLogo>
             <h2>
-              ¡Hola <br /> {user.firstName.split(" ")[0]}!
+              ¡Hola <br /> {loggedUser.firstName.split(" ")[0]}!
             </h2>
             <img src={appLogo} alt="Tu Appministrador Logo" />
           </StyledWelcomeLogo>
           <StyledButtonsContainer>
             {homeIcons
-              .filter((button) => user.admin ? button : !button.admin)
+              .filter((button) => loggedUser.admin ? button : !button.admin)
               .map((button) =>
                 <StyledHomeButton key={`${button.name} button`} onClick={ () => navigate(button.route) }>
                   <div>
@@ -50,7 +40,7 @@ function App() {
           </StyledButtonsContainer>
         </>
         }
-        {!user && <Login />}
+        {!loggedUser && <Login />}
         <StyledHomeImageContainer>
             <img src={backgroundImg} alt="" />
         </StyledHomeImageContainer>

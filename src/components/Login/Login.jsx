@@ -9,11 +9,13 @@ import appLogo from '../../assets/logos/transparentWhiteLogoBrand.png'
 import showPassword from '../../assets/icons/showPassword.png'
 import hidePassword from '../../assets/icons/hidePassword.png'
 import errorIcon from '../../assets/icons/error.png'
+import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 
 function Login() {
   const navigate = useNavigate()
   const [passwordVisibility, togglePasswordVisibility] = useToggle(false)
   const { data, error, isLoading, getData } = useApi()
+  const { setLoggedUser } = useLoggedUserContext()
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
@@ -35,9 +37,10 @@ function Login() {
   }
 
   useEffect(() => {
-    console.log(data)
-    console.log(error)
-  }, [data, error])
+    if (data && 'user' in data) {
+      setLoggedUser(data.user)
+    }
+  }, [data])
 
   return (
     <StyledLoginContainer>
@@ -54,6 +57,7 @@ function Login() {
             onChange={ handleInput }
             value={ formValues.email }
             autoComplete='off'
+            autoFocus='true'
             />
           </StyledInputWrap>
           <StyledInputWrap>

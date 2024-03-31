@@ -79,6 +79,7 @@ const LoginContainer = styled.div`
         width: 264px;
         padding: 8px;
         border-radius: 4px;
+        line-height: 95%;
       }
     }
 
