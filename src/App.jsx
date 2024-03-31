@@ -1,5 +1,8 @@
 import 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLoggedUserContext } from './contexts/loggedUserContext.jsx'
+import useApi from './hooks/useApi.js'
 import './App.css'
 import StyledWelcomeLogo from './components/styled/WelcomeLogo/WelcomeLogo.js'
 import StyledButtonsContainer from './components/styled/ButtonsContainer/ButtonsContainer.js'
@@ -9,11 +12,26 @@ import Login from './components/Login/Login.jsx'
 import appLogo from './assets/logos/transparentWhiteLogoBrand.png'
 import backgroundImg from '../src/assets/images/homeImage.png'
 import homeIcons from './files/homeIcons.js'
-import { useLoggedUserContext } from './contexts/loggedUserContext.jsx'
 
 function App() {
   const navigate = useNavigate()
   const { loggedUser } = useLoggedUserContext()
+  const { getData, data } = useApi()
+  const [personalCommunityImg, setPersonalCommunityImg] = useState('')
+
+  useEffect(() => {
+    if (loggedUser && loggedUser.community_id.length === 1) {
+      getData({
+        route: `/communities/${loggedUser.community_id}`
+      })
+    }
+  }, [loggedUser])
+
+  useEffect(() => {
+    if (data) {
+      setPersonalCommunityImg(data.image)
+    }
+  }, [data])
 
   return (
     <>
@@ -42,7 +60,7 @@ function App() {
         }
         {!loggedUser && <Login />}
         <StyledHomeImageContainer>
-            <img src={backgroundImg} alt="" />
+            <img src={personalCommunityImg ? personalCommunityImg : backgroundImg} alt="" />
         </StyledHomeImageContainer>
       </main>
     </>
