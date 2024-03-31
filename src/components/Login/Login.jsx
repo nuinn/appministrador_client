@@ -57,7 +57,7 @@ function Login() {
             onChange={ handleInput }
             value={ formValues.email }
             autoComplete='off'
-            autoFocus='true'
+            autoFocus={true}
             />
           </StyledInputWrap>
           <StyledInputWrap>
