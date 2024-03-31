@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const FormContainer = styled.form`
   width: 100%;
-  height: 34%;
+  height: 30%;
   display: flex;
   flex-direction: column;
 
   & .inputsContainer {
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,18 +21,18 @@ const FormContainer = styled.form`
   }
 
   & .submitContainer {
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between
+    justify-content: center;
 
     & div {
       height: 50%;
     }
 
     & .optionsContainer {
-      height: 33%;
+      height: 50%;
       width: 300px;
       display: flex;
       justify-content: space-between;
@@ -78,12 +78,12 @@ const FormContainer = styled.form`
     }
 
     & .buttonContainer {
-      height: 67%;
+      height: 50%;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 20px;
+      padding-top: 8px;
 
       & input {
         width: 300px;
@@ -98,6 +98,7 @@ const FormContainer = styled.form`
         font-size: 18px;
         font-weight: 400;
         transition: .2s;
+        cursor: pointer;
 
         &:active {
           transform: scale(0.95);

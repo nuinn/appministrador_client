@@ -23,6 +23,7 @@ function App() {
   //   setUser(marc)
   // }, [])
 
+  console.log(localStorage.token)
 
   return (
     <>
