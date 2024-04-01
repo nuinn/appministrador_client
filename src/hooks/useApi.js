@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const endpoint = 'https://appministrador-server.onrender.com/'
+const endpoint = 'https://appministrador-server.onrender.com'
 
 function useApi() {
   const [data, setData] = useState()
