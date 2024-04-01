@@ -30,6 +30,7 @@ function App() {
   useEffect(() => {
     if (data) {
       setPersonalCommunityImg(data.image)
+      localStorage.community = data
     }
   }, [data])
 
