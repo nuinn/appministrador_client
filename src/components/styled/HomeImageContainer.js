@@ -7,10 +7,14 @@ const HomeImageContainer = styled.div`
   z-index: 1;
 
   & img {
+    position: relative;
     object-fit: cover;
     width: 100%;
     height: 100%;
-    filter: contrast(40%) brightness(95%);
+    filter: contrast(70%) brightness(80%);
+    // left: -10px;
+    // bottom: 10px;
+    // transform: scale(1.1);
   }
 `;
 

@@ -12,18 +12,23 @@ const HomeButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+
+  &:hover {
+    background-color: var(--light-grey-color);
+  }
 
   & p {
       margin: 0;
       text-decoration: none;
-      font-size: small;
+      font-size: 0.75em;
       color: var(--secondary-color);
   }
 
   & div {
       overflow: hidden;
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
 
       & img {
           object-fit: contain;

@@ -1,44 +1,67 @@
 import 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLoggedUserContext } from './contexts/loggedUserContext.jsx'
+import useApi from './hooks/useApi.js'
 import './App.css'
-import StyledWelcomeLogo from './styled/WelcomeLogo/WelcomeLogo.js'
-import StyledButtonsContainer from './styled/ButtonsContainer/ButtonsContainer.js'
-import StyledHomeButton from './styled/HomeButton/HomeButton.js'
-import appLogo from './assets/transparentLogo.png'
+import StyledWelcomeLogo from './components/styled/WelcomeLogo/WelcomeLogo.js'
+import StyledButtonsContainer from './components/styled/ButtonsContainer/ButtonsContainer.js'
+import StyledHomeButton from './components/styled/HomeButton/HomeButton.js'
+import StyledHomeImageContainer from './components/styled/HomeImageContainer.js'
+import Login from './components/Login/Login.jsx'
+import appLogo from './assets/logos/transparentWhiteLogoBrand.png'
 import backgroundImg from '../src/assets/images/homeImage.png'
 import homeIcons from './files/homeIcons.js'
-import StyledHomeImageContainer from './styled/HomeImageContainer.js'
 
 function App() {
   const navigate = useNavigate()
-  const user = {
-    name: "Marc",
-    admin: false,
-  }
+  const { loggedUser } = useLoggedUserContext()
+  const { getData, data } = useApi()
+  const [personalCommunityImg, setPersonalCommunityImg] = useState('')
+
+  useEffect(() => {
+    if (loggedUser && loggedUser.community_id.length === 1) {
+      getData({
+        route: `/communities/${loggedUser.community_id}`
+      })
+    }
+  }, [loggedUser])
+
+  useEffect(() => {
+    if (data) {
+      setPersonalCommunityImg(data.image)
+      localStorage.community = data
+    }
+  }, [data])
 
   return (
     <>
       <main>
-        <StyledWelcomeLogo>
-          <h2>
-						¡Hola <br /> {user.name.split(" ")[0]}!
-					</h2>
-          <img src={appLogo} alt="" />
-        </StyledWelcomeLogo>
-        <StyledButtonsContainer>
-          {homeIcons
-            .filter((button) => user.admin ? button : !button.admin)
-            .map((button) =>
-              <StyledHomeButton key={`${button.name} button`} onClick={ () => navigate(button.route) }>
-                <div>
-                  <img src={button.image} alt="" />
-                </div>
-                <p>{button.name}</p>
-              </StyledHomeButton>
-            )}
-        </StyledButtonsContainer>
+        {loggedUser &&
+        <>
+          <StyledWelcomeLogo>
+            <h2>
+              ¡Hola <br /> {loggedUser.firstName.split(" ")[0]}!
+            </h2>
+            <img src={appLogo} alt="Tu Appministrador Logo" />
+          </StyledWelcomeLogo>
+          <StyledButtonsContainer>
+            {homeIcons
+              .filter((button) => loggedUser.admin ? button : !button.admin)
+              .map((button) =>
+                <StyledHomeButton key={`${button.name} button`} onClick={ () => navigate(button.route) }>
+                  <div>
+                    <img src={button.image} alt="" />
+                  </div>
+                  <p>{button.name}</p>
+                </StyledHomeButton>
+              )}
+          </StyledButtonsContainer>
+        </>
+        }
+        {!loggedUser && <Login />}
         <StyledHomeImageContainer>
-            <img src={backgroundImg} alt="" />
+            <img src={personalCommunityImg ? personalCommunityImg : backgroundImg} alt="" />
         </StyledHomeImageContainer>
       </main>
     </>
