@@ -1,11 +1,8 @@
 import { useState } from 'react'
-// import { useAuthContext } from '../contexts/AuthContext'
-// const endpoint = 'https://bytebazaar.onrender.com'
-const endpoint = 'http://localhost:3000'
 
+const endpoint = 'https://appministrador-server.onrender.com/'
 
 function useApi() {
-  // const { setLoggedUser } = useAuthContext()
   const [data, setData] = useState()
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(false)
@@ -28,7 +25,6 @@ function useApi() {
       const responseAsJson = await response.json()
       if (responseAsJson.token) {
         localStorage.token = responseAsJson.token
-        // setLoggedUser(JSON.parse(responseAsJson.user))
       }
       setData(responseAsJson)
       setIsLoading(false)

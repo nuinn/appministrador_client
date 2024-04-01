@@ -29,8 +29,10 @@ function App() {
 
   useEffect(() => {
     if (data) {
-      setPersonalCommunityImg(data.image)
-      localStorage.community = data
+      const databaseImg = new Image();
+      databaseImg.src = 'data:image/png;base64,' + data.image;
+      setPersonalCommunityImg(databaseImg.src)
+      // console.log(data.image)
     }
   }, [data])
 
