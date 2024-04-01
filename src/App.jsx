@@ -49,7 +49,7 @@ function App() {
           </StyledWelcomeLogo>
           <StyledButtonsContainer>
             {homeIcons
-              .filter((button) => loggedUser.admin ? button : !button.admin)
+              .filter((button) => loggedUser.isAdmin ? button : !button.admin)
               .map((button) =>
                 <StyledHomeButton key={`${button.name} button`} onClick={ () => navigate(button.route) }>
                   <div>
