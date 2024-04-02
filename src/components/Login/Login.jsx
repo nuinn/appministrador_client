@@ -76,13 +76,13 @@ function Login() {
           <div className="optionsContainer">
             <label className="customCheckbox">
               <input type="checkbox" name="checkbox" value="value" />
-              Recordar sesión
-              {/* New version */}
+              {/* Recordar sesión */}
+              New version
             </label>
             <p>¿Has olvidado tu contraseña?</p>
           </div>
           <div className="buttonContainer">
-            <input onClick={submitHandler} type="submit" value="Acceder" />
+            <input onClick={submitHandler} type="submit" value={isLoading ? "Cargando" : "Acceder"} />
           </div>
         </div>
       </StyledFormContainer>
