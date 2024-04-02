@@ -97,7 +97,7 @@ function Login() {
           </>}
         </div>
         <p>¿No tienes cuenta?</p>
-        <div className="register" onClick={ () => navigate('/registrar') }>Regístrate</div>
+        <div className="register" onClick={ () => navigate('/testpagemarc') }>Regístrate</div>
       </div>
     </StyledLoginContainer>
   )
