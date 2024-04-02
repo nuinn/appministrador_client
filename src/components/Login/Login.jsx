@@ -58,6 +58,7 @@ function Login() {
             value={ formValues.email }
             autoComplete='off'
             autoFocus={true}
+            secureTextEntry={true}
             />
           </StyledInputWrap>
           <StyledInputWrap>
