@@ -76,8 +76,8 @@ function Login() {
           <div className="optionsContainer">
             <label className="customCheckbox">
               <input type="checkbox" name="checkbox" value="value" />
-              Recordar sesión
-              {/* New version */}
+              {/* Recordar sesión */}
+              New version
             </label>
             <p>¿Has olvidado tu contraseña?</p>
           </div>
