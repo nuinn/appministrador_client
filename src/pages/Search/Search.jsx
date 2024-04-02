@@ -11,7 +11,10 @@ function Search(props) {
 
   return (
     <>
-      <Header title={ type === 'communities' ? 'Comunidades' : 'Incidencias' } />
+      <Header
+      title={ type === 'communities' ? 'Comunidades' : 'Incidencias' }
+      path='/'
+      />
       <StyledCardsContainer>
         { type === 'communities' && communities.map((community, i) =>
           <Card key={`${community} ${i}`} type={type} data={community} />
