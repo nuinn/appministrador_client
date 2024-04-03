@@ -100,7 +100,7 @@ const FormContainer = styled.form`
         transition: .2s;
         cursor: pointer;
 
-        &:active {
+        &:active, &:hover {
           transform: scale(0.95);
           background-color: var(--main-color);
         }
