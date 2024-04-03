@@ -3,8 +3,9 @@ import styled from "styled-components";
 const BackNavigator = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
-  padding: 8px 32px;
+  height: 24px;
+  padding: 0px 32px;
+  position: relative;
 
   & img {
     height: 24px;
