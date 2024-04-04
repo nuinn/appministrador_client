@@ -76,8 +76,8 @@ function Login() {
           <div className="optionsContainer">
             <label className="customCheckbox">
               <input type="checkbox" name="checkbox" value="value" />
-              {/* Recordar sesión */}
-              New version
+              Recordar sesión
+              {/* New version */}
             </label>
             <p>¿Has olvidado tu contraseña?</p>
           </div>
@@ -98,7 +98,7 @@ function Login() {
           </>}
         </div>
         <p>¿No tienes cuenta?</p>
-        <div className="register" onClick={ () => navigate('/testpagemarc') }>Regístrate</div>
+        <div className="register" onClick={ () => navigate('/incidencias/detalle/param') }>Regístrate</div>
       </div>
     </StyledLoginContainer>
   )
