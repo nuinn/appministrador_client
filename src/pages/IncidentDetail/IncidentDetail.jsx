@@ -4,6 +4,7 @@ import incidents from '../../data/incidents.json'
 import Header from '../../components/Header/Header.jsx'
 import damp from '../../assets/images/damp.png'
 import StyledImageCarousel from './styled/Carousel.js'
+import Stepper from '../../components/Stepper/Stepper.jsx'
 import StyledContainer from './styled/Container.js'
 import StyledButton from '../../components/styled/Button/Button.js'
 import Footer from '../../components/Footer/Footer.jsx'
@@ -57,6 +58,7 @@ function IncidentDetail() {
           <StyledImageCarousel $image={damp}>
           </StyledImageCarousel>
         </div>
+        <Stepper className='col-12 col-sm-6 col-lg-4'></Stepper>
         <StyledContainer className='col-12 col-sm-6 col-lg-4'>
           <div className="content">
             <p className='title'>{title}</p>
