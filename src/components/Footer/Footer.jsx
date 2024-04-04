@@ -35,7 +35,7 @@ function Footer(props){
     <StyledFooterContainer>
       {icons.map((icon) =>
         icon.name === type ?
-        <div className='activeIconContainer'>
+        <div className='activeIconContainer' key={icon.name}>
           <div className='left' />
           <div className="center">
             <div className="top">
@@ -50,7 +50,7 @@ function Footer(props){
           <div className='right' />
         </div>
         :
-        <div className='unactiveIconContainer'>
+        <div className='unactiveIconContainer' key={icon.name}>
           <img onClick={() => navigate(icon.route)} src={icon.src}/>
         </div>
         )}

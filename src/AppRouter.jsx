@@ -2,6 +2,8 @@ import { useRoutes } from 'react-router-dom'
 import App from './App'
 import Search from './pages/Search/Search.jsx'
 import ReportIncident from './pages/ReportIncident/ReportIncident.jsx'
+import IncidentDetail from './pages/IncidentDetail/IncidentDetail.jsx'
+import MarcTestPage from './pages/MarcTestPage/MarcTestPage.jsx'
 
 function AppRouter() {
   return useRoutes([
@@ -20,6 +22,14 @@ function AppRouter() {
     {
       element: <ReportIncident />,
       path: '/reportarincidencia'
+    },
+    {
+      element: <IncidentDetail />,
+      path: '/incidencias/detalle/:incident_id'
+    },
+    {
+      element: <MarcTestPage />,
+      path: '/testpagemarc'
     }
   ])
 }

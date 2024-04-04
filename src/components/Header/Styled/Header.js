@@ -13,8 +13,8 @@ const Header = styled.div`
   background-color: var(--secondary-color);
 
   & img {
-    width: 190px;
-    padding-left: 18px;
+    width: 217px;
+    padding-left: 24px;
     cursor: pointer;
   }
 `;
