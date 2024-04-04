@@ -28,13 +28,13 @@ const PhotoForm = ({
   };
 
   const handleDelete = (index) => {
-    const newPhotos = [...values.photos];
+    const newPhotos = [...values.image];
     newPhotos.splice(index, 1);
-    setValues({ ...values, photos: newPhotos });
+    setValues({ ...values, image: newPhotos });
   };
 
   // Calculate the number of photo options to show
-  const numPhotos = values.photos.filter((photo) => photo != null).length;
+  const numPhotos = values.image.filter((photo) => photo != null).length;
   const numPhotoOptions = Math.min(numPhotos + 1, 3);
 
   return (
@@ -46,7 +46,7 @@ const PhotoForm = ({
         .map((_, i) => (
           <SinglePhoto
             key={i}
-            photo={values.photos[i]}
+            photo={values.image[i]}
             handleFileChange={(e) => handleFileChange(i, e)}
             handleDelete={() => handleDelete(i)}
           />
