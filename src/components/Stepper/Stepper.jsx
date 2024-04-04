@@ -48,7 +48,7 @@ const stepperMap = [
 ]
 
 const StyledStepperContainer = styled.div`
-  width: 430px;
+  width: 370px;
   height: 346px;
   display: flex;
   flex-direction: column;
@@ -66,7 +66,7 @@ const StyledStepWrap = styled.div`
 `
 
 const StyledStepContainer = styled.div`
-  width: 361px;
+  width: 320px;
   height: 48px;
   display: flex;
   gap: 17px;
@@ -124,9 +124,10 @@ const StyledArrowContainer = styled.div`
 `
 
 const StyledLineWrap = styled.div`
-  width: 430px;
+  width: 370px;
   height: 346px;
-  padding: 21px 42px;
+  padding: 21px 32px;
+  margin: 0px 20px;
   position: relative;
   box-sizing: border-box;
 `
