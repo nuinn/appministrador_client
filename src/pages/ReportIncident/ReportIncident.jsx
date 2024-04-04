@@ -16,9 +16,6 @@ const ReportIncident = () => {
     subcategory: "",
     description: "",
     image: [],
-    status: "Pendiente",
-    community: "65a732acd06ef98cb6409214",
-    owner: "Janis",
   });
 
   console.log(incident);
@@ -42,11 +39,16 @@ const ReportIncident = () => {
   const handleSubmit = () => {
     const date = new Date();
     const title = `${incident.subcategory} en ${incident.category}`
+    const owner = '660473d03bc750e48fe082d6'
+    const community = '65a732acd06ef98cb6409214'
     
     const incidentWithMetaData = {
       ...incident,
       date: date,
       title: title,
+      owner: owner,
+      community: community,
+      status: 'Pendiente',
     };
     
     nextStep();
