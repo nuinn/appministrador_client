@@ -34,7 +34,7 @@ const ReviewForm = ({ nextStep, prevStep, values }) => {
       <p>{values.description}</p><br/>
       <h4>Fotos:</h4><br/>
       </AlignTextLeft>
-      {values.photos
+      {values.image
         .filter((photo) => photo != null)
         .map((photo, i) => (
           <img

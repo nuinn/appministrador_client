@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CategoryForm from "../../components/ReportIncident/CategoryForm.jsx";
@@ -14,9 +14,11 @@ const ReportIncident = () => {
   const [incident, setIncident] = useState({
     category: "",
     subcategory: "",
-    dateTime: "",
     description: "",
-    photos: [],
+    image: [],
+    status: "Pendiente",
+    community: "65a732acd06ef98cb6409214",
+    owner: "Janis",
   });
 
   console.log(incident);
@@ -30,16 +32,47 @@ const ReportIncident = () => {
 
   const handleFileChange = (index, e) => {
     if (e.target.files.length > 0) {
-      const newPhotos = [...incident.photos];
+      const newPhotos = [...incident.image];
       newPhotos[index] = e.target.files[0];
-      setIncident({ ...incident, photos: newPhotos });
+      setIncident({ ...incident, image: newPhotos });
     }
   };
 
+  
   const handleSubmit = () => {
-    setIncident({ ...incident, dateTime: new Date().toISOString() });
+    const date = new Date();
+    const title = `${incident.subcategory} en ${incident.category}`
+    
+    const incidentWithMetaData = {
+      ...incident,
+      date: date,
+      title: title,
+    };
+    
     nextStep();
+    
+    // Convert the new object to FormData
+    const formData = new FormData();
+    Object.keys(incidentWithMetaData).forEach((key) => {
+      if (key === "image") {
+        incidentWithMetaData.image.forEach((image) => {
+          formData.append('image', image);
+        });
+      } else {
+        // Convert object values to string
+        formData.append(key, (incidentWithMetaData[key]));
+      }
+    });
+    
+    fetch("http://localhost:3003/incidents/create", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error('Error:', error));
   };
+  
 
   let form;
 
