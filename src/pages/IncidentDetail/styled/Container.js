@@ -5,6 +5,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  margin-bottom: 32px;
 
   & * {
     color: var(--dark-grey-color);
