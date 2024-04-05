@@ -52,8 +52,26 @@ const stepperMap = [
   }
 ]
 
+function formatDateTime(dateTimeString) {
+  // Parse the input datetime string
+  const dateTime = new Date(dateTimeString);
 
-function Stepper(){
+  // Extract date components
+  const day = dateTime.getDate().toString().padStart(2, '0');
+  const month = (dateTime.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const year = dateTime.getFullYear();
+  const hours = dateTime.getHours().toString().padStart(2, '0');
+  const minutes = dateTime.getMinutes().toString().padStart(2, '0');
+
+  // Format the date string
+  const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}h`;
+
+  return formattedDate;
+}
+
+
+function Stepper(props){
+  const { steps } = props
   const [showNotes, toggleShowNotes] = useToggle(false)
   return (
     <StyledLineWrap>
@@ -62,7 +80,7 @@ function Stepper(){
           <StyledStepWrap>
             <StyledStepContainer key={step.name}>
               <div className={`iconContainer
-                ${fakeData.filter((data) => data.name === step.name).length ? 'completed' : 'yes'}`}>
+                ${steps.filter((data) => data.title === step.name).length ? 'completed' : 'yes'}`}>
                 <img
                 className={ step.name === 'Trabajando en la reparación' ? 'large' : ''
                 || step.name === 'Inspección' ? 'small' : '' }
@@ -70,9 +88,9 @@ function Stepper(){
               </div>
               <StyledStepTitle>
                 <p className="title">{step.name}</p>
-                <p className="data">{ fakeData.filter((data) => data.name === step.name).length ?
-                fakeData.filter((data) => data.name === step.name)
-                        .map((data) => data.date) : 'Proximamente' }</p>
+                <p className="data">{ steps.filter((data) => data.title === step.name).length ?
+                steps.filter((data) => data.title === step.name)
+                        .map((data) => formatDateTime(data.date)) : 'Proximamente' }</p>
               </StyledStepTitle>
             </StyledStepContainer>
             <StyledArrowContainer>
