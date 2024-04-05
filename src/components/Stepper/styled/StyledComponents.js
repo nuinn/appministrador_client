@@ -10,7 +10,10 @@ const StyledStepperContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  padding-bottom: 180px;
+  padding: 8px 0px;
+  border: 1px solid var(--light-grey-color);
+  border-radius: 32px;
+  box-shadow: 2px 2px 6px 0px #85858540;
 `
 
 const StyledStepWrap = styled.div`

@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import incidents from '../../data/incidents.json'
 import Header from '../../components/Header/Header.jsx'
+import left from '../../assets/icons/left.png'
+import right from '../../assets/icons/right.png'
 import damp from '../../assets/images/damp.png'
 import tap from '../../assets/images/tap.png'
 import lift from '../../assets/images/lift.png'
@@ -11,15 +14,16 @@ import StyledContainer from './styled/Container.js'
 import StyledButton from '../../components/styled/Button/Button.js'
 import Footer from '../../components/Footer/Footer.jsx'
 
+const imageArray = [damp,tap,lift]
+
 const StyledWrap = styled.div`
   height: 56vh;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   --bs-gutter-x: 0rem;
   & .carouselContainer {
-    // width: 90%;
     display: flex;
     justify-content: center;
   }
@@ -37,13 +41,13 @@ const StyledButtonContainer = styled.div`
 `
 
 const StyledFooterPusher = styled.div`
-  // height: 100px;
-  // position: fixed;
+  padding-bottom: 200px;
 `
 
 const props = incidents[0]
 
 function IncidentDetail() {
+  const [imageIndex, setImageIndex] = useState(0)
   const { incident_id } = useParams()
   const { title, community, description, owner, date, image, provider } = props
 
@@ -62,6 +66,10 @@ function IncidentDetail() {
     }
   ]
 
+  function onClickHandler(direction){
+    setImageIndex(() => imageIndex + direction)
+  }
+
   return (
     <>
       <Header
@@ -70,7 +78,14 @@ function IncidentDetail() {
       path='/incidencias'/>
       <StyledWrap className='row'>
         <div className='carouselContainer col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
-          <StyledImageCarousel $image={tap}>
+          <StyledImageCarousel $image={imageArray[imageIndex]}>
+            { imageIndex ?
+            <img onClick={ () => onClickHandler(-1) } src={left} alt="left arrow" />
+            : <span></span>
+            }
+            { imageIndex !== imageArray.length-1 &&
+            <img onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
+            }
           </StyledImageCarousel>
         </div>
         <StyledContainer className='col-12 col-sm-10 col-md-6 col-lg-4'>
@@ -85,12 +100,12 @@ function IncidentDetail() {
             </div>) }
         </StyledContainer>
         <Stepper className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>
+      <StyledFooterPusher />
       </StyledWrap>
       <StyledButtonContainer>
         <StyledButton>Editar</StyledButton>
         <StyledButton>Aceptar</StyledButton>
       </StyledButtonContainer>
-      <StyledFooterPusher />
       <Footer type='incidents' />
     </>
   )
