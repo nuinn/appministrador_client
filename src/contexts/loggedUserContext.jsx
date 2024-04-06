@@ -1,10 +1,16 @@
-import { useContext, createContext, useState } from 'react'
+import { useContext, createContext, useState, useEffect } from 'react'
 
 const LoggedUserContext = createContext()
 
 function LoggedUserProvider(props) {
   const { children } = props
   const [loggedUser, setLoggedUser] = useState()
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setLoggedUser(JSON.parse(localStorage.user))
+    }
+  }, [])
 
   return(
     <LoggedUserContext.Provider value={{ loggedUser, setLoggedUser }}>

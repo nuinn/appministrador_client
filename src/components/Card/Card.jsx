@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import StyledCard from './styled/Card.js'
 import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 
 function Card(props) {
   const { type, data } = props
+  const navigate = useNavigate()
 
   return (
     <StyledCard>
@@ -27,11 +29,12 @@ function Card(props) {
           <StyledDescription>
             <div className="titlebar">
               <h3>{data.title}</h3>
-              <h4>{data.community}</h4>
+              <h4>{data.community.address}</h4>
             </div>
             <div className="content">
+              {/* <p>{data.description}</p> */}
               <p>{data.description.substring(0, 65)+"..."}</p>
-              <h5>{data.provider}</h5>
+              <h5>{data.provider.title}</h5>
             </div>
           </StyledDescription>
           <span>{data.date}</span>
