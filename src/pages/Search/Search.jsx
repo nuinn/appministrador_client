@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import useApi from '../../hooks/useApi.js'
-
-import communities from '../../data/communities.json'
-import incidents from '../../data/incidents.json'
 import Header from '../../components/Header/Header.jsx'
 import StyledCardsContainer from '../../components/styled/CardsContainer/CardsContainer.js'
 import Card from '../../components/Card/Card.jsx'
@@ -42,13 +39,6 @@ function Search(props) {
         {data && data.map((item, i) =>
           <Card key={`${type} ${i}`} type={type} data={item} />
         )}
-        {/* communities.map((community, i) =>
-          <Card key={`${community} ${i}`} type={type} data={community} />
-        )
-        // { type === 'incidents' && incidents.map((incident, i) =>
-        //   <Card key={`${incident} ${i}`} type={type} data={incident} />
-        // )}
-        } */}
       </StyledCardsContainer>
       <StyledFloatingButton>
         <span>+</span>

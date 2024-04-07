@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom'
 import StyledCard from './styled/Card.js'
 import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 
 function Card(props) {
   const { type, data } = props
-  const navigate = useNavigate()
 
   return (
     <StyledCard>
