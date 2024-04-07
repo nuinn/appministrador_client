@@ -27,11 +27,12 @@ function Card(props) {
           <StyledDescription>
             <div className="titlebar">
               <h3>{data.title}</h3>
-              <h4>{data.community}</h4>
+              <h4>{data.community.address}</h4>
             </div>
             <div className="content">
+              {/* <p>{data.description}</p> */}
               <p>{data.description.substring(0, 65)+"..."}</p>
-              <h5>{data.provider}</h5>
+              <h5>{data.provider.title}</h5>
             </div>
           </StyledDescription>
           <span>{data.date}</span>
