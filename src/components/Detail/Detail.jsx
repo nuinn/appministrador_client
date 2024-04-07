@@ -16,7 +16,6 @@ const StyledFooterPusher = styled.div`
 function Detail(props){
   const { images, title, description, category, owner, date, steps, params } = props
   const [imageIndex, setImageIndex] = useState(0)
-
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
   }
@@ -24,7 +23,7 @@ function Detail(props){
   const incidentMapper = [
     {
       header: 'Publicado por:',
-      body: owner
+      body: `${owner.firstName} ${owner.lastName}`
     },
     {
       header: 'Categoría:',

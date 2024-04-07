@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import useApi from '../../hooks/useApi.js'
 import Header from '../../components/Header/Header.jsx'
@@ -9,8 +10,10 @@ import Footer from '../../components/Footer/Footer.jsx'
 
 function Search(props) {
   const { type } = props
+  const navigate = useNavigate()
   const { getData, data, isLoading, error } = useApi()
   const { loggedUser } = useLoggedUserContext()
+
   useEffect(() => {
     if (loggedUser) {
       switch (true) {
@@ -29,6 +32,16 @@ function Search(props) {
     }
   }, [loggedUser])
 
+  function navigateHandler(item) {
+    switch (true) {
+      case type === 'incidents':
+        return `/incidencias/detalle/${item._id}`
+
+      default:
+        break;
+    }
+  }
+
   return (
     <>
       <Header
@@ -37,7 +50,12 @@ function Search(props) {
       />
       <StyledCardsContainer>
         {data && data.map((item, i) =>
-          <Card key={`${type} ${i}`} type={type} data={item} />
+          <Card
+            onClick={ () => navigate(navigateHandler(item)) }
+            key={`${type} ${i}`}
+            type={type}
+            data={item}
+          />
         )}
       </StyledCardsContainer>
       <StyledFloatingButton>

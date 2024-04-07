@@ -3,10 +3,10 @@ import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 
 function Card(props) {
-  const { type, data } = props
+  const { type, data, onClick } = props
 
   return (
-    <StyledCard>
+    <StyledCard onClick={onClick}>
       <RoundImage className='roundedImage' image={data.image} />
       <div className='descriptionContainer'>
         { type === 'communities' &&
