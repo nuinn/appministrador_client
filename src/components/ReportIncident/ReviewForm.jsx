@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import { useLoggedUserContext } from "../../contexts/loggedUserContext";
 import Detail from "../Detail/Detail";
 import NavigationButtonsContainer from "../../styled/NavigationButtonsContainer/NavigationButtonsContainer";
 import NavigationButton from "../../styled/NavigationButton/NavigationButton";
@@ -16,6 +16,7 @@ text-align: left;
 `;
 
 const ReviewForm = ({ nextStep, prevStep, values }) => {
+  const { loggedUser } = useLoggedUserContext()
   const goNext = () => {
     nextStep();
   };
@@ -24,7 +25,16 @@ const ReviewForm = ({ nextStep, prevStep, values }) => {
     prevStep();
   };
 
-  const title = `${values.subcategory} en ${values.category}`
+  function createTitle(incident) {
+    const isSecurityIssue = incident.location === 'Seguridad'
+    let title = ''
+    isSecurityIssue ? title = incident.subcategory.problem : title = `${incident.subcategory.problem} en ${incident.location}`
+    console.log('titleinfunc', title)
+    return title
+  }
+
+  const title = createTitle(values)
+  console.log('title', title)
   const date = new Date().toString()
   const images = values.image.map((img) => URL.createObjectURL(img))
 
@@ -36,9 +46,8 @@ const ReviewForm = ({ nextStep, prevStep, values }) => {
       title={title}
       description={values.description}
       images={images}
-      category='category'
-      owner='Marc Dilley'
-      date={date}
+      category={values.subcategory.category}
+      owner={loggedUser}
     />
     // <div>
     //   <PageTitle>Revise su informe de incidencia</PageTitle>

@@ -28,6 +28,10 @@ function IncidentDetail() {
     })
   },[])
 
+  useEffect(() => {
+    data && console.log(data.image)
+  },[data])
+
   return (
     <>
       {isLoading && <p>Loading</p>}

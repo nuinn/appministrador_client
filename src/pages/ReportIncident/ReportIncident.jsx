@@ -4,7 +4,7 @@ import useApi from "../../hooks/useApi.js";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CommunityForm from "../../components/ReportIncident/CommunityForm.jsx"
-import CategoryForm from "../../components/ReportIncident/CategoryForm.jsx";
+import LocationForm from "../../components/ReportIncident/LocationForm.jsx";
 import SubcategoryForm from "../../components/ReportIncident/SubcategoryForm.jsx";
 import DescriptionForm from "../../components/ReportIncident/DescriptionForm.jsx";
 import PhotoForm from "../../components/ReportIncident/PhotoForm.jsx";
@@ -40,6 +40,7 @@ const ReportIncident = () => {
   const prevStep = () => setStep(step - 1);
 
   const handleChange = (input) => (value) => {
+    // console.log('input', input, 'value', value)
     setIncident({ ...incident, [input]: value });
   };
 
@@ -51,20 +52,23 @@ const ReportIncident = () => {
     }
   };
 
+  function createTitle(incident) {
+    const isSecurityIssue = incident.location === 'Seguidad'
+    let title = ''
+    isSecurityIssue ? title = incident.subcategory.problem : `${incident.subcategory.problem} en ${incident.location}`
+    return title
+  }
 
   const handleSubmit = () => {
     const date = new Date();
-    const title = `${incident.subcategory} en ${incident.category}`
-    const community = '65a732acd06ef98cb6409214'
 
     const incidentWithMetaData = {
       ...incident,
       date: date,
       title: title,
-      community: community,
       status: 'Pendiente',
     };
-
+    console.log('incidentWithMetaData', incidentWithMetaData)
     nextStep();
 
     // Convert the new object to FormData
@@ -106,11 +110,12 @@ const ReportIncident = () => {
           values={incident}
         />
       )
-      break;
+      break
     case 2:
       form = (
-        <CategoryForm
+        <LocationForm
           nextStep={nextStep}
+          prevStep={prevStep}
           handleChange={handleChange}
           values={incident}
         />

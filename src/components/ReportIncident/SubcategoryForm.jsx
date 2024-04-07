@@ -1,4 +1,4 @@
-import React from "react";
+import categorySubcategories from '../../files/incidentsCategories.js'
 import FormButton from "../../components/ReportIncident/FormButton.jsx";
 import FormButtonContainer from "../../components/ReportIncident/FormButtonContainer.jsx";
 import PageTitle from "../../styled/PageTitle/PageTitle.js";
@@ -15,38 +15,18 @@ const SubcategoryForm = ({ nextStep, prevStep, handleChange, values }) => {
     prevStep();
   };
 
-  const categorySubcategories = {
-    Edificio: [
-      "Daños estructurales",
-      "Problemas de electricidad",
-      "Fugas de agua",
-    ],
-    Garaje: [
-      "Problemas de puerta",
-      "Iluminación defectuosa",
-      "Espacios de estacionamiento incorrectos",
-    ],
-    Trastero: [
-      "Falta de espacio",
-      "Problemas de seguridad",
-      "Acceso restringido",
-    ],
-    "Áreas comunes": ["Limpieza", "Mantenimiento de jardines", "Ruido"],
-    Seguridad: ["Robo", "Vandalismo", "Problemas de iluminación"],
-  };
-
-  const subcategories = categorySubcategories[values.category] || [];
+  const subcategories = categorySubcategories[values.location] || [];
 
   return (
     <div>
-      <PageTitle>¿Que problema esta reportando?</PageTitle>
+      <PageTitle>¿Qué problema está reportando?</PageTitle>
       <FormButtonContainer>
         {subcategories.map((subcategory) => (
           <FormButton
-            key={subcategory}
+            key={subcategory.problem}
             onClick={() => selectSubcategoryAndContinue(subcategory)}
           >
-            {subcategory}
+            {subcategory.problem}
           </FormButton>
         ))}
       </FormButtonContainer>
