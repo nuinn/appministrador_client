@@ -5,7 +5,7 @@ import useApi from '../../hooks/useApi.js'
 import Header from '../../components/Header/Header.jsx'
 import StyledCardsContainer from '../../components/styled/CardsContainer/CardsContainer.js'
 import Card from '../../components/Card/Card.jsx'
-import StyledFloatingButton from '../../components/styled/FloatingButton/FloatingButton.js'
+import FloatingButton from '../../components/FloatingButton/FloatingButton.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 
 function Search(props) {
@@ -58,9 +58,7 @@ function Search(props) {
           />
         )}
       </StyledCardsContainer>
-      <StyledFloatingButton>
-        <span>+</span>
-      </StyledFloatingButton>
+      <FloatingButton type={type} />
       <Footer type={type} />
     </>
   )

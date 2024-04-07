@@ -21,7 +21,7 @@ function AppRouter() {
     },
     {
       element: <ReportIncident />,
-      path: '/reportarincidencia'
+      path: '/incidencias/reportar'
     },
     {
       element: <IncidentDetail />,
