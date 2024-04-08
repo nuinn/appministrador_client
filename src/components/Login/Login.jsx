@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import useToggle from '../../hooks/useToggle.js'
 import useApi from '../../hooks/useApi.js'
 import StyledLoginContainer from './styled/LoginContainer.js'
@@ -100,7 +100,7 @@ function Login() {
               <div className="errorMessage">{error.msg}</div>
             </>}
           </div>
-          <p>¿No tienes cuenta?</p>
+          <p>¿No tienes <Link to="/reportarincidencia">cuenta</Link>?</p>
           <div className="register" onClick={ () => navigate('/incidencias/detalle/param') }>Regístrate</div>
         </div>
       </StyledLoginContainer>}
