@@ -66,7 +66,7 @@ const ReportIncident = () => {
       }
     });
     
-    fetch("http://localhost:3003/incidents/create", {
+    fetch("https://appministrador-server.onrender.com/incidents/create", {
       method: "POST",
       body: formData,
     })
