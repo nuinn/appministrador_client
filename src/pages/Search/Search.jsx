@@ -54,12 +54,15 @@ function Search(props) {
       <>
         <StyledCardsContainer>
           {data && data.map((item, i) =>
-            <Card key={`${type} ${i}`} type={type} data={item} />
+            <Card
+              onClick={ () => navigate(navigateHandler(item)) }
+              key={`${type} ${i}`}
+              type={type}
+              data={item}
+            />
           )}
         </StyledCardsContainer>
-        <StyledFloatingButton>
-          <span>+</span>
-        </StyledFloatingButton>
+        <FloatingButton type={type} />
       </>}
       <Footer type={type} />
     </>

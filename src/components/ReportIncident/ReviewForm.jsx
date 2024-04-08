@@ -17,37 +17,27 @@ text-align: left;
 
 const ReviewForm = ({ nextStep, prevStep, values }) => {
   const { loggedUser } = useLoggedUserContext()
-  const goNext = () => {
-    nextStep();
-  };
-
-  const goBack = () => {
-    prevStep();
-  };
 
   function createTitle(incident) {
     const isSecurityIssue = incident.location === 'Seguridad'
     let title = ''
     isSecurityIssue ? title = incident.subcategory.problem : title = `${incident.subcategory.problem} en ${incident.location}`
-    console.log('titleinfunc', title)
     return title
   }
 
   const title = createTitle(values)
-  console.log('title', title)
-  const date = new Date().toString()
   const images = values.image.map((img) => URL.createObjectURL(img))
-
-  console.log(images)
 
   return (
     // <></>
     <Detail
+      images={images}
       title={title}
       description={values.description}
-      images={images}
-      category={values.subcategory.category}
       owner={loggedUser}
+      category={values.subcategory.category}
+      nextStep={nextStep}
+      prevStep={prevStep}
     />
     // <div>
     //   <PageTitle>Revise su informe de incidencia</PageTitle>

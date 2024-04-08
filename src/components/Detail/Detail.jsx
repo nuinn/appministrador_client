@@ -25,7 +25,8 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, category, owner, date, steps, params } = props
+  console.log('props', props)
+  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps } = props
   const [imageIndex, setImageIndex] = useState(0)
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
@@ -55,7 +56,7 @@ function Detail(props){
             <img onClick={ () => onClickHandler(-1) } src={left} alt="left arrow" />
             : <span></span>
             }
-            { imageIndex !== images.length-1 &&
+            { (!!images.length && (imageIndex !== images.length-1)) &&
             <img onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
             }
           </StyledImageCarousel>
@@ -76,8 +77,8 @@ function Detail(props){
       </StyledWrap>
       { !params &&
       <StyledButtonContainer>
-        <StyledButton>Volver</StyledButton>
-        <StyledButton>Enviar</StyledButton>
+        <StyledButton onClick={prevStep}>Volver</StyledButton>
+        <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
       </StyledButtonContainer>
       }
     </>

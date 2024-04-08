@@ -1,4 +1,4 @@
-import categorySubcategories from '../../files/incidentsCategories.js'
+import locationsIssues from '../../files/locationsIssues.js'
 import FormButton from "../../components/ReportIncident/FormButton.jsx";
 import FormButtonContainer from "../../components/ReportIncident/FormButtonContainer.jsx";
 import PageTitle from "../../styled/PageTitle/PageTitle.js";
@@ -6,32 +6,32 @@ import NavigationButtonsContainer from "../../styled/NavigationButtonsContainer/
 import NavigationButton from "../../styled/NavigationButton/NavigationButton.js";
 
 const SubcategoryForm = ({ nextStep, prevStep, handleChange, values }) => {
-  const selectSubcategoryAndContinue = (subcategory) => {
-    handleChange("subcategory")(subcategory);
+  const selectSubcategoryAndContinue = (issue) => {
+    handleChange("subcategory")(issue);
     nextStep();
   };
 
-  const goBack = () => {
-    prevStep();
-  };
+  // const goBack = () => {
+  //   prevStep();
+  // };
 
-  const subcategories = categorySubcategories[values.location] || [];
+  const issuesCategories = locationsIssues[values.location] || [];
 
   return (
     <div>
       <PageTitle>¿Qué problema está reportando?</PageTitle>
       <FormButtonContainer>
-        {subcategories.map((subcategory) => (
+        {issuesCategories.map((issue) => (
           <FormButton
-            key={subcategory.problem}
-            onClick={() => selectSubcategoryAndContinue(subcategory)}
+            key={issue.problem}
+            onClick={() => selectSubcategoryAndContinue(issue)}
           >
-            {subcategory.problem}
+            {issue.problem}
           </FormButton>
         ))}
       </FormButtonContainer>
       <NavigationButtonsContainer>
-        <NavigationButton onClick={goBack}>Volver</NavigationButton>
+        <NavigationButton onClick={prevStep}>Volver</NavigationButton>
       </NavigationButtonsContainer>
     </div>
   );

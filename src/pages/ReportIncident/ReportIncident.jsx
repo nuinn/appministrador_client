@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLoggedUserContext } from "../../contexts/loggedUserContext.jsx";
 import useApi from "../../hooks/useApi.js";
 import Header from "../../components/Header/Header.jsx";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CommunityForm from "../../components/ReportIncident/CommunityForm.jsx"
 import LocationForm from "../../components/ReportIncident/LocationForm.jsx";
@@ -17,14 +18,14 @@ const ReportIncident = () => {
   const { getData, data, isLoading, error } = useApi()
   const [step, setStep] = useState(1);
   const [incident, setIncident] = useState({
-    category: "",
+    owner: "",
     community: "",
+    location: "",
     subcategory: "",
     description: "",
     image: [],
-    owner: "",
   });
-  console.log(incident);
+  // console.log(incident);
 
   useEffect(() => {
     if (loggedUser) {
@@ -59,17 +60,19 @@ const ReportIncident = () => {
     return title
   }
 
-  const handleSubmit = () => {
+  function handleSubmit(title) {
+    const { category } = incident.subcategory
+    delete incident.subcategory
+    delete incident.location
     const date = new Date();
-
     const incidentWithMetaData = {
       ...incident,
-      date: date,
       title: title,
+      category: category,
+      date: date,
       status: 'Pendiente',
     };
     console.log('incidentWithMetaData', incidentWithMetaData)
-    nextStep();
 
     // Convert the new object to FormData
     const formData = new FormData();
@@ -84,18 +87,26 @@ const ReportIncident = () => {
       }
     });
 
-    getData({
-      route: '/incidents/create',
-      method: 'POST',
-      body: formData,
-    })
-    // fetch("http://localhost:3003/incidents/create", {
-    //   method: "POST",
+    console.log('formData', formData )
+
+    // getData({
+    //   route: '/incidents/create',
+    //   method: 'POST',
     //   body: formData,
     // })
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.error('Error:', error));
+
+    // useEffect(() => {
+    //   data && nextStep()
+    //   error && console.log(error)
+    // }, [data, error])
+
+    fetch("http://localhost:3000/incidents/create", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error('Error:', error));
   };
 
 
@@ -172,6 +183,7 @@ const ReportIncident = () => {
     <div>
       <PageContentContainer>
         <Header title='Incidencias / Reportar' path='/incidencias'/>
+        {/* {isLoading && <LoadingSpinner />} */}
         {form}
         <Footer type="incidents" />
       </PageContentContainer>
