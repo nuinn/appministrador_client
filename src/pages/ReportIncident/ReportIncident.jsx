@@ -61,6 +61,7 @@ const ReportIncident = () => {
   }
 
   function handleSubmit(title) {
+    nextStep()
     const { category } = incident.subcategory
     delete incident.subcategory
     delete incident.location
@@ -89,24 +90,25 @@ const ReportIncident = () => {
 
     console.log('formData', formData )
 
-    // getData({
-    //   route: '/incidents/create',
-    //   method: 'POST',
-    //   body: formData,
-    // })
-
-    // useEffect(() => {
-    //   data && nextStep()
-    //   error && console.log(error)
-    // }, [data, error])
-
-    fetch("http://localhost:3000/incidents/create", {
+    getData({
+      route: "/incidents/create",
       method: "POST",
       body: formData,
+      stringify: false,
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error('Error:', error));
+
+    useEffect(() => {
+      data && console.log(data)
+      error && console.log(error)
+    }, [data, error])
+
+  //   fetch("https://appministrador-server.onrender.com/incidents/create", {
+  //     method: "POST",
+  //     body: formData,
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data))
+  //     .catch((error) => console.error('Error:', error));
   };
 
 
@@ -118,7 +120,6 @@ const ReportIncident = () => {
         <CommunityForm
           nextStep={nextStep}
           handleChange={handleChange}
-          values={incident}
         />
       )
       break
@@ -173,7 +174,11 @@ const ReportIncident = () => {
       );
       break;
     case 7:
-      form = <Confirmation />;
+      form =
+        <Confirmation
+          data={data}
+          isLoading={isLoading}
+        />;
       break;
     default:
       form = <div>Error: Unknown step</div>;
@@ -191,4 +196,4 @@ const ReportIncident = () => {
   );
 };
 
-export default ReportIncident;
+export default ReportIncident

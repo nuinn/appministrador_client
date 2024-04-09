@@ -10,10 +10,24 @@ function useApi() {
   const [isLoading, setIsLoading] = useState(false)
   const { setLoggedUser } = useLoggedUserContext()
 
-  async function getData({ route, method = 'GET', body, headers = {} }) {
+  async function getData({ route, method = 'GET', body, headers = {}, stringify = true }) {
+    console.log('route', route);
+    console.log('method', method);
+    console.log('stringify', stringify)
     setError()
     setData()
     setIsLoading(true)
+    let modifiedBody = ''
+    if (body && stringify) {
+      modifiedBody = JSON.stringify(body)
+    }
+    // if (stringify) {
+    //   headers["Content-Type"] = 'application/json'
+    // }
+    console.log('headers', headers)
+    console.log('body', body);
+    console.log('typeof body', typeof body);
+
 
     const response = await fetch(endpoint + route, {
       method,
@@ -22,10 +36,13 @@ function useApi() {
         'Authorization': localStorage.token,
         ...headers
       },
-      body: body ? JSON.stringify(body) : undefined
+      body: modifiedBody ? modifiedBody : body || undefined
     })
+    console.log('headers', headers)
     if (response.ok) {
+      console.log('ok')
       const responseAsJson = await response.json()
+      console.log('responseAsJson', responseAsJson)
       if (responseAsJson.token) {
         localStorage.token = responseAsJson.token
       }
@@ -36,6 +53,7 @@ function useApi() {
       setData(responseAsJson)
       setIsLoading(false)
     } else {
+      console.log('else')
       const responseAsJson = await response.json()
       setError(responseAsJson)
       setIsLoading(false)
