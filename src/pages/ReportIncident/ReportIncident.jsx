@@ -35,6 +35,10 @@ const ReportIncident = () => {
     }
   }, [loggedUser])
 
+  useEffect(() => {
+    error && console.log(error)
+  }, [error])
+
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
@@ -83,11 +87,6 @@ const ReportIncident = () => {
       body: formData,
       stringify: false,
     })
-
-    useEffect(() => {
-      data && console.log(data)
-      error && console.log(error)
-    }, [data, error])
   };
 
   let form;

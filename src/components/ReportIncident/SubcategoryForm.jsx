@@ -11,10 +11,6 @@ const SubcategoryForm = ({ nextStep, prevStep, handleChange, values }) => {
     nextStep();
   };
 
-  // const goBack = () => {
-  //   prevStep();
-  // };
-
   const issuesCategories = locationsIssues[values.location] || [];
 
   return (

@@ -25,8 +25,7 @@ const CommunityForm = ({ nextStep, handleChange }) => {
 
   useEffect(() => {
     data && setCommunities(data)
-    data && console.log('data', data)
-    error && console.log('error', error)
+    error && console.log(error)
   }, [data, error])
 
   return (
