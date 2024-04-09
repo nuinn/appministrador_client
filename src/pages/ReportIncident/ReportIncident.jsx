@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLoggedUserContext } from "../../contexts/loggedUserContext.jsx";
 import useApi from "../../hooks/useApi.js";
 import Header from "../../components/Header/Header.jsx";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CommunityForm from "../../components/ReportIncident/CommunityForm.jsx"
 import LocationForm from "../../components/ReportIncident/LocationForm.jsx";
@@ -25,7 +24,6 @@ const ReportIncident = () => {
     description: "",
     image: [],
   });
-  // console.log(incident);
 
   useEffect(() => {
     if (loggedUser) {
@@ -41,7 +39,6 @@ const ReportIncident = () => {
   const prevStep = () => setStep(step - 1);
 
   const handleChange = (input) => (value) => {
-    // console.log('input', input, 'value', value)
     setIncident({ ...incident, [input]: value });
   };
 
@@ -52,13 +49,6 @@ const ReportIncident = () => {
       setIncident({ ...incident, image: newPhotos });
     }
   };
-
-  function createTitle(incident) {
-    const isSecurityIssue = incident.location === 'Seguidad'
-    let title = ''
-    isSecurityIssue ? title = incident.subcategory.problem : `${incident.subcategory.problem} en ${incident.location}`
-    return title
-  }
 
   function handleSubmit(title) {
     nextStep()
@@ -73,7 +63,6 @@ const ReportIncident = () => {
       date: date,
       status: 'Pendiente',
     };
-    console.log('incidentWithMetaData', incidentWithMetaData)
 
     // Convert the new object to FormData
     const formData = new FormData();
@@ -88,8 +77,6 @@ const ReportIncident = () => {
       }
     });
 
-    console.log('formData', formData )
-
     getData({
       route: "/incidents/create",
       method: "POST",
@@ -101,16 +88,7 @@ const ReportIncident = () => {
       data && console.log(data)
       error && console.log(error)
     }, [data, error])
-
-  //   fetch("https://appministrador-server.onrender.com/incidents/create", {
-  //     method: "POST",
-  //     body: formData,
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data))
-  //     .catch((error) => console.error('Error:', error));
   };
-
 
   let form;
 

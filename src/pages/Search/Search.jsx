@@ -15,23 +15,23 @@ function Search(props) {
   const { getData, data, isLoading, error } = useApi()
   const { loggedUser } = useLoggedUserContext()
 
-  // useEffect(() => {
-  //   if (loggedUser) {
-  //     switch (true) {
-  //       case type === 'communities':
-  //         getData({
-  //           route: `/communities/user/${loggedUser._id}`
-  //         })
-  //         break;
-  //       case type === 'incidents':
-  //         getData({
-  //           route: `/incidents/byUser/`
-  //         })
-  //       default:
-  //         break;
-  //     }
-  //   }
-  // }, [loggedUser])
+  useEffect(() => {
+    if (loggedUser) {
+      switch (true) {
+        case type === 'communities':
+          getData({
+            route: `/communities/user/${loggedUser._id}`
+          })
+          break;
+        case type === 'incidents':
+          getData({
+            route: `/incidents/byUser/`
+          })
+        default:
+          break;
+      }
+    }
+  }, [loggedUser])
 
   function navigateHandler(item) {
     switch (true) {

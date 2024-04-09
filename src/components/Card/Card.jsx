@@ -32,7 +32,7 @@ function Card(props) {
             <div className="content">
               {/* <p>{data.description}</p> */}
               <p>{data.description.substring(0, 65)+"..."}</p>
-              <h5>{data.provider.title}</h5>
+              {/* <h5>{data.provider.title}</h5> */}
             </div>
           </StyledDescription>
           <span>{data.date}</span>

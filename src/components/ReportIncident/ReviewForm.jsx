@@ -20,8 +20,9 @@ const ReviewForm = ({ nextStep, prevStep, values }) => {
 
   function createTitle(incident) {
     const isSecurityIssue = incident.location === 'Seguridad'
+    const article = incident.location === 'Exteriores' || incident.location === 'Áreas comunes' ? 'los' : 'el'
     let title = ''
-    isSecurityIssue ? title = incident.subcategory.problem : title = `${incident.subcategory.problem} en ${incident.location}`
+    isSecurityIssue ? title = incident.subcategory.problem : title = `${incident.subcategory.problem} en ${article} ${incident.location.toLowerCase()}`
     return title
   }
 

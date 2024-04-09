@@ -4,7 +4,7 @@ export default {
     { problem: "Problemas con la pintura", category: "Albañilería" },
     { problem: "Problemas de electricidad", category: "Electricidad" },
     { problem: "Fugas de agua", category: "Fontanería" },
-    { problem: "Problemas de humedad o moho", category: "Fontanería" },
+    { problem: "Humedad o moho", category: "Fontanería" },
     { problem: "Insectos o plagas", category: "Control de Plagas" },
     { problem: "Problemas con cerraduras", category: "Cerrajería" }
   ],
@@ -28,7 +28,7 @@ export default {
     { problem: "Escasez de espacio", category: "Administración" },
     { problem: "Problemas de seguridad", category: "Seguridad" },
     { problem: "Acceso restringido", category: "Seguridad" },
-    { problem: "Problemas de humedad", category: "Fontanería" },
+    { problem: "Humedad", category: "Fontanería" },
     { problem: "Insectos o plagas", category: "Control de Plagas" },
     { problem: "Daños estructurales", category: "Albañilería" },
     { problem: "Iluminación inadecuada", category: "Electricidad" }
