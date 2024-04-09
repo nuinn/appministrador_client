@@ -1,4 +1,4 @@
-import React from "react";
+import locationsIssues from '../../files/locationsIssues.js'
 import FormButton from "../../components/ReportIncident/FormButton.jsx";
 import FormButtonContainer from "../../components/ReportIncident/FormButtonContainer.jsx";
 import PageTitle from "../../styled/PageTitle/PageTitle.js";
@@ -6,52 +6,32 @@ import NavigationButtonsContainer from "../../styled/NavigationButtonsContainer/
 import NavigationButton from "../../styled/NavigationButton/NavigationButton.js";
 
 const SubcategoryForm = ({ nextStep, prevStep, handleChange, values }) => {
-  const selectSubcategoryAndContinue = (subcategory) => {
-    handleChange("subcategory")(subcategory);
+  const selectSubcategoryAndContinue = (issue) => {
+    handleChange("subcategory")(issue);
     nextStep();
   };
 
-  const goBack = () => {
-    prevStep();
-  };
+  // const goBack = () => {
+  //   prevStep();
+  // };
 
-  const categorySubcategories = {
-    Edificio: [
-      "Daños estructurales",
-      "Problemas de electricidad",
-      "Fugas de agua",
-    ],
-    Garaje: [
-      "Problemas de puerta",
-      "Iluminación defectuosa",
-      "Espacios de estacionamiento incorrectos",
-    ],
-    Trastero: [
-      "Falta de espacio",
-      "Problemas de seguridad",
-      "Acceso restringido",
-    ],
-    "Áreas comunes": ["Limpieza", "Mantenimiento de jardines", "Ruido"],
-    Seguridad: ["Robo", "Vandalismo", "Problemas de iluminación"],
-  };
-
-  const subcategories = categorySubcategories[values.category] || [];
+  const issuesCategories = locationsIssues[values.location] || [];
 
   return (
     <div>
-      <PageTitle>¿Que problema esta reportando?</PageTitle>
+      <PageTitle>¿Qué problema está reportando?</PageTitle>
       <FormButtonContainer>
-        {subcategories.map((subcategory) => (
+        {issuesCategories.map((issue) => (
           <FormButton
-            key={subcategory}
-            onClick={() => selectSubcategoryAndContinue(subcategory)}
+            key={issue.problem}
+            onClick={() => selectSubcategoryAndContinue(issue)}
           >
-            {subcategory}
+            {issue.problem}
           </FormButton>
         ))}
       </FormButtonContainer>
       <NavigationButtonsContainer>
-        <NavigationButton onClick={goBack}>Volver</NavigationButton>
+        <NavigationButton onClick={prevStep}>Volver</NavigationButton>
       </NavigationButtonsContainer>
     </div>
   );

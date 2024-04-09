@@ -1,4 +1,5 @@
 import useToggle from '../../hooks/useToggle'
+import formatDateTime from '../../services/formatDateTime.js'
 import {
   StyledStepperContainer,
   StyledStepWrap,
@@ -52,17 +53,17 @@ const stepperMap = [
   }
 ]
 
-
-function Stepper(){
+function Stepper(props){
+  const { steps } = props
   const [showNotes, toggleShowNotes] = useToggle(false)
   return (
     <StyledLineWrap>
       <StyledStepperContainer>
         { stepperMap.map((step) =>
-          <StyledStepWrap>
+          <StyledStepWrap key={step.name}>
             <StyledStepContainer key={step.name}>
               <div className={`iconContainer
-                ${fakeData.filter((data) => data.name === step.name).length ? 'completed' : 'yes'}`}>
+                ${steps.filter((data) => data.title === step.name).length ? 'completed' : 'yes'}`}>
                 <img
                 className={ step.name === 'Trabajando en la reparación' ? 'large' : ''
                 || step.name === 'Inspección' ? 'small' : '' }
@@ -70,9 +71,9 @@ function Stepper(){
               </div>
               <StyledStepTitle>
                 <p className="title">{step.name}</p>
-                <p className="data">{ fakeData.filter((data) => data.name === step.name).length ?
-                fakeData.filter((data) => data.name === step.name)
-                        .map((data) => data.date) : 'Proximamente' }</p>
+                <p className="data">{ steps.filter((data) => data.title === step.name).length ?
+                steps.filter((data) => data.title === step.name)
+                        .map((data) => formatDateTime(data.date)) : 'Proximamente' }</p>
               </StyledStepTitle>
             </StyledStepContainer>
             <StyledArrowContainer>

@@ -3,10 +3,10 @@ import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 
 function Card(props) {
-  const { type, data } = props
+  const { type, data, onClick } = props
 
   return (
-    <StyledCard>
+    <StyledCard onClick={onClick}>
       <RoundImage className='roundedImage' image={data.image} />
       <div className='descriptionContainer'>
         { type === 'communities' &&
@@ -32,7 +32,7 @@ function Card(props) {
             <div className="content">
               {/* <p>{data.description}</p> */}
               <p>{data.description.substring(0, 65)+"..."}</p>
-              <h5>{data.provider.title}</h5>
+              {/* <h5>{data.provider.title}</h5> */}
             </div>
           </StyledDescription>
           <span>{data.date}</span>

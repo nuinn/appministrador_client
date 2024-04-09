@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useLoggedUserContext } from '../contexts/loggedUserContext'
 
 const endpoint = 'https://appministrador-server.onrender.com'
-// const endpoint = 'http://localhost:3000'
 
 function useApi() {
   const [data, setData] = useState()
@@ -10,19 +9,24 @@ function useApi() {
   const [isLoading, setIsLoading] = useState(false)
   const { setLoggedUser } = useLoggedUserContext()
 
-  async function getData({ route, method = 'GET', body, headers = {} }) {
+  async function getData({ route, method = 'GET', body, headers = {}, stringify = true }) {
     setError()
     setData()
     setIsLoading(true)
-
+    let stringifiedBody = ''
+    if (body && stringify) {
+      stringifiedBody = JSON.stringify(body)
+    }
+    if (stringify) {
+      headers["Content-Type"] = 'application/json'
+    }
     const response = await fetch(endpoint + route, {
       method,
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': localStorage.token,
         ...headers
       },
-      body: body ? JSON.stringify(body) : undefined
+      body: stringifiedBody ? stringifiedBody : body
     })
     if (response.ok) {
       const responseAsJson = await response.json()
@@ -41,7 +45,6 @@ function useApi() {
       setIsLoading(false)
     }
   }
-
   return { data, error, isLoading, getData }
 }
 
