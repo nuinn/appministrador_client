@@ -11,10 +11,6 @@ const LocationForm = ({ prevStep, nextStep, handleChange, values }) => {
     nextStep();
   };
 
-  const goBack = () => {
-    prevStep();
-  };
-
   const locations = [
     "Edificio",
     "Ascensor",
@@ -39,7 +35,7 @@ const LocationForm = ({ prevStep, nextStep, handleChange, values }) => {
         ))}
       </FormButtonContainer>
       <NavigationButtonsContainer>
-        <NavigationButton onClick={goBack}>Volver</NavigationButton>
+        <NavigationButton onClick={prevStep}>Volver</NavigationButton>
       </NavigationButtonsContainer>
     </div>
   );

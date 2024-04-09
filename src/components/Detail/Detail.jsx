@@ -25,7 +25,6 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  console.log('props', props)
   const { images, title, description, owner, category, date, nextStep, prevStep, params, steps } = props
   const [imageIndex, setImageIndex] = useState(0)
   function onClickHandler(direction){
