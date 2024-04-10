@@ -47,11 +47,11 @@ function Search(props) {
         break;
     }
   }
-  const [filteredIncidents, setFilteredIncidents] = useState(incidents);
-  const [incidentsInLastSearch, setIncidentsInLastSearch] = useState(incidents);
-  const [searchedCommunities, setSearchedCommunities] = useState(communities);
+  const [filteredIncidents, setFilteredIncidents] = useState(data);
+  const [incidentsInLastSearch, setIncidentsInLastSearch] = useState(data);
+  const [searchedCommunities, setSearchedCommunities] = useState(data);
   function handleApplyFilters(filters){
-    let newFilteredData = incidents;
+    let newFilteredData = data;
 
     if (filters.status) {
       const trueStatusNames = [];
@@ -73,7 +73,7 @@ function Search(props) {
     setFilteredIncidents(newFilteredData);
   };
   const handleClearFilters = () => {
-    setFilteredIncidents(incidents)
+    setFilteredIncidents(data)
   };
 
   function handleSearchedText(searchedText){
@@ -115,17 +115,25 @@ function Search(props) {
       title={ type === 'communities' ? 'Comunidades' : 'Incidencias' }
       path='/'
       />
-      <StyledCardsContainer>
-        { type === 'communities' && communities.map((community, i) =>
-          <Card key={`${community} ${i}`} type={type} data={community} />
-        )}
-        { type === 'incidents' && incidents.map((incident, i) =>
-          <Card key={`${incident} ${i}`} type={type} data={incident} />
-        )}
-      </StyledCardsContainer>
-      <StyledFloatingButton>
-        <span>+</span>
-      </StyledFloatingButton>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading &&
+      <>
+      <SearchBar onSearch = {handleSearchedText}/>
+      <StyledFilter>
+        <StyledCardsContainer>
+        { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />}
+          {data && data.map((item, i) =>
+            <Card
+              onClick={ () => navigate(navigateHandler(item)) }
+              key={`${type} ${i}`}
+              type={type}
+              data={item}
+            />
+          )}
+        </StyledCardsContainer>
+        </StyledFilter>
+        <FloatingButton type={type} />
+      </>}
       <Footer type={type} />
     </>
   )
