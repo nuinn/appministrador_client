@@ -10,6 +10,7 @@ const ImageCarousel = styled.div`
   background-repeat: no-repeat;
   // background-attachment: fixed;
   background-position: center;
+  background-size: cover;
   margin-bottom: 32px;
   box-shadow: 2px 2px 6px 0px #85858540;
   border: 1px solid var(--light-grey-color);

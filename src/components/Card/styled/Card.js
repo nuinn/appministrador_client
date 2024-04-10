@@ -36,7 +36,6 @@ const Card = styled.div`
     height: 128px;
     border: 1px solid #f0f0f0;
 
-
     & span {
       margin-right: 10px;
       margin-top: 100px;
@@ -46,8 +45,6 @@ const Card = styled.div`
       font-style: italic;
       position: absolute;
     }
-
-
   }
 `;
 
