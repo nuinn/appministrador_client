@@ -15,14 +15,6 @@ box-sizing: border-box;
 `;
 
 const DescriptionForm = ({ nextStep, prevStep, handleChange, values }) => {
-  const goNext = () => {
-    nextStep();
-  };
-
-  const goBack = () => {
-    prevStep();
-  };
-
   const handleDescriptionChange = (e) => {
     handleChange("description")(e.target.value);
   };
@@ -36,8 +28,8 @@ const DescriptionForm = ({ nextStep, prevStep, handleChange, values }) => {
         placeholder="Describa el problema"
       />
       <NavigationButtonsContainer>
-        <NavigationButton onClick={goBack}>Volver</NavigationButton>
-        <NavigationButton onClick={goNext}>Siguiente</NavigationButton>
+        <NavigationButton onClick={prevStep}>Volver</NavigationButton>
+        <NavigationButton onClick={nextStep}>Siguiente</NavigationButton>
       </NavigationButtonsContainer>
     </div>
   );

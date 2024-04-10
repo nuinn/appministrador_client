@@ -1,18 +1,52 @@
 import { useState } from 'react'
-import communities from '../../data/communities.json'
-import incidents from '../../data/incidents.json'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
+import useApi from '../../hooks/useApi.js'
 import incidentsFilter from '../../data/incidentsFilter.json'
 import Header from '../../components/Header/Header.jsx'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.jsx'
 import StyledCardsContainer from '../../components/styled/CardsContainer/CardsContainer.js'
 import StyledFilter from '../../components/styled/StyledFilter/StyledFilter.js'
 import Card from '../../components/Card/Card.jsx'
-import StyledFloatingButton from '../../components/styled/FloatingButton/FloatingButton.js'
+import FloatingButton from '../../components/FloatingButton/FloatingButton.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import Filter from '../../components/Filter/Filter.jsx'
 import SearchBar from '../../components/SearchBar/SearchBar.jsx'
 
 function Search(props) {
   const { type } = props
+  const navigate = useNavigate()
+  const { getData, data, isLoading, error } = useApi()
+  const { loggedUser } = useLoggedUserContext()
+
+  useEffect(() => {
+    if (loggedUser) {
+      switch (true) {
+        case type === 'communities':
+          getData({
+            route: `/communities/user/${loggedUser._id}`
+          })
+          break;
+        case type === 'incidents':
+          getData({
+            route: `/incidents/byUser/`
+          })
+        default:
+          break;
+      }
+    }
+  }, [loggedUser])
+
+  function navigateHandler(item) {
+    switch (true) {
+      case type === 'incidents':
+        return `/incidencias/detalle/${item._id}`
+
+      default:
+        break;
+    }
+  }
   const [filteredIncidents, setFilteredIncidents] = useState(incidents);
   const [incidentsInLastSearch, setIncidentsInLastSearch] = useState(incidents);
   const [searchedCommunities, setSearchedCommunities] = useState(communities);
@@ -81,18 +115,14 @@ function Search(props) {
       title={ type === 'communities' ? 'Comunidades' : 'Incidencias' }
       path='/'
       />
-      <SearchBar onSearch = {handleSearchedText}/>
-      <StyledFilter>
-        { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />}
-        <StyledCardsContainer>
-          { type === 'communities' && searchedCommunities.map((community, i) =>
-            <Card key={`${community} ${i}`} type={type} data={community} />
-          )}
-          { type === 'incidents' && filteredIncidents.map((incident, i) =>
-            <Card key={`${incident} ${i}`} type={type} data={incident} />
-          )}
-        </StyledCardsContainer>
-      </StyledFilter>
+      <StyledCardsContainer>
+        { type === 'communities' && communities.map((community, i) =>
+          <Card key={`${community} ${i}`} type={type} data={community} />
+        )}
+        { type === 'incidents' && incidents.map((incident, i) =>
+          <Card key={`${incident} ${i}`} type={type} data={incident} />
+        )}
+      </StyledCardsContainer>
       <StyledFloatingButton>
         <span>+</span>
       </StyledFloatingButton>

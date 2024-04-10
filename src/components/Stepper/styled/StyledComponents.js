@@ -55,6 +55,7 @@ const StyledStepContainer = styled.div`
 const StyledStepTitle = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   & .title {
     font-size: 16px;

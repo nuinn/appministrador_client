@@ -1,9 +1,10 @@
-import 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import 'react-router-dom'
 import { useLoggedUserContext } from './contexts/loggedUserContext.jsx'
 import useApi from './hooks/useApi.js'
 import './App.css'
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.jsx'
 import StyledWelcomeLogo from './components/styled/WelcomeLogo/WelcomeLogo.js'
 import StyledButtonsContainer from './components/styled/ButtonsContainer/ButtonsContainer.js'
 import StyledHomeButton from './components/styled/HomeButton/HomeButton.js'
@@ -19,22 +20,24 @@ function App() {
   const { getData, data } = useApi()
   const [personalCommunityImg, setPersonalCommunityImg] = useState('')
 
-  useEffect(() => {
-    if (loggedUser && loggedUser.community_id.length === 1) {
-      getData({
-        route: `/communities/${loggedUser.community_id}`
-      })
-    }
-  }, [loggedUser])
+  // No borréis esto abajo por favor. Luego cuando estén las imagenes bien metidas en el back, lo implementaré.
 
-  useEffect(() => {
-    if (data) {
-      const databaseImg = new Image();
-      databaseImg.src = 'data:image/png;base64,' + data.image;
-      setPersonalCommunityImg(databaseImg.src)
-      // console.log(data.image)
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (loggedUser && loggedUser.community_id.length === 1) {
+  //     getData({
+  //       route: `/communities/${loggedUser.community_id}`
+  //     })
+  //   }
+  // }, [loggedUser])
+
+  // useEffect(() => {
+  //   if (data) {
+  //     const databaseImg = new Image();
+  //     databaseImg.src = 'data:image/png;base64,' + data.image;
+  //     setPersonalCommunityImg(databaseImg.src)
+  //     // console.log(data.image)
+  //   }
+  // }, [data])
 
   return (
     <>

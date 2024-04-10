@@ -10,6 +10,7 @@ import showPassword from '../../assets/icons/showPassword.png'
 import hidePassword from '../../assets/icons/hidePassword.png'
 import errorIcon from '../../assets/icons/error.png'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
 
 function Login() {
   const navigate = useNavigate()
@@ -43,64 +44,67 @@ function Login() {
   }, [data])
 
   return (
-    <StyledLoginContainer>
-      <div className="logoContainer">
-        <img src={appLogo} alt="Tu Appministrador Logo" />
-      </div>
-      <StyledFormContainer>
-        <div className="inputsContainer">
-          <StyledInputWrap>
-            <input
-            name="email"
-            type="text"
-            placeholder='correo electrónico'
-            onChange={ handleInput }
-            value={ formValues.email }
-            autoComplete='off'
-            autoFocus={true}
-            />
-          </StyledInputWrap>
-          <StyledInputWrap>
-            <input
-            name="password"
-            type={passwordVisibility ? "text" : "password"}
-            placeholder='contraseña'
-            onChange={ handleInput }
-            value= { formValues.password }
-            autoComplete='off'
-            />
-            <img onClick={togglePasswordVisibility} src={passwordVisibility ? hidePassword : showPassword} alt="" />
-          </StyledInputWrap>
+    <>
+      {isLoading && <LoadingSpinner type='white' />}
+      {!isLoading && <StyledLoginContainer>
+        <div className="logoContainer">
+          <img src={appLogo} alt="Tu Appministrador Logo" />
         </div>
-        <div className="submitContainer">
-          <div className="optionsContainer">
-            <label className="customCheckbox">
-              <input type="checkbox" name="checkbox" value="value" />
-              Recordar sesión
-              {/* New version */}
-            </label>
-            <p>¿Has olvidado tu contraseña?</p>
+        <StyledFormContainer>
+          <div className="inputsContainer">
+            <StyledInputWrap>
+              <input
+              name="email"
+              type="text"
+              placeholder='correo electrónico'
+              onChange={ handleInput }
+              value={ formValues.email }
+              autoComplete='off'
+              autoFocus={true}
+              />
+            </StyledInputWrap>
+            <StyledInputWrap>
+              <input
+              name="password"
+              type={passwordVisibility ? "text" : "password"}
+              placeholder='contraseña'
+              onChange={ handleInput }
+              value= { formValues.password }
+              autoComplete='off'
+              />
+              <img onClick={togglePasswordVisibility} src={passwordVisibility ? hidePassword : showPassword} alt="" />
+            </StyledInputWrap>
           </div>
-          <div className="buttonContainer">
-            <input onClick={submitHandler} type="submit" value={isLoading ? "Cargando" : "Acceder"} />
-          </div>
-        </div>
-      </StyledFormContainer>
-      <div className="linkContainer">
-        <div className={error ? "errorDisplay" : "errorContainer"}>
-          {error &&
-          <>
-            <div className="iconContainer">
-              <div className='iconBackground'></div>
-              <img src={errorIcon} alt="" />
+          <div className="submitContainer">
+            <div className="optionsContainer">
+              <label className="customCheckbox">
+                <input type="checkbox" name="checkbox" value="value" />
+                Recordar sesión
+                {/* New version */}
+              </label>
+              <p>¿Has olvidado tu contraseña?</p>
             </div>
-            <div className="errorMessage">{error.msg}</div>
-          </>}
+            <div className="buttonContainer">
+              <input onClick={submitHandler} type="submit" value="Acceder" />
+            </div>
+          </div>
+        </StyledFormContainer>
+        <div className="linkContainer">
+          <div className={error ? "errorDisplay" : "errorContainer"}>
+            {error &&
+            <>
+              <div className="iconContainer">
+                <div className='iconBackground'></div>
+                <img src={errorIcon} alt="" />
+              </div>
+              <div className="errorMessage">{error.msg}</div>
+            </>}
+          </div>
+          <p>¿No tienes cuenta?</p>
+          <div className="register" onClick={ () => navigate('/incidencias/detalle/param') }>Regístrate</div>
         </div>
-        <p>¿No tienes cuenta?</p>
-        <div className="register" onClick={ () => navigate('/incidencias/detalle/param') }>Regístrate</div>
-      </div>
-    </StyledLoginContainer>
+      </StyledLoginContainer>}
+    </>
   )
 }
 

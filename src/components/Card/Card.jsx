@@ -1,12 +1,13 @@
 import StyledCard from './styled/Card.js'
 import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
+import formatDateTime from '../../services/formatDateTime.js'
 
 function Card(props) {
-  const { type, data } = props
+  const { type, data, onClick } = props
 
   return (
-    <StyledCard>
+    <StyledCard onClick={onClick}>
       <RoundImage className='roundedImage' image={data.image} />
       <div className='descriptionContainer'>
         { type === 'communities' &&
@@ -27,14 +28,14 @@ function Card(props) {
           <StyledDescription>
             <div className="titlebar">
               <h3>{data.title}</h3>
-              <h4>{data.community}</h4>
+              <h4>{data.community.address}</h4>
             </div>
             <div className="content">
               <p>{data.description.substring(0, 65)+"..."}</p>
-              <h5>{data.provider}</h5>
+              <h5>{data.category}</h5>
             </div>
           </StyledDescription>
-          <span>{data.date}</span>
+          <span>{formatDateTime(data.date, true)}</span>
         </>
         }
       </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Carousel = styled.div`
+const ImageCarousel = styled.div`
   width: 90%;
   height: 300px;
   background-color: var(--light-grey-color);
@@ -10,6 +10,7 @@ const Carousel = styled.div`
   background-repeat: no-repeat;
   // background-attachment: fixed;
   background-position: center;
+  background-size: cover;
   margin-bottom: 32px;
   box-shadow: 2px 2px 6px 0px #85858540;
   border: 1px solid var(--light-grey-color);
@@ -34,4 +35,4 @@ const Carousel = styled.div`
   }
 `;
 
-export default Carousel;
+export default ImageCarousel;
