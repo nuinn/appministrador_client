@@ -32,11 +32,12 @@ function IncidentDetail() {
           path='/incidencias'
         />
         <Detail
+          images={data.image}
           title={data.title}
           description={data.description}
           owner={data.owner}
+          category={data.category}
           date={formatDateTime(data.date)}
-          images={data.image}
           steps={data.progressSteps}
           params={ incident_id }
         />

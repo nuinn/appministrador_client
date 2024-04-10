@@ -30,10 +30,14 @@ const ReportIncident = () => {
       setIncident({ ...incident, owner: loggedUser._id })
     }
     if (loggedUser && loggedUser.community_id.length === 1) {
-      setIncident({ ...incident, community: loggedUser.community_id[0] })
+      setIncident({ ...incident, owner: loggedUser._id, community: loggedUser.community_id[0] })
       setStep(2)
     }
-  }, [loggedUser])
+  },[loggedUser])
+
+  useEffect(() => {
+    console.log('incident',incident)
+  }, [incident])
 
   useEffect(() => {
     error && console.log(error)
