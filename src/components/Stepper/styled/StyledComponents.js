@@ -1,8 +1,25 @@
 import styled from "styled-components";
 
+const StyledStepperWrap = styled.div`
+  width: 372px;
+  height: 100%;
+  padding: 12px 33px 18px;
+  margin: 0px 20px;
+  position: relative;
+  box-sizing: border-box;
+  user-select: none;
+  & .test {
+    border-left: 2px solid var(--grey-color);
+    position: absolute;
+    height: 86.5%;
+    z-index: 0;
+    width: 82%;
+  }
+`
+
 const StyledStepperContainer = styled.div`
   width: 370px;
-  height: 346px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,10 +31,29 @@ const StyledStepperContainer = styled.div`
   border: 1px solid var(--light-grey-color);
   border-radius: 32px;
   box-shadow: 2px 2px 6px 0px #85858540;
+  gap: 27px;
+
+  & .hideNotes {
+    height: 56px;
+  }
+  & .hideNote {
+    top: 0px;
+  }
+
+  & .showNotes {
+    height: 84px;
+  }
+  & .showNote {
+    top: 48px;
+  }
+
+
 `
 
 const StyledStepAndNotesWrap = styled.div`
-  background-color: red;
+  position: relative;
+  transition: 1s ease;
+  // background-color: white;
 `;
 
 
@@ -25,6 +61,13 @@ const StyledStepWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
+  z-index: 2;
+  & .inactive {
+    & img {
+      visibility: hidden;
+    }
+  }
 `
 
 const StyledStepContainer = styled.div`
@@ -32,6 +75,8 @@ const StyledStepContainer = styled.div`
   height: 48px;
   display: flex;
   gap: 17px;
+  background-color: white;
+  z-index: 2;
 
   & .iconContainer {
     width: 48px;
@@ -78,30 +123,39 @@ const StyledArrowContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 32px;
+  height: 48px;
   width: 32px;
   cursor: pointer;
+  z-index: 2;
+  background-color: white;
   & img {
     width: 14px;
   }
-  & .showNotes {
+  & .upArrow {
     transform: scaleY(-1);
   }
 `;
 
 const StyledNotesContainer = styled.div`
-  background-color: green;
-  height: 50px;
+  position: absolute;
+  width: 100%;
+  height: 56px;
+  transition: 1s ease;
+  display: flex;
+  align-items: center;
+  background-color: var(--light-grey-color);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  border: 1px solid var(--secondary-color);
+  border-top: none;
+  cursor: pointer;
+  z-index: 1;
+  & span {
+    font-size: 12px;
+  }
 `;
-
-const StyledLineWrap = styled.div`
-  width: 372px;
-  height: 364px;
-  padding: 21px 33px;
-  margin: 0px 20px;
-  position: relative;
-  // box-sizing: border-box;
-`
 
 const StyledLine = styled.div`
   border-left: 2px solid var(--grey-color);
@@ -113,6 +167,7 @@ const StyledLine = styled.div`
 `
 
 export {
+  StyledStepperWrap,
   StyledStepperContainer,
   StyledStepAndNotesWrap,
   StyledStepWrap,
@@ -120,6 +175,4 @@ export {
   StyledStepTitle,
   StyledArrowContainer,
   StyledNotesContainer,
-  StyledLineWrap,
-  StyledLine,
 }

@@ -8,14 +8,14 @@ import {
   StyledArrowContainer,
   StyledNotesContainer,
 } from '../styled/StyledComponents.js'
-import arrowDown from '../../../assets/stepperIcons/arrowDown.png'
+import downArrow from '../../../assets/stepperIcons/downArrow.png'
 
 function Step(props) {
-  const { step, steps } = props
+  const { step, steps, index } = props
   const [showNotes, toggleShowNotes] = useToggle(false)
 
   return (
-    <StyledStepAndNotesWrap>
+    <StyledStepAndNotesWrap className={ showNotes ? 'showNotes' : 'hideNotes' }>
       <StyledStepWrap key={step.name}>
         <StyledStepContainer key={step.name}>
           <div className={`iconContainer
@@ -32,13 +32,21 @@ function Step(props) {
                     .map((data) => formatDateTime(data.date)) : 'Proximamente' }</p>
           </StyledStepTitle>
         </StyledStepContainer>
-        <StyledArrowContainer onClick={ toggleShowNotes }>
+        <StyledArrowContainer
+          onClick={ steps[index] && steps[index].note && toggleShowNotes }
+          className={ steps[index] && steps[index].note && toggleShowNotes ? '' : 'inactive'}>
           <img
-          src={ arrowDown }
-          className={ showNotes ? 'showNotes' : '' }/>
+          src={ downArrow }
+          className={ showNotes ? 'upArrow' : '' }/>
         </StyledArrowContainer>
       </StyledStepWrap>
-      <StyledNotesContainer />
+      { steps[index] && steps[index].note &&
+        <StyledNotesContainer
+        className={ showNotes ? 'showNote' : 'hideNote' }
+        onClick={ toggleShowNotes }>
+        <span>{steps[index] ? steps[index].note : ''}</span>
+      </StyledNotesContainer>
+      }
     </StyledStepAndNotesWrap>
   )
 }

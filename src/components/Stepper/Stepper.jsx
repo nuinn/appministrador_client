@@ -1,7 +1,6 @@
 import {
+  StyledStepperWrap,
   StyledStepperContainer,
-  StyledLineWrap,
-  StyledLine,
 } from './styled/StyledComponents.js'
 import Step from './Step/Step.jsx'
 import register from '../../assets/stepperIcons/register.png'
@@ -51,18 +50,19 @@ function Stepper(props){
   const { steps } = props
 
   return (
-    <StyledLineWrap>
+    <StyledStepperWrap>
       <StyledStepperContainer>
         { stepperMap.map((step, i) =>
           <Step
           key={step.name}
           step={step}
+          index={i}
           steps={steps}
           />
         )}
+        <div className="test"></div>
       </StyledStepperContainer>
-      <StyledLine />
-    </StyledLineWrap>
+    </StyledStepperWrap>
   )
 }
 
