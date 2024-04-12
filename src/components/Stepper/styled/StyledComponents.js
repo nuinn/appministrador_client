@@ -154,6 +154,7 @@ const StyledNotesContainer = styled.div`
   z-index: 1;
   & span {
     font-size: 12px;
+    letter-spacing: .4px;
   }
 `;
 
