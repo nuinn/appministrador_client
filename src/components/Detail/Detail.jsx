@@ -10,7 +10,7 @@ import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
 
 const StyledFooterPusher = styled.div`
-  padding-bottom: 200px;
+  padding-bottom: 160px;
 `
 
 function getFormattedNewDate(){

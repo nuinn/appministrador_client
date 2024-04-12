@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
+import StyledFooterBumper from './styled/FooterBumper.js'
 import StyledFooterContainer from './styled/FooterContainer.js'
 import home from '../../assets/navIcons/home.png'
 import incidents from '../../assets/navIcons/incidents.png'
@@ -41,29 +42,31 @@ function Footer(props){
   }
 
   return (
-    <StyledFooterContainer>
-      {icons.map((icon) =>
-        icon.name === type ?
-        <div className='activeIconContainer' key={icon.name}>
-          <div className='left' />
-          <div className="center">
-            <div className="top">
-              <div className="dip">
-                <div className="imageContainer">
-                  <img src={icon.on} />
+    <StyledFooterBumper>
+      <StyledFooterContainer>
+        {icons.map((icon) =>
+          icon.name === type ?
+          <div className='activeIconContainer' key={icon.name}>
+            <div className='left' />
+            <div className="center">
+              <div className="top">
+                <div className="dip">
+                  <div className="imageContainer">
+                    <img src={icon.on} />
+                  </div>
                 </div>
               </div>
+              <div className="bottom" />
             </div>
-            <div className="bottom" />
+            <div className='right' />
           </div>
-          <div className='right' />
-        </div>
-        :
-        <div className='unactiveIconContainer' key={icon.name}>
-          <img onClick={() => handleIconClick(icon.route)} src={icon.src}/>
-        </div>
-        )}
-    </StyledFooterContainer>
+          :
+          <div className='unactiveIconContainer' key={icon.name}>
+            <img onClick={() => handleIconClick(icon.route)} src={icon.src}/>
+          </div>
+          )}
+      </StyledFooterContainer>
+    </StyledFooterBumper>
   )
 }
 
