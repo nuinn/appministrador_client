@@ -12,9 +12,9 @@ const FloatingButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 1s ease 0s;
+  // transition: background-color 1s ease 0s;
   box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
-  transition: .1s ease;
+  transition: .2s ease;
 
   &:hover, &:active {
     background-color: var(--main-color);
