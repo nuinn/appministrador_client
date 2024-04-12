@@ -24,7 +24,7 @@ const icons = [
   },
   { name: 'profile',
     src: profile,
-    route: '/reportarincidencia'
+    route: '/perfil/:user_id'
   },
 ]
 

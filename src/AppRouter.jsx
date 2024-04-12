@@ -3,6 +3,7 @@ import App from './App'
 import Search from './pages/Search/Search.jsx'
 import ReportIncident from './pages/ReportIncident/ReportIncident.jsx'
 import IncidentDetail from './pages/IncidentDetail/IncidentDetail.jsx'
+import Profile from './pages/Profile/Profile.jsx'
 import MarcTestPage from './pages/MarcTestPage/MarcTestPage.jsx'
 
 function AppRouter() {
@@ -18,6 +19,10 @@ function AppRouter() {
     {
       element: <Search type='incidents' />,
       path: '/incidencias'
+    },
+    {
+      element: <Profile />,
+      path: '/perfil/:user_id'
     },
     {
       element: <ReportIncident />,
