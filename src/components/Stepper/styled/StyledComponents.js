@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledStepperWrap = styled.div`
   width: 372px;
-  height: 100%;
+  height: 372px;
   padding: 12px 33px 18px;
   margin: 0px 20px;
   position: relative;
@@ -146,7 +146,7 @@ const StyledNotesContainer = styled.div`
   background-color: var(--light-grey-color);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  padding: 12px 8px 12px 13px;
+  padding: 12px 13px;
   box-sizing: border-box;
   border: 1px solid var(--secondary-color);
   border-top: none;

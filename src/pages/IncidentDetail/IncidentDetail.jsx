@@ -17,6 +17,16 @@ function IncidentDetail() {
     })
   },[])
 
+  function acceptIncident() {
+    getData({
+      route: '/incidents/',
+      method: 'PATCH',
+      body: {
+
+      }
+    })
+  }
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
@@ -36,6 +46,7 @@ function IncidentDetail() {
           date={formatDateTime(data.date)}
           steps={data.progressSteps}
           params={ incident_id }
+          status={data.status}
         />
       </>
       }

@@ -4,7 +4,7 @@ const Button = styled.div`
   width: 121px;
   height: 48px;
   border-radius: 51px;
-  background-color: var(--secondary-color);
+  background-color: ${props => props.$bgcolor ? props.$bgcolor : 'var(--secondary-color)'};
   display: flex;
   justify-content: center;
   align-items: center;
