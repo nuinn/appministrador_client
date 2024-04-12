@@ -29,8 +29,14 @@ const icons = [
 ]
 
 function Footer(props){
-  const {type} = props
+  const {type, clearData} = props
   const navigate = useNavigate()
+
+  const handleIconClick = (route) => {
+    clearData()
+    navigate(route)
+  }
+
   return (
     <StyledFooterContainer>
       {icons.map((icon) =>
@@ -51,7 +57,7 @@ function Footer(props){
         </div>
         :
         <div className='unactiveIconContainer' key={icon.name}>
-          <img onClick={() => navigate(icon.route)} src={icon.src}/>
+          <img onClick={() => handleIconClick(icon.route)} src={icon.src}/>
         </div>
         )}
     </StyledFooterContainer>

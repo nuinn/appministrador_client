@@ -11,6 +11,10 @@ function useApi() {
   const navigate = useNavigate()
   const { setLoggedUser } = useLoggedUserContext();
 
+  function clearData() {
+    setData(null);
+  }
+
   async function getData({ route, method = 'GET', body, headers = {}, stringify = true }) {
     setError();
     setData();
@@ -54,7 +58,7 @@ function useApi() {
       setIsLoading(false);
     }
   }
-  return { data, error, isLoading, getData };
+  return { data, error, isLoading, getData, clearData };
 }
 
 export default useApi;

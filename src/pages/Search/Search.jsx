@@ -12,11 +12,12 @@ import Footer from '../../components/Footer/Footer.jsx'
 function Search(props) {
   const { type } = props
   const navigate = useNavigate()
-  const { getData, data, isLoading, error } = useApi()
+  const { getData, clearData, data, isLoading, error } = useApi()
   const { loggedUser } = useLoggedUserContext()
 
   useEffect(() => {
     if (loggedUser) {
+      clearData();
       switch (true) {
         case type === 'communities':
           getData({
@@ -31,7 +32,7 @@ function Search(props) {
           break;
       }
     }
-  }, [loggedUser])
+  }, [loggedUser, type])
 
   function navigateHandler(item) {
     switch (true) {
@@ -64,7 +65,7 @@ function Search(props) {
         </StyledCardsContainer>
         <FloatingButton type={type} />
       </>}
-      <Footer type={type} />
+      <Footer type={type} clearData={clearData} />
     </>
   )
 }
