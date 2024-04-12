@@ -146,12 +146,16 @@ const StyledNotesContainer = styled.div`
   background-color: var(--light-grey-color);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  padding: 12px 24px;
+  padding: 12px 8px 12px 13px;
   box-sizing: border-box;
   border: 1px solid var(--secondary-color);
   border-top: none;
   cursor: pointer;
   z-index: 1;
+  & img {
+    width: 20px;
+    margin-right: 13px;
+  }
   & span {
     font-size: 12px;
     letter-spacing: .4px;

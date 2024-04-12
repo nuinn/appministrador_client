@@ -9,6 +9,7 @@ import {
   StyledNotesContainer,
 } from '../styled/StyledComponents.js'
 import downArrow from '../../../assets/stepperIcons/downArrow.png'
+import message from '../../../assets/stepperIcons/message.png'
 
 function Step(props) {
   const { step, steps, index } = props
@@ -44,6 +45,7 @@ function Step(props) {
         <StyledNotesContainer
         className={ showNotes ? 'showNote' : 'hideNote' }
         onClick={ toggleShowNotes }>
+        <img src={message} alt="message icon" />
         <span>{steps[index] ? steps[index].note : ''}</span>
       </StyledNotesContainer>
       }

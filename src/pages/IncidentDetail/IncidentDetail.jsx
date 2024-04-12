@@ -17,10 +17,6 @@ function IncidentDetail() {
     })
   },[])
 
-  useEffect(() => {
-    data && console.log(data)
-  }, [data])
-
   return (
     <>
       {isLoading && <LoadingSpinner />}
