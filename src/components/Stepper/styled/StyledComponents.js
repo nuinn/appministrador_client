@@ -16,6 +16,11 @@ const StyledStepperContainer = styled.div`
   box-shadow: 2px 2px 6px 0px #85858540;
 `
 
+const StyledStepAndNotesWrap = styled.div`
+  background-color: red;
+`;
+
+
 const StyledStepWrap = styled.div`
   display: flex;
   align-items: center;
@@ -79,12 +84,20 @@ const StyledArrowContainer = styled.div`
   & img {
     width: 14px;
   }
-`
+  & .showNotes {
+    transform: scaleY(-1);
+  }
+`;
+
+const StyledNotesContainer = styled.div`
+  background-color: green;
+  height: 50px;
+`;
 
 const StyledLineWrap = styled.div`
-  width: 370px;
-  height: 346px;
-  padding: 21px 32px;
+  width: 372px;
+  height: 364px;
+  padding: 21px 33px;
   margin: 0px 20px;
   position: relative;
   // box-sizing: border-box;
@@ -101,10 +114,12 @@ const StyledLine = styled.div`
 
 export {
   StyledStepperContainer,
+  StyledStepAndNotesWrap,
   StyledStepWrap,
   StyledStepContainer,
   StyledStepTitle,
   StyledArrowContainer,
+  StyledNotesContainer,
   StyledLineWrap,
   StyledLine,
 }
