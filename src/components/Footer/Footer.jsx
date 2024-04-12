@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import StyledFooterContainer from './styled/FooterContainer.js'
 import home from '../../assets/navIcons/home.png'
 import incidents from '../../assets/navIcons/incidents.png'
@@ -31,10 +31,13 @@ const icons = [
 function Footer(props){
   const {type, clearData} = props
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleIconClick = (route) => {
-    clearData()
-    navigate(route)
+    if (location.pathname === '/comunidades' || location.pathname === '/incidencias') {
+      clearData();
+    }
+    navigate(route);
   }
 
   return (
