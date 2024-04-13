@@ -22,7 +22,9 @@ function Search(props) {
   const [searchActive, setSearchActive] = useState(false);
   const [filtersNow, setFiltersNow]  = useState();
   const [requestedData, setRequestedData] = useState();
-  const [savedRequestedData, setSavedRequestedData] = useState();
+  const [savedSearchedData, setSavedSearchedData] = useState();
+  const [savedFilteredData, setSavedFilteredData] = useState();
+  
 
   useEffect(() => {
     if (loggedUser) {
@@ -63,11 +65,11 @@ function Search(props) {
   }
 
   const handleClearFilters = () => {
-    setRequestedData(data)
+    setRequestedData(searchActive ? savedSearchedData :  data)
   };
 
   function handleApplyFilters(filters){
-    let newFilteredData = searchActive ? savedRequestedData : newFilteredData;
+    let newFilteredData = searchActive ? savedSearchedData : requestedData;
     if (filters && Object.keys(filters).length > 0)
     {
       if(filters.status) {
@@ -89,6 +91,7 @@ function Search(props) {
       }
     }
     setRequestedData(newFilteredData);
+    setSavedFilteredData(newFilteredData);
   };
 
   function handleSearchedText(searchedText){
@@ -106,19 +109,20 @@ function Search(props) {
       }
       setRequestedData(newSearchedComunities)
     }
-    else{
-      let newFilteredData = Object.keys(filtersNow).length > 0 ? requestedData : data;
+    if (type ==='incidents'){
+      let newFilteredData = filtersNow && Object.keys(filtersNow).length > 0 ? requestedData : data;
       if (searchedText) {
         setSearchActive(true)
         newFilteredData = newFilteredData.filter(item =>
           item.title.toLowerCase().includes(searchedText.toLowerCase()) || item.description.includes(searchedText.toLowerCase())
         )
+        setSavedSearchedData(newFilteredData)
       }
       else{
         setSearchActive(false)
-        newFilteredData = data;
+        newFilteredData = savedFilteredData;
+        setSavedSearchedData(savedSearchedData)
       }
-      setSavedRequestedData(newFilteredData)
       setRequestedData(newFilteredData)
     }
   }

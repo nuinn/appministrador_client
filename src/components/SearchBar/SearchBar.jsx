@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './SearchBar.css'
 
 function SearchBar(props) {
-  const [searchedText, setSearchedText]  = useState('')
   const { onSearch } = props
+  const [searchedText, setSearchedText]  = useState('')
+
+  useEffect(() => {
+    setSearchedText(searchedText)
+  }, [searchedText]);
+
   function handleChange(typedText) {
     setSearchedText(typedText)
-    
+    if(searchedText !== '' && typedText === '') {
+      onSearch(typedText)
+    }
   }
 
   function handleKeyDown(event){
