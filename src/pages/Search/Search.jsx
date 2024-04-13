@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import useApi from '../../hooks/useApi.js'
@@ -20,6 +19,11 @@ function Search(props) {
   const { getData, data, isLoading, error } = useApi()
   const { loggedUser } = useLoggedUserContext()
 
+  const [searchActive, setSearchActive] = useState(false);
+  const [filtersNow, setFiltersNow]  = useState();
+  const [requestedData, setRequestedData] = useState();
+  const [savedRequestedData, setSavedRequestedData] = useState();
+
   useEffect(() => {
     if (loggedUser) {
       switch (true) {
@@ -38,6 +42,15 @@ function Search(props) {
     }
   }, [loggedUser])
 
+  useEffect(() => {
+    setRequestedData(data)
+  }
+  , [data] )
+
+  function refreshFiltersState(newFilter) {
+    setFiltersNow(newFilter)
+  }
+
   function navigateHandler(item) {
     switch (true) {
       case type === 'incidents':
@@ -47,65 +60,65 @@ function Search(props) {
         break;
     }
   }
-  const [filteredIncidents, setFilteredIncidents] = useState(data);
-  const [incidentsInLastSearch, setIncidentsInLastSearch] = useState(data);
-  const [searchedCommunities, setSearchedCommunities] = useState(data);
-  function handleApplyFilters(filters){
-    let newFilteredData = data;
 
-    if (filters.status) {
-      const trueStatusNames = [];
-      for (const key in filters.status) {
-        if (filters.status[key]) {
-          trueStatusNames.push(key);
-        }
-      }
-      const newFilteredDataStatuses = newFilteredData.filter(item => trueStatusNames.includes(item.status));
-      newFilteredData = newFilteredDataStatuses;
-    }
-    if (filters.date) {
-      newFilteredData = newFilteredData.filter(item => new Date(item.date) >= new Date(filters.date));
-    }
-
-    if (filters.progress) {
-      newFilteredData = newFilteredData.filter(item => item.progress === filters.progress);
-    }
-    setFilteredIncidents(newFilteredData);
-  };
   const handleClearFilters = () => {
-    setFilteredIncidents(data)
+    setRequestedData(data)
+  };
+
+  function handleApplyFilters(filters){
+    let newFilteredData = searchActive ? savedRequestedData : newFilteredData;
+    if (filters && Object.keys(filters).length > 0)
+    {
+      if(filters.status) {
+        const trueStatusNames = [];
+        for (const key in filters.status) {
+          if (filters.status[key]) {
+            trueStatusNames.push(key);
+          }
+        }
+        const newFilteredDataStatuses = newFilteredData.filter(item => trueStatusNames.includes(item.status));
+        newFilteredData = newFilteredDataStatuses;
+      }
+      if (filters.date) {
+        newFilteredData = newFilteredData.filter(item => new Date(item.date) >= new Date(filters.date));
+      }
+
+      if (filters.progress) {
+        newFilteredData = newFilteredData.filter(item => item.progressSteps[item.progressSteps.length - 1].title === filters.progress);
+      }
+    }
+    setRequestedData(newFilteredData);
   };
 
   function handleSearchedText(searchedText){
     if (type ==='communities'){
-      let newSearchedComunities = searchedCommunities;
+      let newSearchedComunities = data;
       if (searchedText) {
-        console.log(newSearchedComunities);
+        setSearchActive(true);
         newSearchedComunities = newSearchedComunities.filter(item =>{
-          console.log(item.address);
-          return item.address.includes(searchedText)
-
-        }
-        )
-        console.log(newSearchedComunities);
+          return item.address.toLowerCase().includes(searchedText.toLowerCase())
+        });
       }
       else{
-        newSearchedComunities = communities
+        setSearchActive(false);
+        newSearchedComunities = data
       }
-      setSearchedCommunities(newSearchedComunities)
+      setRequestedData(newSearchedComunities)
     }
     else{
-      let newFilteredData = filteredIncidents;
+      let newFilteredData = Object.keys(filtersNow).length > 0 ? requestedData : data;
       if (searchedText) {
+        setSearchActive(true)
         newFilteredData = newFilteredData.filter(item =>
-          item.title.includes(searchedText) || item.description.includes(searchedText)
+          item.title.toLowerCase().includes(searchedText.toLowerCase()) || item.description.includes(searchedText.toLowerCase())
         )
       }
       else{
-        newFilteredData = incidentsInLastSearch;
+        setSearchActive(false)
+        newFilteredData = data;
       }
-      setIncidentsInLastSearch(filteredIncidents)
-      setFilteredIncidents(newFilteredData);
+      setSavedRequestedData(newFilteredData)
+      setRequestedData(newFilteredData)
     }
   }
 
@@ -121,8 +134,8 @@ function Search(props) {
       <SearchBar onSearch = {handleSearchedText}/>
       <StyledFilter>
         <StyledCardsContainer>
-        { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />}
-          {data && data.map((item, i) =>
+        { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} refreshFilter={refreshFiltersState}/>}
+          {requestedData && requestedData.map((item, i) =>
             <Card
               onClick={ () => navigate(navigateHandler(item)) }
               key={`${type} ${i}`}

@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import './Filter.css';
 
-function FilterComponent({ data, onApplyFilters, onClearFilters }) {
+function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }) {
   const [filters, setFilters] = useState({});
-  
   const handleChange = (propertyName, value) => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      [propertyName]: value
-    }));
-  };
+      const updatedFilters = {
+        ...filters,
+        [propertyName]: value
+      }
+
+      if (typeof value === 'object') { // (checkbox)
+        const isAllUnchecked = Object.values(value).every(val => !val);
+        if (isAllUnchecked && updatedFilters.hasOwnProperty(propertyName)) {
+          delete updatedFilters['status'];
+        }
+      }
+      if(typeof value === 'string' && updatedFilters.hasOwnProperty(propertyName) && updatedFilters[propertyName] == ''){
+        delete updatedFilters[propertyName];
+      }
+      setFilters(updatedFilters);
+      refreshFilter(updatedFilters);
+    };
 
   function handleApplyFilters(){
     onApplyFilters(filters);
