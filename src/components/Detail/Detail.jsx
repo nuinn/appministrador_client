@@ -115,7 +115,7 @@ function Detail(props){
             { (!!images.length && (imageIndex !== images.length-1)) &&
             <img onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
             }
-            <FloatingDelete handleDelete={handleDelete} />
+            { loggedUser.isAdmin && <FloatingDelete handleDelete={handleDelete} />}
           </StyledImageCarousel>
         </div>
         <StyledContainer className='col-12 col-sm-10 col-md-6 col-lg-4'>
