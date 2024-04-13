@@ -59,7 +59,6 @@ const StyledStepAndNotesWrap = styled.div`
   & .send {
     width: 20px;
     position: absolute;
-    top: 84px;
     left: 320px;
     z-index: 2;
     cursor: pointer;
@@ -232,7 +231,7 @@ const StyledUpdateButton = styled.div`
 const StyledTextArea = styled.textarea`
   position: absolute;
   margin-left: 40px;
-  height: 60px;
+  height: ${props => props.$height ? props.$height : '60px' };
   width: 306px;
   padding: 8px;
   box-sizing: border-box;
@@ -243,6 +242,7 @@ const StyledTextArea = styled.textarea`
   color: var(--secondary-color);
   resize: none;
   transition: opacity 1s ease;
+  box-shadow: 2px 2px 6px 0px #85858540;
 
   &:focus {
     outline: 0;

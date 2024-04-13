@@ -25,7 +25,7 @@ function Step(props) {
   const [showNotes, toggleShowNotes] = useToggle(false)
 
   useEffect(() => {
-    data && console.log(data)
+    data && reload()
     error && console.log(error)
   }, [data, error])
 
@@ -46,7 +46,6 @@ function Step(props) {
       method: 'PATCH',
       body: body,
     })
-    reload()
   }
 
   return (
@@ -94,14 +93,16 @@ function Step(props) {
       { !steps[index] && loggedUser.isAdmin &&
       <>
         <StyledTextArea
-          className={ showNotes ? 'visible' : 'hidden' }
+          className={ showNotes ? 'visible' : 'hidden'}
           onChange={ onChangeHandler }
           placeholder='Escribe una nota informativa'
+          $height={ step.name === 'Finalización' && '34px' }
           autoFocus />
         <img
           src={send}
           className={ showNotes ? 'send visible' : 'hidden' }
           onClick={ submitHandler }
+          style={ step.name === 'Finalización' ? {top: '56px'} : {top: '84px'}}
           alt="send" />
       </>
       }
