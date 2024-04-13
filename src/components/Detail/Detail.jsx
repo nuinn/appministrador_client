@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import styled from 'styled-components'
 import StyledWrap from './styled/Wrap.js'
 import StyledImageCarousel from './styled/ImageCarousel.js'
@@ -10,7 +11,7 @@ import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
 
 const StyledFooterPusher = styled.div`
-  padding-bottom: 160px;
+  padding-bottom: 200px;
 `
 
 function getFormattedNewDate(){
@@ -25,8 +26,10 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps } = props
+  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload } = props
   const [imageIndex, setImageIndex] = useState(0)
+  const { loggedUser } = useLoggedUserContext()
+
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
   }
@@ -71,13 +74,26 @@ function Detail(props){
               <p className='body'>{block.body}</p>
             </div>) }
         </StyledContainer>
-        { params && <Stepper steps={steps} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
+        { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
         <StyledFooterPusher />
       </StyledWrap>
-      { !params &&
+      { !params || loggedUser.isAdmin &&
       <StyledButtonContainer>
-        <StyledButton onClick={prevStep}>Volver</StyledButton>
-        <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
+        {! params &&
+        <>
+          <StyledButton onClick={prevStep}>Volver</StyledButton>
+          <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
+        </>
+        }
+        {/* {
+          loggedUser.isAdmin &&
+        <>
+          <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Editar</StyledButton>
+          { status === 'Pendiente' &&
+          <StyledButton onClick={ () => nextStep(title) }>Aceptar</StyledButton>
+          }
+        </>
+        } */}
       </StyledButtonContainer>
       }
     </>
