@@ -25,7 +25,7 @@ const icons = [
   },
   { name: 'profile',
     src: profile,
-    route: '/perfil/:user_id'
+    route: '/perfil'
   },
 ]
 
