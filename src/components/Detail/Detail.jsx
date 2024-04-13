@@ -26,7 +26,7 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status } = props
+  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload } = props
   const [imageIndex, setImageIndex] = useState(0)
   const { loggedUser } = useLoggedUserContext()
 
@@ -74,7 +74,7 @@ function Detail(props){
               <p className='body'>{block.body}</p>
             </div>) }
         </StyledContainer>
-        { params && <Stepper steps={steps} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
+        { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
         <StyledFooterPusher />
       </StyledWrap>
       { !params || loggedUser.isAdmin &&
@@ -85,7 +85,7 @@ function Detail(props){
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
         </>
         }
-        {
+        {/* {
           loggedUser.isAdmin &&
         <>
           <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Editar</StyledButton>
@@ -93,7 +93,7 @@ function Detail(props){
           <StyledButton onClick={ () => nextStep(title) }>Aceptar</StyledButton>
           }
         </>
-        }
+        } */}
       </StyledButtonContainer>
       }
     </>

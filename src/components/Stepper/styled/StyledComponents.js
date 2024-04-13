@@ -8,6 +8,8 @@ const StyledStepperWrap = styled.div`
   position: relative;
   box-sizing: border-box;
   user-select: none;
+  background-color: transparent;
+  transition: 1s ease;
   & .test {
     border-left: 2px solid var(--grey-color);
     position: absolute;
@@ -53,7 +55,29 @@ const StyledStepperContainer = styled.div`
 const StyledStepAndNotesWrap = styled.div`
   position: relative;
   transition: 1s ease;
-  // background-color: white;
+
+  & .send {
+    width: 20px;
+    position: absolute;
+    top: 84px;
+    left: 320px;
+    z-index: 2;
+    cursor: pointer;
+    transition: .2s;
+
+    &:active, &:hover {
+      transform: scale(0.9);
+    }
+  }
+
+  & .visible {
+    opacity: 1;
+  }
+
+  & .hidden {
+    opacity: 0;
+  }
+
 `;
 
 
@@ -66,6 +90,14 @@ const StyledStepWrap = styled.div`
   & .inactive {
     & img {
       visibility: hidden;
+    }
+  }
+
+  & .active {
+    background-color: var(--dark-grey-color);
+
+    &:hover {
+      background-color: var(--main-color);
     }
   }
 `
@@ -100,7 +132,7 @@ const StyledStepContainer = styled.div`
   & .completed {
     background-color: var(--secondary-color);
   }
-`
+`;
 
 const StyledStepTitle = styled.div`
   display: flex;
@@ -171,6 +203,53 @@ const StyledLine = styled.div`
   // position: absolute;
 `
 
+const StyledUpdateButton = styled.div`
+  width: 80px;
+  height: 24px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: var(--main-color);
+  z-index: 4;
+  position: absolute;
+  top: 6px;
+  right: -8.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  line-height: 14.4px;
+  cursor: pointer;
+  transition: .5s ease;
+  font-size: 12px;
+  letter-spacing: .4px;
+
+  &:hover {
+    background-color: var(--dark-grey-color);
+  }
+`;
+
+const StyledTextArea = styled.textarea`
+  position: absolute;
+  margin-left: 40px;
+  height: 60px;
+  width: 306px;
+  padding: 8px;
+  box-sizing: border-box;
+  z-index: 1;
+  border: none;
+  background-color: var(--light-grey-color);
+  border-radius: 8px;
+  color: var(--secondary-color);
+  resize: none;
+  transition: opacity 1s ease;
+
+  &:focus {
+    outline: 0;
+    border: none;
+  }
+`;
+
 export {
   StyledStepperWrap,
   StyledStepperContainer,
@@ -180,4 +259,6 @@ export {
   StyledStepTitle,
   StyledArrowContainer,
   StyledNotesContainer,
+  StyledUpdateButton,
+  StyledTextArea,
 }
