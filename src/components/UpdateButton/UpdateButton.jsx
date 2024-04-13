@@ -5,7 +5,7 @@ function UpdateButton(props) {
 
   return (
     <StyledUpdateButton onClick={handleSubmit}>
-      Modificar
+      Enviar Cambios
     </StyledUpdateButton>
   )
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const UpdateButton = styled.div`
-  width: 100px;
+  width: 130px;
   height: 28px;
   border-radius: 51px;
   background-color: var(--main-color);

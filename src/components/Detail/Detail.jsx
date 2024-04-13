@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
+import useApi from '../../hooks/useApi.js'
 import useToggle from '../../hooks/useToggle.js'
 import styled from 'styled-components'
 import StyledWrap from './styled/Wrap.js'
 import StyledImageCarousel from './styled/ImageCarousel.js'
+import FloatingDelete from '../FloatingDelete/FloatingDelete.jsx'
 import StyledContainer from './styled/Container.js'
 import Stepper from '../Stepper/Stepper.jsx'
 import StyledButtonContainer from './styled/ButtonContainer.js'
@@ -33,13 +35,10 @@ function Detail(props){
   const [imageIndex, setImageIndex] = useState(0)
   const [selectedOption, setSeletedOption] = useState(category)
   const { loggedUser } = useLoggedUserContext()
+  const { getData, data, error, isLoading } = useApi()
   const [edit,toggleEdit] = useToggle(false)
   const [editedDescription, setEditedDescription] = useState(description)
   const [editedImages, setEditedImages] = useState(images)
-
-  useEffect(() => {
-    console.log('editedDescription', editedDescription)
-  }, [editedDescription])
 
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
@@ -78,14 +77,31 @@ function Detail(props){
   function handleSubmit() {
     const isNewDescription = description !== editedDescription
     const isNewCategory = category !== selectedOption
-    if (isNewDescription || isNewCategory) {
+    const isNewImage = images !== editedImages
+    if (isNewDescription || isNewCategory || isNewImage) {
       const body = {
-        description: isNewDescription ? editedDescription : false,
-        category: isNewCategory ? selectedOption : false,
+        _id: params,
+        description: isNewDescription ? editedDescription : undefined,
+        category: isNewCategory ? selectedOption : undefined,
+        image: isNewImage ? editedImages : undefined
       }
-      console.log(body);
+      getData({
+        route: '/incidents/',
+        method: 'PATCH',
+        body: body
+      })
     }
   }
+
+  function handleDelete() {
+    setEditedImages(editedImages.splice(imageIndex, 1))
+    handleSubmit()
+  }
+
+  useEffect(() => {
+    data && reload()
+    error && console.log(error)
+  }, [data, error])
 
   return (
     <>
@@ -99,6 +115,7 @@ function Detail(props){
             { (!!images.length && (imageIndex !== images.length-1)) &&
             <img onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
             }
+            <FloatingDelete handleDelete={handleDelete} />
           </StyledImageCarousel>
         </div>
         <StyledContainer className='col-12 col-sm-10 col-md-6 col-lg-4'>

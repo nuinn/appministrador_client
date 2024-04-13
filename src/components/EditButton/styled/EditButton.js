@@ -14,6 +14,7 @@ const EditButton = styled.div`
   cursor: pointer;
   transition: .2s;
   user-select: none;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
 
   &:active, &:hover {
     transform: scale(0.9);
