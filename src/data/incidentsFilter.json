@@ -1,0 +1,16 @@
+{
+  "date": {
+    "title": "Fecha",
+    "type": "date"
+  },
+  "progress": {
+    "title": "Progreso",
+    "type": "select",
+    "options": ["Registro de incidencia", "Apertura de reclamación", "Inspección", "Trabajando en la reparación", "Finalización"]
+  },
+  "status": {
+    "title": "Estado",
+    "type": "checkbox",
+    "options": ["Pendiente", "Activa", "Resuelta"]
+  }
+}

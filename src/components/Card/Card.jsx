@@ -18,8 +18,8 @@ function Card(props) {
           <div className="content">
             <p>{`Propietarios: ${data.n_propie}`}</p>
             <p>{`Inquilinos: ${data.n_inquilinos}`}</p>
-            <p>{`Presidente: ${data.president.name}`}</p>
-            <p>{`Contacto: ${data.president.mobile_num}`}</p>
+            <p>{`Presidente: ${data.president && data.president.name}`}</p>
+            <p>{`Contacto: ${data.president && data.president.mobile_num}`}</p>
           </div>
         </StyledDescription>
         }
@@ -28,10 +28,10 @@ function Card(props) {
           <StyledDescription>
             <div className="titlebar">
               <h3>{data.title}</h3>
-              <h4>{data.community.address}</h4>
+              <h4>{data.community && data.community.address}</h4>
             </div>
             <div className="content">
-              <p>{data.description.substring(0, 65)+"..."}</p>
+              <p>{data.description && data.description.substring(0, 65)+"..."}</p>
               <h5>{data.category}</h5>
             </div>
           </StyledDescription>
