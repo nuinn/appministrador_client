@@ -64,12 +64,12 @@ function Search(props) {
     }
   }
 
-  const handleClearFilters = () => {
+  function handleClearFilters(){
     setRequestedData(searchActive ? savedSearchedData :  data)
   };
 
   function handleApplyFilters(filters){
-    let newFilteredData = searchActive ? savedSearchedData : requestedData;
+    let newFilteredData = searchActive ? savedSearchedData : data;
     if (filters && Object.keys(filters).length > 0)
     {
       if(filters.status) {
@@ -110,7 +110,8 @@ function Search(props) {
       setRequestedData(newSearchedComunities)
     }
     if (type ==='incidents'){
-      let newFilteredData = filtersNow && Object.keys(filtersNow).length > 0 ? requestedData : data;
+      console.log(filtersNow);
+      let newFilteredData = filtersNow && Object.keys(filtersNow).length > 0 ? savedFilteredData : data;
       if (searchedText) {
         setSearchActive(true)
         newFilteredData = newFilteredData.filter(item =>
@@ -120,7 +121,7 @@ function Search(props) {
       }
       else{
         setSearchActive(false)
-        newFilteredData = savedFilteredData;
+        newFilteredData = filtersNow ?  savedFilteredData : data;
         setSavedSearchedData(savedSearchedData)
       }
       setRequestedData(newFilteredData)

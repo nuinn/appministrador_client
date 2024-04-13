@@ -3,7 +3,8 @@ import './Filter.css';
 
 function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }) {
   const [filters, setFilters] = useState({});
-  const handleChange = (propertyName, value) => {
+  
+  function handleChange(propertyName, value){
       const updatedFilters = {
         ...filters,
         [propertyName]: value
