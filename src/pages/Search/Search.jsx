@@ -16,7 +16,7 @@ import SearchBar from '../../components/SearchBar/SearchBar.jsx'
 function Search(props) {
   const { type } = props
   const navigate = useNavigate()
-  const { getData, data, isLoading, error } = useApi()
+  const { getData, clearData, data, isLoading, error } = useApi()
   const { loggedUser } = useLoggedUserContext()
 
   const [searchActive, setSearchActive] = useState(false);
@@ -26,6 +26,7 @@ function Search(props) {
 
   useEffect(() => {
     if (loggedUser) {
+      clearData();
       switch (true) {
         case type === 'communities':
           getData({
@@ -40,7 +41,7 @@ function Search(props) {
           break;
       }
     }
-  }, [loggedUser])
+  }, [loggedUser, type])
 
   useEffect(() => {
     setRequestedData(data)
@@ -147,7 +148,7 @@ function Search(props) {
         </StyledFilter>
         <FloatingButton type={type} />
       </>}
-      <Footer type={type} />
+      <Footer type={type} clearData={clearData} />
     </>
   )
 }
