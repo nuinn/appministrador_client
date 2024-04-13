@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
+import useToggle from '../../hooks/useToggle.js'
 import styled from 'styled-components'
 import StyledWrap from './styled/Wrap.js'
 import StyledImageCarousel from './styled/ImageCarousel.js'
@@ -9,6 +10,8 @@ import StyledButtonContainer from './styled/ButtonContainer.js'
 import StyledButton from '../styled/Button/Button.js'
 import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
+import EditButton from '../EditButton/EditButton.jsx'
+import UpdateButton from '../UpdateButton/UpdateButton.jsx'
 
 const StyledFooterPusher = styled.div`
   padding-bottom: 200px;
@@ -28,7 +31,15 @@ function getFormattedNewDate(){
 function Detail(props){
   const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload } = props
   const [imageIndex, setImageIndex] = useState(0)
+  const [selectedOption, setSeletedOption] = useState(category)
   const { loggedUser } = useLoggedUserContext()
+  const [edit,toggleEdit] = useToggle(false)
+  const [editedDescription, setEditedDescription] = useState(description)
+  const [editedImages, setEditedImages] = useState(images)
+
+  useEffect(() => {
+    console.log('editedDescription', editedDescription)
+  }, [editedDescription])
 
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
@@ -49,6 +60,33 @@ function Detail(props){
     }
   ]
 
+  const categoryMapper = [
+    "Albañilería",
+    "Electricidad",
+    "Fontanería",
+    "Control de Plagas",
+    "Cerrajería",
+    "Ascensores",
+    "Mantenimiento",
+    "Seguridad"
+  ]
+
+  function onChangeHandler(e) {
+    setEditedDescription(e.target.value);
+  }
+
+  function handleSubmit() {
+    const isNewDescription = description !== editedDescription
+    const isNewCategory = category !== selectedOption
+    if (isNewDescription || isNewCategory) {
+      const body = {
+        description: isNewDescription ? editedDescription : false,
+        category: isNewCategory ? selectedOption : false,
+      }
+      console.log(body);
+    }
+  }
+
   return (
     <>
       <StyledWrap className='row'>
@@ -66,13 +104,35 @@ function Detail(props){
         <StyledContainer className='col-12 col-sm-10 col-md-6 col-lg-4'>
           <div className="content">
             <p className='title'>{title}</p>
-            <p className='description'>{description}</p>
+            {edit ?
+            <textarea
+              value={editedDescription}
+              onChange={ onChangeHandler }
+              autoFocus
+            />
+            : <p className='description'>{description}</p>}
+            {loggedUser.isAdmin &&
+            <EditButton
+              edit={edit}
+              toggleEdit={toggleEdit} />}
           </div>
           { incidentMapper.map((block) =>
             <div key={block.header} className='details'>
               <p className='header'>{block.header}</p>
-              <p className='body'>{block.body}</p>
+              {block.header === 'Categoría:' && edit ?
+              <select
+              value={selectedOption}
+              onChange={ (e) => setSeletedOption(e.target.value) }>
+                { categoryMapper.map((category) =>
+                  <option
+                  key={category}
+                  value={category}>{category}</option>
+                )}
+              </select>
+              : <p className='body'>{block.body}</p>}
             </div>) }
+          {edit &&
+            <UpdateButton handleSubmit={handleSubmit} />}
         </StyledContainer>
         { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
         <StyledFooterPusher />
