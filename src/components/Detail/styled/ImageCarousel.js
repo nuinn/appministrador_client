@@ -20,7 +20,7 @@ const ImageCarousel = styled.div`
   align-items: center;
   transition: .1s;
 
-  & img {
+  & .leftright {
     opacity: 0.7;
     width: 24px;
     cursor: pointer;
