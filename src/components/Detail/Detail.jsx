@@ -158,7 +158,7 @@ function Detail(props){
       <StyledButtonContainer>
         {!params &&
         <>
-          <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Volver</StyledButton>
+          <StyledButton $bgcolor='var(--main-color)' onClick={prevStep}>Volver</StyledButton>
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
         </>
         }
