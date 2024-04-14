@@ -154,11 +154,11 @@ function Detail(props){
         { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
         <StyledFooterPusher />
       </StyledWrap>
-      { !params || loggedUser.isAdmin &&
+      { !params &&
       <StyledButtonContainer>
         {!params &&
         <>
-          <StyledButton onClick={prevStep}>Volver</StyledButton>
+          <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Volver</StyledButton>
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
         </>
         }
