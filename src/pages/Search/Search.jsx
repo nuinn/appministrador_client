@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import useApi from '../../hooks/useApi.js'
+import titles from '../../data/searchTitlesData.json'
 import incidentsFilter from '../../data/incidentsFilter.json'
 import Header from '../../components/Header/Header.jsx'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.jsx'
@@ -39,6 +40,12 @@ function Search(props) {
           getData({
             route: `/incidents/byUser/`
           })
+          break;
+        case type === 'providers':
+          getData({
+            route: `/providers/all/`
+          })
+          break;
         default:
           break;
       }
@@ -131,7 +138,7 @@ function Search(props) {
   return (
     <>
       <Header
-      title={ type === 'communities' ? 'Comunidades' : 'Incidencias' }
+      title={ titles[type].title}
       path='/'
       />
       {isLoading && <LoadingSpinner />}

@@ -1,0 +1,11 @@
+.phone-link {
+  display:  flex;
+  align-items:h center;
+  color: var(--secondary-color); /* Cambia el color del texto del enlace */
+  text-decoration: none; /* Quita el subrayado del enlace */
+}
+
+.phone-link:hover {
+  text-decoration: underline; /* Agrega subrayado al pasar el mouse sobre el enlace */
+  cursor: pointer; /* Cambia el cursor a una mano al pasar el mouse sobre el enlace */
+}
