@@ -47,7 +47,7 @@ const stepperMap = [
 ]
 
 function Stepper(props){
-  const { steps } = props
+  const { steps, params, reload } = props
 
   return (
     <StyledStepperWrap>
@@ -58,6 +58,8 @@ function Stepper(props){
           step={step}
           index={i}
           steps={steps}
+          params={params}
+          reload={reload}
           />
         )}
         <div className="test"></div>

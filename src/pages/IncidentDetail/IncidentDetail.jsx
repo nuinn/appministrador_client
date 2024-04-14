@@ -10,16 +10,15 @@ import Footer from '../../components/Footer/Footer.jsx'
 function IncidentDetail() {
   const { incident_id } = useParams()
   const { getData, data, error, isLoading } = useApi()
+  const petition = {route: `/incidents/${incident_id}`}
 
   useEffect(() => {
-    getData({
-    route: `/incidents/${incident_id}`
-    })
+    getData(petition)
   },[])
 
-  useEffect(() => {
-    data && console.log(data)
-  }, [data])
+  function reloadData() {
+    getData(petition)
+  }
 
   return (
     <>
@@ -40,6 +39,8 @@ function IncidentDetail() {
           date={formatDateTime(data.date)}
           steps={data.progressSteps}
           params={ incident_id }
+          status={data.status}
+          reload={reloadData}
         />
       </>
       }

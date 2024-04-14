@@ -6,15 +6,20 @@ const Header = styled.div`
   height: 60px;
   width: auto;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   z-index: 100;
   background-color: var(--secondary-color);
 
-  & img {
+  & .logo {
     width: 217px;
-    padding-left: 24px;
+    margin-left: 24px;
+    cursor: pointer;
+  }
+
+  & .logout {
+    height: 34px;
+    margin-right: 16px;
     cursor: pointer;
   }
 `;
