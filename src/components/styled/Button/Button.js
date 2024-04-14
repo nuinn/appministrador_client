@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.div`
-  width: 121px;
+  width: ${props => props.$width ? props.$width : '121px'};
   height: 48px;
   border-radius: 51px;
   background-color: ${props => props.$bgcolor ? props.$bgcolor : 'var(--secondary-color)'};

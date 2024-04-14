@@ -5,8 +5,8 @@ const FloatingDelete = styled.div`
   border-radius: 36px;
   position: absolute;
   background-color: var(--light-grey-color);
-  right: 8px;
-  top: 104px;
+  right: ${props => props.$right ? props.$right : '8px'};
+  top: ${props => props.$top ? props.$top : '104px'};
   z-index: 3;
   display: flex;
   justify-content: center;
