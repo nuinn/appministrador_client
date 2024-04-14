@@ -156,7 +156,7 @@ function Detail(props){
       </StyledWrap>
       { !params || loggedUser.isAdmin &&
       <StyledButtonContainer>
-        {! params &&
+        {!params &&
         <>
           <StyledButton onClick={prevStep}>Volver</StyledButton>
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
