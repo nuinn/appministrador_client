@@ -22,6 +22,7 @@ const InputWrap = styled.div`
     color: var(--secondary-color);
     padding: 12px;
     width: 100%;
+    height: 100%;
     outline: none;
     &:focus {
       outline: none;
