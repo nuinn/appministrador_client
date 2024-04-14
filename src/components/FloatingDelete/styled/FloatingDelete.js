@@ -4,7 +4,7 @@ const FloatingDelete = styled.div`
   height: 36px;
   border-radius: 36px;
   position: absolute;
-  background-color: var(--light-grey-color);
+  background-color: var(--secondary-color);
   right: ${props => props.$right ? props.$right : '8px'};
   top: ${props => props.$top ? props.$top : '104px'};
   z-index: 3;
@@ -27,6 +27,7 @@ const FloatingDelete = styled.div`
 
   & img {
     width: 16px;
+    filter: brightness(0) invert(1);
   }
 `;
 

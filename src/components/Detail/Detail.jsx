@@ -109,11 +109,11 @@ function Detail(props){
         <div className='carouselContainer col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
           <StyledImageCarousel $image={images[imageIndex]}>
             { imageIndex ?
-            <img onClick={ () => onClickHandler(-1) } src={left} alt="left arrow" />
+            <img className='leftright' onClick={ () => onClickHandler(-1) } src={left} alt="left arrow" />
             : <span></span>
             }
             { (!!images.length && (imageIndex !== images.length-1)) &&
-            <img onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
+            <img className='leftright' onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
             }
             { loggedUser.isAdmin && <FloatingDelete handleDelete={handleDelete} />}
           </StyledImageCarousel>
