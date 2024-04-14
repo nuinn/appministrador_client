@@ -4,6 +4,8 @@ import FormButtonContainer from "./FormButtonContainer.jsx";
 import PageTitle from "../../styled/PageTitle/PageTitle.js";
 import NavigationButtonsContainer from "../../styled/NavigationButtonsContainer/NavigationButtonsContainer.js";
 import NavigationButton from "../../styled/NavigationButton/NavigationButton.js";
+import StyledButtonContainer from "../Detail/styled/ButtonContainer.js"
+import StyledButton from "../styled/Button/Button.js"
 
 const LocationForm = ({ prevStep, nextStep, handleChange, values }) => {
   const selectLocationAndContinue = (location) => {
@@ -34,9 +36,12 @@ const LocationForm = ({ prevStep, nextStep, handleChange, values }) => {
           </FormButton>
         ))}
       </FormButtonContainer>
-      <NavigationButtonsContainer>
+      {/* <NavigationButtonsContainer>
         <NavigationButton onClick={prevStep}>Volver</NavigationButton>
-      </NavigationButtonsContainer>
+      </NavigationButtonsContainer> */}
+      <StyledButtonContainer>
+        <StyledButton $bgcolor='var(--main-color)' onClick={prevStep}>Volver</StyledButton>
+      </StyledButtonContainer>
     </div>
   );
 };
