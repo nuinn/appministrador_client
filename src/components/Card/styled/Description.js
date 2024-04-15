@@ -10,6 +10,10 @@ const Description = styled.div`
   flex-direction: column;
   gap: 6px;
 
+  & .contentFlex {
+    display: flex;
+  }
+
   & p {
     margin: 0;
     line-height: 1.25em;
@@ -40,6 +44,12 @@ const Description = styled.div`
   & h5 {
     font-weight: 500;
     font-size: 0.7em;
+  }
+
+  & li {
+    font-weight: 600;
+    list-style-type: none;
+
   }
 `;
 

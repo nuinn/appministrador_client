@@ -1,39 +1,47 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { useLoggedUserContext } from '../../contexts/loggedUserContext.jsx'
 import useApi from '../../hooks/useApi.js'
 import formatDateTime from '../../services/formatDateTime.js'
 import Header from '../../components/Header/Header.jsx'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.jsx'
 import Detail from '../../components/Detail/Detail.jsx'
-import StyledMapper from '../../styled/Mapper/Mapper.js'
+import RecommendedProviders from '../../components/RecommendedProviders/RecommendedProviders.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 
 const StyledWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+  gap: 28px;
+`
 
-`;
+const StyledContainer = styled.div`
+  height: 56vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  --bs-gutter-x: 0rem;
+`
 
 
 function IncidentDetail() {
   const { incident_id } = useParams()
-  const { getData, data, error, isLoading } = useApi()
-  const { loggedUser } = useLoggedUserContext()
-  const getIncident = {route: `/incidents/${incident_id}`}
+  const { getData, data, error, isLoading, clearData } = useApi()
+  const [petition, setPetition] = useState({route: `/incidents/${incident_id}`})
 
   useEffect(() => {
-    getData(getIncident)
+    petition && petition.route && getData(petition)
   },[])
 
-  function reloadData() {
-    getData(getIncident)
-  }
-
   useEffect(() => {
-    if (loggedUser && loggedUser.isAdmin) {
-      getData()
-    }
-  }, [loggedUser])
+    clearData
+  }, [incident_id])
+
+  function reloadData() {
+    getData(petition)
+  }
 
   return (
     <>
@@ -41,9 +49,9 @@ function IncidentDetail() {
       {data &&
       <>
         <Header
-          title={`Incidencias / ${data.title}`}
-          community={data.community.address}
-          path='/incidencias'
+        title={`Incidencias / ${data.title}`}
+        community={data.community.address}
+        path='/incidencias'
         />
         <Detail
           images={data.image}
@@ -56,13 +64,8 @@ function IncidentDetail() {
           params={ incident_id }
           status={data.status}
           reload={reloadData}
+          setPetition={setPetition}
         />
-        <StyledContainer></StyledContainer>
-        <StyledWrap className='row'>
-          <StyledMapper>
-
-          </StyledMapper>
-        </StyledWrap>
       </>
       }
       <Footer type='incidents' />

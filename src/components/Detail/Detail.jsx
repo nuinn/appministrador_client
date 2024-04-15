@@ -10,6 +10,8 @@ import StyledContainer from './styled/Container.js'
 import Stepper from '../Stepper/Stepper.jsx'
 import StyledButtonContainer from './styled/ButtonContainer.js'
 import StyledButton from '../styled/Button/Button.js'
+import RecommendedProviders from '../RecommendedProviders/RecommendedProviders.jsx'
+import SimilarIncidents from '../SimilarIncidents/SimilarIncidents.jsx'
 import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
 import EditButton from '../EditButton/EditButton.jsx'
@@ -17,6 +19,12 @@ import UpdateButton from '../UpdateButton/UpdateButton.jsx'
 
 const StyledFooterPusher = styled.div`
   padding-bottom: 200px;
+`
+
+const StyledProvidersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 function getFormattedNewDate(){
@@ -31,7 +39,7 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload } = props
+  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload, setPetition } = props
   const [imageIndex, setImageIndex] = useState(0)
   const [selectedOption, setSeletedOption] = useState(category)
   const { loggedUser } = useLoggedUserContext()
@@ -152,7 +160,14 @@ function Detail(props){
             <UpdateButton handleSubmit={handleSubmit} />}
         </StyledContainer>
         { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
-        <StyledFooterPusher />
+        <RecommendedProviders className='col-12 col-sm-10 col-md-6 col-xl-4' category={category} />
+        <SimilarIncidents
+          className='col-12 col-sm-10 col-md-6 col-xl-4'
+          category={category}
+          reload={reload}
+          params={params}
+          setPetition={setPetition}
+        />
       </StyledWrap>
       { !params &&
       <StyledButtonContainer>

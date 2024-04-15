@@ -4,7 +4,7 @@ const StyledStepperWrap = styled.div`
   width: 372px;
   height: 372px;
   padding: 12px 33px 18px;
-  margin: 0px 20px;
+  margin: 0px 20px 100px;
   position: relative;
   box-sizing: border-box;
   user-select: none;

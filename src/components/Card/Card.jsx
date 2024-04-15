@@ -3,12 +3,15 @@ import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 import formatDateTime from '../../services/formatDateTime.js'
 import './Card.css'
+import phone from '../../assets/icons/phone.png'
+import phoneCall from '../../assets/icons/phoneCall.jpg'
+import StyledButton from './styled/Button.js'
 
 function Card(props) {
-  const { type, data, onClick } = props
+  const { type, data, onClick, button } = props
 
   return (
-    <StyledCard onClick={onClick}>
+    <StyledCard $cursor={type === 'providers' ? 'default' : 'pointer'} onClick={onClick}>
       <RoundImage className='roundedImage' image={data.image} />
       <div className='descriptionContainer'>
         { type === 'communities' &&
@@ -41,7 +44,7 @@ function Card(props) {
         }
         { type === 'providers' &&
         <>
-          <StyledDescription>
+          <StyledDescription className='noPointer'>
             <div className="titlebar">
               <h3>{data.companyName}</h3>
               <h4>
@@ -53,12 +56,13 @@ function Card(props) {
             <div className="content">
               <p>{`Contacto: ${data.contactPerson}`}</p>
               <p>{`Valoración: ${data.rating}`}</p>
-              <a href={`tel:${data.phone}`} className="phone-link">
-                <img src='src/assets/icons/phoneCall.jpg' alt="" />
-                {data.phone}
-                </a>
             </div>
+          { button && <StyledButton>Agregar a esta incidencia</StyledButton>}
           </StyledDescription>
+          <a href={`tel:${data.phone}`} className="phone-link">
+            <img src={phone} alt="" />
+            {/* {data.phone} */}
+          </a>
         </>
         }
       </div>
