@@ -6,10 +6,19 @@ const Card = styled.div`
   height: 128px;
   display: flex;
   align-items: center;
-  margin-top: 16px;
+  margin-top: ${props => props.$margintop ? props.$margintop : '16px'};
+  user-select: none;
+  cursor: ${props => props.$cursor};
 
-  cursor: pointer;
+  & a {
+    position: absolute;
+    top: 44px;
+    right: 12px;
 
+    & img {
+      width: 36px;
+    }
+  }
 
   & .roundedImage {
       position: absolute;
@@ -35,6 +44,7 @@ const Card = styled.div`
     width: 18em;
     height: 128px;
     border: 1px solid #f0f0f0;
+    background-color: white;
 
     & span {
       margin-right: 10px;

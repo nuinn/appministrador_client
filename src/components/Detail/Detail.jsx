@@ -10,13 +10,23 @@ import StyledContainer from './styled/Container.js'
 import Stepper from '../Stepper/Stepper.jsx'
 import StyledButtonContainer from './styled/ButtonContainer.js'
 import StyledButton from '../styled/Button/Button.js'
+import RecommendedProviders from '../RecommendedProviders/RecommendedProviders.jsx'
+import SimilarIncidents from '../SimilarIncidents/SimilarIncidents.jsx'
 import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
 import EditButton from '../EditButton/EditButton.jsx'
 import UpdateButton from '../UpdateButton/UpdateButton.jsx'
+import phone from '../../assets/icons/phone.png'
+import whatsapp from '../../assets/icons/whatsapp.png'
 
 const StyledFooterPusher = styled.div`
   padding-bottom: 200px;
+`
+
+const StyledProvidersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 function getFormattedNewDate(){
@@ -31,7 +41,21 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload } = props
+  const {
+    images,
+    title,
+    description,
+    owner,
+    category,
+    date,
+    nextStep,
+    prevStep,
+    params,
+    steps,
+    status,
+    provider,
+    reload,
+   } = props
   const [imageIndex, setImageIndex] = useState(0)
   const [selectedOption, setSeletedOption] = useState(category)
   const { loggedUser } = useLoggedUserContext()
@@ -72,6 +96,14 @@ function Detail(props){
 
   function onChangeHandler(e) {
     setEditedDescription(e.target.value);
+  }
+
+  function WhatsAppHandler() {
+    window.location.href = 'https://wa.me/34'+owner.phone
+  }
+
+  function callHandler() {
+    window.location.href = 'tel:'+owner.phone
   }
 
   function handleSubmit() {
@@ -146,13 +178,32 @@ function Detail(props){
                   value={category}>{category}</option>
                 )}
               </select>
-              : <p className='body'>{block.body}</p>}
+              : <div className='body'>
+                {block.body}
+                {block.header === 'Publicado por:' && loggedUser.isAdmin &&
+                  <div className='contact'>
+                    <img onClick={ WhatsAppHandler } src={whatsapp} alt="whatsapp" />
+                    <img onClick={ callHandler } src={phone} alt="call" />
+                  </div>}</div>}
+
             </div>) }
           {edit &&
             <UpdateButton handleSubmit={handleSubmit} />}
         </StyledContainer>
         { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
-        <StyledFooterPusher />
+        { loggedUser.isAdmin && (status === 'Activa' || status === 'Resuelta') &&
+          <RecommendedProviders
+          className='col-12 col-sm-10 col-md-6 col-xl-4'
+          category={category}
+          incidentId={params}
+          provider={provider}
+        />}
+        { loggedUser.isAdmin &&
+          <SimilarIncidents
+          className='col-12 col-sm-10 col-md-6 col-xl-4'
+          category={category}
+          params={params}
+        />}
       </StyledWrap>
       { !params &&
       <StyledButtonContainer>
@@ -162,15 +213,6 @@ function Detail(props){
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
         </>
         }
-        {/* {
-          loggedUser.isAdmin &&
-        <>
-          <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Editar</StyledButton>
-          { status === 'Pendiente' &&
-          <StyledButton onClick={ () => nextStep(title) }>Aceptar</StyledButton>
-          }
-        </>
-        } */}
       </StyledButtonContainer>
       }
     </>

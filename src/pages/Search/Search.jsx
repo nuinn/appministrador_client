@@ -25,7 +25,7 @@ function Search(props) {
   const [requestedData, setRequestedData] = useState();
   const [savedSearchedData, setSavedSearchedData] = useState();
   const [savedFilteredData, setSavedFilteredData] = useState();
-  
+
 
   useEffect(() => {
     if (loggedUser) {
@@ -153,7 +153,7 @@ function Search(props) {
               onClick={ () => navigate(navigateHandler(item)) }
               key={`${type} ${i}`}
               type={type}
-              data={item}
+              item={item}
             />
           )}
         </StyledCardsContainer>

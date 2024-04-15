@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import styled from 'styled-components'
 import useApi from '../../hooks/useApi.js'
 import formatDateTime from '../../services/formatDateTime.js'
 import Header from '../../components/Header/Header.jsx'
@@ -7,14 +8,30 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.jsx'
 import Detail from '../../components/Detail/Detail.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 
+const StyledWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+  gap: 28px;
+`
+
+const StyledContainer = styled.div`
+  height: 56vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  --bs-gutter-x: 0rem;
+`
+
+
 function IncidentDetail() {
   const { incident_id } = useParams()
-  const { getData, data, error, isLoading } = useApi()
-  const petition = {route: `/incidents/${incident_id}`}
+  const { getData, data, error, isLoading, clearData } = useApi()
 
   useEffect(() => {
-    getData(petition)
-  },[])
+    incident_id && getData({route: `/incidents/${incident_id}`})
+  }, [incident_id])
 
   function reloadData() {
     getData(petition)
@@ -26,9 +43,9 @@ function IncidentDetail() {
       {data &&
       <>
         <Header
-          title={`Incidencias / ${data.title}`}
-          community={data.community.address}
-          path='/incidencias'
+        title={`Incidencias / ${data.title}`}
+        community={data.community.address}
+        path='/incidencias'
         />
         <Detail
           images={data.image}
@@ -40,6 +57,7 @@ function IncidentDetail() {
           steps={data.progressSteps}
           params={ incident_id }
           status={data.status}
+          provider={data.provider}
           reload={reloadData}
         />
       </>

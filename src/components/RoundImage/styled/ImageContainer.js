@@ -14,6 +14,7 @@ const ImageContainer = styled.div`
     height: 115px;
     display: flex;
     align-items: center;
+    background-color: white;
 
     & img {
       object-fit: cover;

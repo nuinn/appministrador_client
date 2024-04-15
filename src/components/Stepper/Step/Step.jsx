@@ -93,7 +93,7 @@ function Step(props) {
           className={ showNotes ? 'showNote' : 'hideNote' }
           onClick={ toggleShowNotes }>
           <img src={message} alt="message icon" />
-          <span>{steps[index] ? steps[index].note : ''}</span>
+          <span>{steps[index] ? steps[index].note.substring(0, 135) : ''}</span>
         </StyledNotesContainer>
       }
       { !steps[index] && loggedUser.isAdmin &&
