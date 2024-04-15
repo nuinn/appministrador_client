@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   StyledStepperWrap,
   StyledStepperContainer,
@@ -47,7 +48,8 @@ const stepperMap = [
 ]
 
 function Stepper(props){
-  const { steps } = props
+  const { steps, params, reload } = props
+  const [editSection, setEditSection] = useState('')
 
   return (
     <StyledStepperWrap>
@@ -58,6 +60,10 @@ function Stepper(props){
           step={step}
           index={i}
           steps={steps}
+          params={params}
+          reload={reload}
+          editSection={editSection}
+          setEditSection={setEditSection}
           />
         )}
         <div className="test"></div>

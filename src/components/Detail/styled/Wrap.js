@@ -7,6 +7,7 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   --bs-gutter-x: 0rem;
+  // margin-bottom: 400px;
   & .carouselContainer {
     display: flex;
     justify-content: center;

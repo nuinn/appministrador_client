@@ -2,6 +2,7 @@ import StyledCard from './styled/Card.js'
 import RoundImage from '../../components/RoundImage/RoundImage.jsx'
 import StyledDescription from './styled/Description.js'
 import formatDateTime from '../../services/formatDateTime.js'
+import './Card.css'
 
 function Card(props) {
   const { type, data, onClick } = props
@@ -36,6 +37,28 @@ function Card(props) {
             </div>
           </StyledDescription>
           <span>{formatDateTime(data.date, true)}</span>
+        </>
+        }
+        { type === 'providers' &&
+        <>
+          <StyledDescription>
+            <div className="titlebar">
+              <h3>{data.companyName}</h3>
+              <h4>
+                  {data.categories && data.categories.map((category, index) => (
+                    <li key={index}>{category}</li>
+                  ))}
+              </h4>
+            </div>
+            <div className="content">
+              <p>{`Contacto: ${data.contactPerson}`}</p>
+              <p>{`Valoración: ${data.rating}`}</p>
+              <a href={`tel:${data.phone}`} className="phone-link">
+                <img src='src/assets/icons/phoneCall.jpg' alt="" />
+                {data.phone}
+                </a>
+            </div>
+          </StyledDescription>
         </>
         }
       </div>

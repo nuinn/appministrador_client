@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLoggedUserContext } from '../contexts/loggedUserContext';
 
 const endpoint = 'https://appministrador-server.onrender.com';
+// const endpoint = 'http://localhost:3000';
 
 
 function useApi() {
@@ -54,7 +55,6 @@ function useApi() {
         setLoggedUser();
         navigate('/');
       }
-
       setError(responseAsJson);
       setIsLoading(false);
     }

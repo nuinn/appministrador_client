@@ -33,6 +33,10 @@ function AppRouter() {
       path: '/incidencias/detalle/:incident_id'
     },
     {
+      element: <Search type = 'providers'/>,
+      path: '/proveedores',
+    },
+    {
       element: <MarcTestPage />,
       path: '/testpagemarc'
     }
