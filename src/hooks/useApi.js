@@ -5,6 +5,7 @@ import { useLoggedUserContext } from '../contexts/loggedUserContext';
 const endpoint = 'https://appministrador-server.onrender.com';
 // const endpoint = 'http://localhost:3000';
 
+
 function useApi() {
   const [data, setData] = useState();
   const [error, setError] = useState();
