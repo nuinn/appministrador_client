@@ -162,15 +162,6 @@ function Detail(props){
           <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
         </>
         }
-        {/* {
-          loggedUser.isAdmin &&
-        <>
-          <StyledButton $bgcolor='var(--dark-grey-color)' onClick={prevStep}>Editar</StyledButton>
-          { status === 'Pendiente' &&
-          <StyledButton onClick={ () => nextStep(title) }>Aceptar</StyledButton>
-          }
-        </>
-        } */}
       </StyledButtonContainer>
       }
     </>

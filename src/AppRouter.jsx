@@ -31,10 +31,6 @@ function AppRouter() {
       element: <Search type = 'providers'/>,
       path: '/proveedores',
     },
-    {
-      element: <MarcTestPage />,
-      path: '/testpagemarc'
-    }
   ])
 }
 
