@@ -1,0 +1,29 @@
+.edit-profile-form {
+  font-family: 'Roboto', sans-serif;
+}
+
+.edit-profile-form input,
+.edit-profile-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid var(--secondary-color); 
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.edit-profile-form label {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.edit-profile-form button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: center;
+}

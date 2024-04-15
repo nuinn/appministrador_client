@@ -7,6 +7,7 @@ import incidentsOn from '../../assets/navIcons/incidentsOn.png'
 import communities from '../../assets/navIcons/communities.png'
 import communitiesOn from '../../assets/navIcons/communitiesOn.png'
 import profile from '../../assets/navIcons/profile.png'
+import profileOn from '../../assets/navIcons/profileOn.png'
 
 const icons = [
   { name: 'home',
@@ -25,6 +26,7 @@ const icons = [
   },
   { name: 'profile',
     src: profile,
+    on: profileOn,
     route: '/perfil'
   },
 ]

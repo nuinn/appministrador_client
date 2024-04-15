@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoggedUserContext } from '../contexts/loggedUserContext';
 
-// const endpoint = 'https://appministrador-server.onrender.com';
-const endpoint = 'http://localhost:3000';
+const endpoint = 'https://appministrador-server.onrender.com';
 
 
 function useApi() {
