@@ -6,14 +6,14 @@ const Card = styled.div`
   height: 128px;
   display: flex;
   align-items: center;
-  margin-top: 16px;
+  margin-top: ${props => props.$margintop ? props.$margintop : '16px'};
   user-select: none;
   cursor: ${props => props.$cursor};
 
   & a {
     position: absolute;
-    top: 48px;
-    right: 24px;
+    top: 44px;
+    right: 12px;
 
     & img {
       width: 36px;

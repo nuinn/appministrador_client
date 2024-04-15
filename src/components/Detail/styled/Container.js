@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 8px 16px;
+  padding: 8px 16px 16px;
   width: 370px;
   display: flex;
   flex-direction: column;
@@ -57,6 +57,33 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+
+    .body {
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & .contact {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-right: 8px;
+
+        & img {
+          height: 32px;
+          cursor: pointer;
+          transition: .2s ease;
+
+          &:hover, &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
+    }
+
+
 
     & .header {
       font-size: 16px;
@@ -77,7 +104,7 @@ const Container = styled.div`
     }
 
     & :last-child {
-      margin-bottom: 8px;
+      // margin-bottom: 8px;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import useApi from '../../hooks/useApi.js'
@@ -6,7 +6,6 @@ import formatDateTime from '../../services/formatDateTime.js'
 import Header from '../../components/Header/Header.jsx'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.jsx'
 import Detail from '../../components/Detail/Detail.jsx'
-import RecommendedProviders from '../../components/RecommendedProviders/RecommendedProviders.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 
 const StyledWrap = styled.div`
@@ -29,14 +28,9 @@ const StyledContainer = styled.div`
 function IncidentDetail() {
   const { incident_id } = useParams()
   const { getData, data, error, isLoading, clearData } = useApi()
-  const [petition, setPetition] = useState({route: `/incidents/${incident_id}`})
 
   useEffect(() => {
-    petition && petition.route && getData(petition)
-  },[])
-
-  useEffect(() => {
-    clearData
+    incident_id && getData({route: `/incidents/${incident_id}`})
   }, [incident_id])
 
   function reloadData() {
@@ -63,8 +57,8 @@ function IncidentDetail() {
           steps={data.progressSteps}
           params={ incident_id }
           status={data.status}
+          provider={data.provider}
           reload={reloadData}
-          setPetition={setPetition}
         />
       </>
       }

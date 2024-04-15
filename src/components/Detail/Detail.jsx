@@ -16,6 +16,8 @@ import left from '../../assets/icons/left.png'
 import right from '../../assets/icons/right.png'
 import EditButton from '../EditButton/EditButton.jsx'
 import UpdateButton from '../UpdateButton/UpdateButton.jsx'
+import phone from '../../assets/icons/phone.png'
+import whatsapp from '../../assets/icons/whatsapp.png'
 
 const StyledFooterPusher = styled.div`
   padding-bottom: 200px;
@@ -39,7 +41,21 @@ function getFormattedNewDate(){
 }
 
 function Detail(props){
-  const { images, title, description, owner, category, date, nextStep, prevStep, params, steps, status, reload, setPetition } = props
+  const {
+    images,
+    title,
+    description,
+    owner,
+    category,
+    date,
+    nextStep,
+    prevStep,
+    params,
+    steps,
+    status,
+    provider,
+    reload,
+   } = props
   const [imageIndex, setImageIndex] = useState(0)
   const [selectedOption, setSeletedOption] = useState(category)
   const { loggedUser } = useLoggedUserContext()
@@ -80,6 +96,14 @@ function Detail(props){
 
   function onChangeHandler(e) {
     setEditedDescription(e.target.value);
+  }
+
+  function WhatsAppHandler() {
+    window.location.href = 'https://wa.me/34'+owner.phone
+  }
+
+  function callHandler() {
+    window.location.href = 'tel:'+owner.phone
   }
 
   function handleSubmit() {
@@ -154,20 +178,32 @@ function Detail(props){
                   value={category}>{category}</option>
                 )}
               </select>
-              : <p className='body'>{block.body}</p>}
+              : <div className='body'>
+                {block.body}
+                {block.header === 'Publicado por:' && loggedUser.isAdmin &&
+                  <div className='contact'>
+                    <img onClick={ WhatsAppHandler } src={whatsapp} alt="whatsapp" />
+                    <img onClick={ callHandler } src={phone} alt="call" />
+                  </div>}</div>}
+
             </div>) }
           {edit &&
             <UpdateButton handleSubmit={handleSubmit} />}
         </StyledContainer>
         { params && <Stepper steps={steps} params={params} reload={reload} className='col-12 col-sm-10 col-md-6 col-xl-4'></Stepper>}
-        <RecommendedProviders className='col-12 col-sm-10 col-md-6 col-xl-4' category={category} />
-        <SimilarIncidents
+        { loggedUser.isAdmin && (status === 'Activa' || status === 'Resuelta') &&
+          <RecommendedProviders
           className='col-12 col-sm-10 col-md-6 col-xl-4'
           category={category}
-          reload={reload}
+          incidentId={params}
+          provider={provider}
+        />}
+        { loggedUser.isAdmin &&
+          <SimilarIncidents
+          className='col-12 col-sm-10 col-md-6 col-xl-4'
+          category={category}
           params={params}
-          setPetition={setPetition}
-        />
+        />}
       </StyledWrap>
       { !params &&
       <StyledButtonContainer>

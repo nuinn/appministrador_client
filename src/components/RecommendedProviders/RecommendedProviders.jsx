@@ -5,12 +5,12 @@ import StyledMapper from '../../components/styled/Mapper/Mapper.js'
 import Card from '../Card/Card.jsx'
 
 function RecommendedProviders(props) {
-  const { category } = props
+  const { category, incidentId, provider } = props
   const { loggedUser } = useLoggedUserContext()
   const { getData, data, error } = useApi()
 
   useEffect(() => {
-    if (loggedUser && loggedUser.isAdmin) {
+    if (loggedUser && loggedUser.isAdmin && !provider) {
       getData({
         route: `/providers/category/${category}`
       })
@@ -23,15 +23,24 @@ function RecommendedProviders(props) {
   }, [data, error])
 
   return (
-    <StyledMapper>
-      <p className='title'>Proveedores Recomendados</p>
-      {data && data.map((provider, i) =>
+    <StyledMapper $border={ provider && 'none' } $boxshadow={ provider && 'none' }>
+      <p className='title'>{ provider ? 'Proveedor Asignado' : 'Proveedores Recomendados'}</p>
+      {data && data.slice(0, 3).map((provider, i) =>
         <Card
           key={`provider ${i}`}
           type='providers'
-          data={provider}
+          item={provider}
           button={true}
-        />)}
+          incidentId={incidentId}
+        />
+      )}
+      {provider &&
+        <Card
+          $margintop='0px'
+          type='providers'
+          item={provider}
+        />
+      }
     </StyledMapper>
   )
 }
