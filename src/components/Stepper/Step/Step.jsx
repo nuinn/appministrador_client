@@ -18,7 +18,7 @@ import message from '../../../assets/stepperIcons/message.png'
 import send from '../../../assets/stepperIcons/send.png'
 
 function Step(props) {
-  const { step, steps, index, params, reload } = props
+  const { step, steps, index, params, reload, editSection, setEditSection } = props
   const [inputNote, setInputNote] = useState('')
   const { loggedUser } = useLoggedUserContext()
   const { getData, data, isLoading, error } = useApi()
@@ -31,6 +31,12 @@ function Step(props) {
 
   function onChangeHandler(e) {
     setInputNote(e.target.value);
+  }
+
+  function updateHandler() {
+    toggleShowNotes()
+    !editSection && setEditSection(step.name)
+    editSection && setEditSection('')
   }
 
   function submitHandler() {
@@ -66,13 +72,13 @@ function Step(props) {
                     .map((data) => formatDateTime(data.date)) : 'Proximamente' }</p>
           </StyledStepTitle>
         </StyledStepContainer>
-        { !steps[index] && loggedUser.isAdmin &&
+        { !steps[index] && loggedUser.isAdmin && (!editSection || editSection === step.name) &&
           <StyledUpdateButton
-            onClick={ toggleShowNotes }
+            onClick={ updateHandler }
             className={ showNotes ? 'active' : '' }
             >
             { showNotes ? 'Cancelar' : 'Actualizar' }
-            </StyledUpdateButton>
+          </StyledUpdateButton>
         }
         <StyledArrowContainer
           onClick={ steps[index] && steps[index].note && toggleShowNotes }
