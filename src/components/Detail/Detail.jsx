@@ -11,7 +11,6 @@ import Stepper from '../Stepper/Stepper.jsx'
 import StyledButtonContainer from './styled/ButtonContainer.js'
 import StyledButton from '../styled/Button/Button.js'
 import NotificationButton from '../NotificationButton/NotifcationButton.jsx'
-import StyledNotificationButton from '../styled/NotificationButton/NotificationButton.js'
 import RecommendedProviders from '../RecommendedProviders/RecommendedProviders.jsx'
 import SimilarIncidents from '../SimilarIncidents/SimilarIncidents.jsx'
 import left from '../../assets/icons/left.png'
@@ -142,6 +141,12 @@ function Detail(props){
 
   return (
     <>
+      { !loggedUser.isAdmin &&
+      <NotificationButton
+        incidentId={params}
+        reload={reload}
+        type={ notifyUsers.includes(loggedUser.email) ? 'unsubscribe' : 'subscribe' }
+      />}
       <StyledWrap className='row'>
         <div className='carouselContainer col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
           <StyledImageCarousel $image={images[imageIndex]}>
@@ -223,11 +228,7 @@ function Detail(props){
       {
         !loggedUser.isAdmin &&
         <StyledButtonContainer $bottom='90px'>
-          <NotificationButton
-            incidentId={params}
-            reload={reload}
-            type={ notifyUsers.includes(loggedUser.email) ? 'unsubscribe' : 'subscribe' }
-          />
+
         </StyledButtonContainer>
       }
     </>
