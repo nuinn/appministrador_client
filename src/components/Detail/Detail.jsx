@@ -10,6 +10,7 @@ import StyledContainer from './styled/Container.js'
 import Stepper from '../Stepper/Stepper.jsx'
 import StyledButtonContainer from './styled/ButtonContainer.js'
 import StyledButton from '../styled/Button/Button.js'
+import NotificationButton from '../NotificationButton/NotifcationButton.jsx'
 import RecommendedProviders from '../RecommendedProviders/RecommendedProviders.jsx'
 import SimilarIncidents from '../SimilarIncidents/SimilarIncidents.jsx'
 import left from '../../assets/icons/left.png'
@@ -55,6 +56,7 @@ function Detail(props){
     status,
     provider,
     reload,
+    notifyUsers,
    } = props
   const [imageIndex, setImageIndex] = useState(0)
   const [selectedOption, setSeletedOption] = useState(category)
@@ -63,6 +65,8 @@ function Detail(props){
   const [edit,toggleEdit] = useToggle(false)
   const [editedDescription, setEditedDescription] = useState(description)
   const [editedImages, setEditedImages] = useState(images)
+
+  console.log('notifyUsers', notifyUsers)
 
   function onClickHandler(direction){
     setImageIndex(() => imageIndex + direction)
@@ -137,6 +141,12 @@ function Detail(props){
 
   return (
     <>
+      { !loggedUser.isAdmin &&
+      <NotificationButton
+        incidentId={params}
+        reload={reload}
+        type={ notifyUsers.includes(loggedUser.email) ? 'unsubscribe' : 'subscribe' }
+      />}
       <StyledWrap className='row'>
         <div className='carouselContainer col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
           <StyledImageCarousel $image={images[imageIndex]}>
@@ -206,14 +216,20 @@ function Detail(props){
         />}
       </StyledWrap>
       { !params &&
-      <StyledButtonContainer>
-        {!params &&
-        <>
-          <StyledButton $bgcolor='var(--main-color)' onClick={prevStep}>Volver</StyledButton>
-          <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
-        </>
-        }
-      </StyledButtonContainer>
+        <StyledButtonContainer>
+          {!params &&
+          <>
+            <StyledButton $bgcolor='var(--main-color)' onClick={prevStep}>Volver</StyledButton>
+            <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
+          </>
+          }
+        </StyledButtonContainer>
+      }
+      {
+        !loggedUser.isAdmin &&
+        <StyledButtonContainer $bottom='90px'>
+
+        </StyledButtonContainer>
       }
     </>
   )

@@ -28,9 +28,10 @@ const StyledContainer = styled.div`
 function IncidentDetail() {
   const { incident_id } = useParams()
   const { getData, data, error, isLoading, clearData } = useApi()
+  const petition = {route: `/incidents/${incident_id}`}
 
   useEffect(() => {
-    incident_id && getData({route: `/incidents/${incident_id}`})
+    incident_id && getData(petition)
   }, [incident_id])
 
   function reloadData() {
@@ -59,6 +60,7 @@ function IncidentDetail() {
           status={data.status}
           provider={data.provider}
           reload={reloadData}
+          notifyUsers={data.notifyUsers}
         />
       </>
       }
