@@ -10,6 +10,7 @@ const Card = styled.div`
   user-select: none;
   cursor: ${props => props.$cursor};
 
+
   & a {
     position: absolute;
     top: 44px;

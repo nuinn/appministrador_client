@@ -3,7 +3,7 @@ import './Filter.css';
 
 function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }) {
   const [filters, setFilters] = useState({});
-  
+
   function handleChange(propertyName, value){
       const updatedFilters = {
         ...filters,
@@ -21,6 +21,7 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
       }
       setFilters(updatedFilters);
       refreshFilter(updatedFilters);
+      onApplyFilters(updatedFilters);
     };
 
   function handleApplyFilters(){
@@ -82,7 +83,7 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
         </div>
       ))}
       <div className='buttons'>
-      <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button>
+      {/* <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button> */}
       <button className="filterbutton"onClick={handleClearFilters}>Clear Filters</button>
       </div>
     </div>
