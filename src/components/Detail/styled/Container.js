@@ -68,7 +68,7 @@ const Container = styled.div`
       & .contact {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 20px;
         padding-right: 8px;
 
         & img {
