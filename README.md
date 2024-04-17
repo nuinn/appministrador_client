@@ -1,4 +1,4 @@
-<img src="https://firebasestorage.googleapis.com/v0/b/appministrador.appspot.com/o/transparentGreenLogoBrand.png?alt=media&token=3af820a2-a290-478e-a6ee-0132b34b51db">
+<img align="center" src="https://firebasestorage.googleapis.com/v0/b/appministrador.appspot.com/o/transparentGreenLogoBrand.png?alt=media&token=3af820a2-a290-478e-a6ee-0132b34b51db">
 
 <h3 align="center">Streamlining Incident Management for Residential Communities</h3>
 
