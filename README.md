@@ -55,8 +55,7 @@ To install Tu Appministrador locally, follow these steps:
 <ol>
 <li>Clone the repository:
 ```bash
-
-```git clone https://github.com/your-username/tu-appministrador.git```
+git clone https://github.com/your-username/tu-appministrador.git```
 <li>Navigate to the project directory:
 bash
 Copy code
