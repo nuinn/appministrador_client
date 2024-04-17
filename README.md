@@ -26,3 +26,58 @@ Key features of Tu Appministrador include:
 <li><strong>User Notifications:</strong> Users can choose to receive notifications for all incidents or specific ones, ensuring timely updates without overwhelming users with unnecessary information.
 <li><strong>Progress Tracking:</strong> Administrators can track incident status through a progress stepper, updating users with relevant information at each stage.
 </ul>
+
+### Technologies Used
+
+The front end of Tu Appministrador is built using the following technologies:
+
+<ul>
+<li>React (with Vite)
+<li>JavaScript, HTML, and CSS
+<li>Bootstrap
+<li>StyledComponents
+</ul>
+The application is hosted on Vercel at tuappministrador.vercel.app.
+
+### Getting Started
+
+To get started with Tu Appministrador, follow these steps:
+<ol>
+<li>Clone the repository from GitHub.
+<li>Install dependencies using npm or yarn.
+<li>Run the development server.
+<li>Access the application in your web browser.
+</ol>
+
+### Installation
+To install Tu Appministrador locally, follow these steps:
+
+<ol>
+<li>Clone the repository:
+bash
+Copy code
+git clone https://github.com/your-username/tu-appministrador.git
+<li>Navigate to the project directory:
+bash
+Copy code
+cd tu-appministrador
+<li>Install dependencies using npm:
+bash
+Copy code
+npm install
+<li>Or using yarn:
+
+bash
+Copy code
+yarn install
+<li>Run the development server:
+bash
+Copy code
+npm run dev
+Or with yarn:
+
+bash
+Copy code
+yarn dev
+Access the application in your web browser at http://localhost:5173.
+</ol>
