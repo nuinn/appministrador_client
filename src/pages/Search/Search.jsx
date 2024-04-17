@@ -168,16 +168,16 @@ function Search(props) {
         <SearchBar onSearch = {handleSearchedText}/>
         {/* <StyledFilter> */}
           { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} refreshFilter={refreshFiltersState}/>}
-          <StyledCardsContainer>
-            {requestedData && requestedData.map((item, i) =>
-              <Card
-                onClick={ () => navigate(navigateHandler(item)) }
-                key={`${type} ${i}`}
-                type={type}
-                item={item}
-              />
-            )}
-          </StyledCardsContainer>
+        <StyledCardsContainer>
+          {requestedData && requestedData.map((item, i) =>
+            <Card
+              onClick={ () => navigate(navigateHandler(item)) }
+              key={`${type} ${i}`}
+              type={type}
+              item={item}
+            />
+          )}
+        </StyledCardsContainer>
         {/* </StyledFilter> */}
       </StyledContainer>
       <FloatingButton type={type} />

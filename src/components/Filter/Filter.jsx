@@ -37,14 +37,18 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
   };
 
   return (
-    <div div className="filter-container">
-      <p onClick={toggleShowFilter}>Filtrar</p>
-      <img src={downArrow}></img>
+    <div className={ showFilter ? "filter-container" : "filter-container hidden"}>
+      {!showFilter && <p>Filtrar</p>}
+      <div
+      onClick={toggleShowFilter}
+      className="arrowContainer">
+        <img className={ showFilter ? "upsideDown" : "" } src={downArrow} />
+      </div>
       {showFilter &&
       <>
       {Object.keys(data).map(propertyName => (
-        <div key={propertyName}>
-          <h3>{data[propertyName].title}</h3>
+        <div key={propertyName} className='inputContainer'>
+          <h3>{data[propertyName].title === 'Fecha' ? 'Desde' : data[propertyName].title}</h3>
           {data[propertyName].type === 'select' ? (
             <select
               value={filters[propertyName] || ''}
