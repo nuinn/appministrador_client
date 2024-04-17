@@ -57,8 +57,12 @@
   font-size: 14px;
   font-weight: 300;
   color: var(--grey-color);
-
 }
+
+.inputContainer > input:focus, .inputContainer > select:focus {
+  outline: 0;
+}
+
 
 .inputContainer > input {
   padding-left: 6px;
