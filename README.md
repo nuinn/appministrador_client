@@ -32,7 +32,7 @@ Key features of Tu Appministrador include:
 The front end of Tu Appministrador is built using the following technologies:
 
 <ul>
-<li>React (with Vite)
+<li>React (with Vite)<img src"https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <li>JavaScript, HTML, and CSS
 <li>Bootstrap
 <li>StyledComponents
