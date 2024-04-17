@@ -182,7 +182,7 @@ function Search(props) {
       </StyledContainer>
       <FloatingButton type={type} />
       </>}
-      <Footer type={type} clearData={clearData} />
+      <Footer type={type === 'providers' ? 'incidents' : type} clearData={clearData} />
     </>
   )
 }

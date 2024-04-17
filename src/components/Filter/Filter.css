@@ -1,23 +1,20 @@
 .filter-container {
   width: 84%;
+  max-width: 1000px;
   background-color: transparent;
   color: var(--grey-color);
   padding: 10px 6px 0px;
   border-radius: 8px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.15);
   margin-top: 24px;
   height: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* align-items: flex-start; */
-  /* flex-wrap: wrap; */
   border: 1px solid #f0f0f0;
-  /* align-items: flex-end; */
   position: relative;
+  user-select: none;
 }
-
 
 .filter-container p {
   color: var(--secondary-color);
@@ -41,14 +38,6 @@
 .filter-container label {
   display: block;
   margin-bottom: 2px;
-}
-
-.filter-container select,
-.filter-container input {
-  /* width: 150px; */
-  /* height: 40px; */
-  /* padding: 8px; */
-
 }
 
 .filter-container select {
@@ -76,7 +65,7 @@
 }
 
 .checkbox{
-  display: flex; /* o display: inline-flex; */
+  display: flex;
   flex-direction: column;
   margin-top: 6px;
 }
