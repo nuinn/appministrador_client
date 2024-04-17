@@ -12,6 +12,7 @@ const Container = styled.div`
   border-radius: 32px;
   box-shadow: 2px 2px 6px 0px #85858540;
   position: relative;
+  user-select: none;
 
   & * {
     color: var(--dark-grey-color);
