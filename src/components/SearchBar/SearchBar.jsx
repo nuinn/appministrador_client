@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import './SearchBar.css'
+import StyledSearchbarWrap from './styled/SearchbarWrap.js'
+import lupa from '../../assets/icons/search.png'
+// import './SearchBar.css'
 
 function SearchBar(props) {
   const { onSearch } = props
@@ -17,19 +19,22 @@ function SearchBar(props) {
   }
 
   function handleKeyDown(event){
-    if (event.key === 'Enter') {
+    // if (event.key === 'Enter') {
       onSearch(searchedText)
-    }
+    // }
   };
   return(
     <>
-      <input 
-      type="text"
-      value={searchedText}
-      onChange={e => handleChange(e.target.value)}
-      onKeyDown={handleKeyDown}
-      placeholder={`  Buscar`}
-    />
+      <StyledSearchbarWrap>
+        <img src={lupa} alt="" />
+        <input
+        type="text"
+        value={searchedText}
+        onChange={e => handleChange(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder='Buscar'
+        />
+      </StyledSearchbarWrap>
     </>
   )
 }

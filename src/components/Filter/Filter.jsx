@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import useToggle from '../../hooks/useToggle.js'
 import './Filter.css';
+import downArrow from '../../assets/stepperIcons/downArrow.png'
 
 function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }) {
-  const [filters, setFilters] = useState({});
-  
+  const [filters, setFilters] = useState({})
+  const [showFilter, toggleShowFilter] = useToggle(false)
+
   function handleChange(propertyName, value){
       const updatedFilters = {
         ...filters,
@@ -21,6 +24,7 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
       }
       setFilters(updatedFilters);
       refreshFilter(updatedFilters);
+      onApplyFilters(updatedFilters);
     };
 
   function handleApplyFilters(){
@@ -33,10 +37,18 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
   };
 
   return (
-    <div div className="filter-container">
+    <div className={ showFilter ? "filter-container" : "filter-container hidden"}>
+      {!showFilter && <p>Filtrar</p>}
+      <div
+      onClick={toggleShowFilter}
+      className="arrowContainer">
+        <img className={ showFilter ? "upsideDown" : "" } src={downArrow} />
+      </div>
+      {showFilter &&
+      <>
       {Object.keys(data).map(propertyName => (
-        <div key={propertyName}>
-          <h3>{data[propertyName].title}</h3>
+        <div key={propertyName} className='inputContainer'>
+          <h3>{data[propertyName].title === 'Fecha' ? 'Desde' : data[propertyName].title}</h3>
           {data[propertyName].type === 'select' ? (
             <select
               value={filters[propertyName] || ''}
@@ -82,9 +94,10 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
         </div>
       ))}
       <div className='buttons'>
-      <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button>
-      <button className="filterbutton"onClick={handleClearFilters}>Clear Filters</button>
+      {/* <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button> */}
+      <button className="filterbutton"onClick={handleClearFilters}>Limpiar Filtros</button>
       </div>
+      </>}
     </div>
   );
 }

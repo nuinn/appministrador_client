@@ -30,9 +30,6 @@ function Card(props) {
     getData(petition)
   }
 
-
-
-
   return (
     <StyledCard $margintop={$margintop} $cursor={type === 'providers' ? 'default' : 'pointer'} onClick={onClick}>
       <RoundImage className='roundedImage' image={item.image} />

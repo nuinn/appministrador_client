@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import useApi from '../../hooks/useApi.js'
 import StyledNotificationButton from '../styled/NotificationButton/NotificationButton.js'
-import StyledCloseIcon from '../styled/CloseIcon/CloseIcon.js'
+// import StyledCloseIcon from '../styled/CloseIcon/CloseIcon.js'
 import downArrow from '../../assets/stepperIcons/downArrow.png'
 
 function NotificationButton(props) {

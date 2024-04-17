@@ -10,6 +10,7 @@ const Header = styled.div`
   align-items: center;
   z-index: 100;
   background-color: var(--secondary-color);
+  user-select: none;
 
   & .logo {
     width: 217px;

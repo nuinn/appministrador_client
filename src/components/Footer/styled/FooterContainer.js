@@ -8,7 +8,12 @@ const FooterContainer = styled.div`
   margin: 0%;
   z-index: 4;
   display: flex;
-  transition: all 1s ease;
+  transition: 1s ease;
+  user-select: none;
+
+  * {
+    box-sizing: border-box;
+  }
 
   & .unactiveIconContainer {
     width: 25%;
@@ -17,6 +22,7 @@ const FooterContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--secondary-color);
 
     & img {
       width: 24px;
@@ -34,13 +40,16 @@ const FooterContainer = styled.div`
       width: 20%;
       height: 100%;
       background-color: var(--secondary-color);
+      border: 1px solid var(--secondary-color);
     }
 
     & .left {
       border-top-right-radius: 40%;
+      border-left: 5px solid var(--secondary-color);
     }
     & .right {
       border-top-left-radius: 40%;
+      border-right: 5px solid var(--secondary-color);
     }
 
     & .center {
@@ -94,6 +103,7 @@ const FooterContainer = styled.div`
         height: 70%;
         width: 100%;
         background-color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
       }
     }
   }

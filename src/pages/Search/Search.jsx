@@ -13,6 +13,7 @@ import FloatingButton from '../../components/FloatingButton/FloatingButton.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import Filter from '../../components/Filter/Filter.jsx'
 import SearchBar from '../../components/SearchBar/SearchBar.jsx'
+import StyledContainer from './styled/Container.js'
 
 function Search(props) {
   const { type } = props
@@ -53,6 +54,7 @@ function Search(props) {
   }, [loggedUser, type])
 
   useEffect(() => {
+    console.log(data)
     setRequestedData(data)
   }
   , [data] )
@@ -122,7 +124,10 @@ function Search(props) {
       if (searchedText) {
         setSearchActive(true)
         newFilteredData = newFilteredData.filter(item =>
-          item.title.toLowerCase().includes(searchedText.toLowerCase()) || item.description.includes(searchedText.toLowerCase())
+          item.title.toLowerCase().includes(searchedText.toLowerCase()) ||
+          item.description.includes(searchedText.toLowerCase()) ||
+          item.community.address.toLowerCase().includes(searchedText.toLowerCase()) ||
+          item.category.toLowerCase().includes(searchedText.toLowerCase())
         )
         setSavedSearchedData(newFilteredData)
       }
@@ -132,6 +137,21 @@ function Search(props) {
         setSavedSearchedData(savedSearchedData)
       }
       setRequestedData(newFilteredData)
+    }
+    if (type ==='providers') {
+      let newSearchedProviders = data;
+      if (searchedText) {
+        setSearchActive(true);
+        newSearchedProviders = newSearchedProviders.filter(item =>
+          item.companyName.toLowerCase().includes(searchedText.toLowerCase()) ||
+          item.contactPerson.toLowerCase().includes(searchedText.toLowerCase())
+        )
+      }
+      else{
+        setSearchActive(false);
+        newSearchedProviders = data
+      }
+      setRequestedData(newSearchedProviders)
     }
   }
 
@@ -144,10 +164,11 @@ function Search(props) {
       {isLoading && <LoadingSpinner />}
       {!isLoading &&
       <>
-      <SearchBar onSearch = {handleSearchedText}/>
-      <StyledFilter>
+      <StyledContainer>
+        <SearchBar onSearch = {handleSearchedText}/>
+        {/* <StyledFilter> */}
+          { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} refreshFilter={refreshFiltersState}/>}
         <StyledCardsContainer>
-        { type === 'incidents' && <Filter data={incidentsFilter} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} refreshFilter={refreshFiltersState}/>}
           {requestedData && requestedData.map((item, i) =>
             <Card
               onClick={ () => navigate(navigateHandler(item)) }
@@ -157,10 +178,11 @@ function Search(props) {
             />
           )}
         </StyledCardsContainer>
-        </StyledFilter>
-        <FloatingButton type={type} />
+        {/* </StyledFilter> */}
+      </StyledContainer>
+      <FloatingButton type={type} />
       </>}
-      <Footer type={type} clearData={clearData} />
+      <Footer type={type === 'providers' ? 'incidents' : type} clearData={clearData} />
     </>
   )
 }

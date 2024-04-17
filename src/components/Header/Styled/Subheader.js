@@ -7,6 +7,7 @@ const Subheader = styled.div`
   padding: 20px 0px 8px;
   margin: 0px 0px 24px;
   box-shadow: 2px 2px 6px 0px #85858540;
+  user-select: none;
 
   & .community {
     height: 22px;
