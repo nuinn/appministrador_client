@@ -2,6 +2,18 @@
 
 <h3 align="center">Streamlining Incident Management for Residential Communities</h3>
 
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+      <li><a href="#project-goals">Project Goals</a></li>
+      <li><a href="#about-the-project">About the Project</a></li>
+      <li><a href="#technologies-used">Technologies Used</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+       <li><a href="#installation">Installation</a></li>
+      <li><a href="#licensed-and-developed-by">Creators</a></li>
+  </ol>
+</details>
+
 ## Project Goals
 
 <ol>
