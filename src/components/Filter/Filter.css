@@ -1,4 +1,5 @@
 .filter-container {
+  width: 80%;
   background-color: transparent;
   color: var(--grey-color);
   padding: 10px;
@@ -11,6 +12,10 @@
   flex-wrap: wrap;
   border: 1px solid #f0f0f0;
   /* align-items: flex-end; */
+}
+
+.filter-container img {
+  width: 16px;
 }
 
 .filter-container h3 {

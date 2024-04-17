@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import useToggle from '../../hooks/useToggle.js'
 import './Filter.css';
+import downArrow from '../../assets/stepperIcons/downArrow.png'
 
 function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }) {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({})
+  const [showFilter, toggleShowFilter] = useToggle(false)
 
   function handleChange(propertyName, value){
       const updatedFilters = {
@@ -35,6 +38,10 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
 
   return (
     <div div className="filter-container">
+      <p onClick={toggleShowFilter}>Filtrar</p>
+      <img src={downArrow}></img>
+      {showFilter &&
+      <>
       {Object.keys(data).map(propertyName => (
         <div key={propertyName}>
           <h3>{data[propertyName].title}</h3>
@@ -86,6 +93,7 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
       {/* <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button> */}
       <button className="filterbutton"onClick={handleClearFilters}>Clear Filters</button>
       </div>
+      </>}
     </div>
   );
 }
