@@ -1,6 +1,6 @@
 <h1 align="center">Tu Appministrador
 
-<h3 align="center">Streamlining Incident Management for Residential Communities
+<h3 align="center">Streamlining Incident Management for Residential Communities</h3>
 <br>
 ## Project Goals
 
