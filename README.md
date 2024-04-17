@@ -90,9 +90,10 @@ yarn dev
 
 Feel free to contribute to Tu Appministrador by submitting pull requests or reporting issues on GitHub. Your feedback is valuable in improving the application and addressing community needs effectively.
 
-<br><br>
+<br>
 
-<h4 align="center">Licensed and Developed by</h4>
+<h3 align="center">Licensed and Developed by</h3>
+
 <p align="center">Marc Dilley</p>
 <p align="center">
 <a href = "mailto:marcdilley@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
