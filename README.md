@@ -37,7 +37,7 @@ The front end of Tu Appministrador is built using the following technologies:
 <li>Bootstrap
 <li>StyledComponents
 </ul>
-The application is hosted on Vercel at tuappministrador.vercel.app.
+The application is hosted on Vercel at <a href="tuappministrador.vercel.app.">tuappministrador.vercel.app.</a>
 
 ## Getting Started
 
@@ -86,13 +86,15 @@ yarn dev
 ```
 <li>Access the application in your web browser at http://localhost:5173.
 </ol>
+<br>
 
-Feel free to contribute to Tu Appministrador by submitting pull requests or reporting issues on GitHub. Your feedback is valuable in improving the application and addressing community needs effectively.
+Feel free to contribute to Tu Appministrador by submitting pull requests or reporting issues on GitHub. Your feedback is valuable in improving the application and addressing community needs effectively.<br>
 
 <h4 align="center">Licensed and Developed by</h4>
 <p align="center" >Marc Dilley</p>
 <p align="center">
 <a href = "mailto:marcdilley@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
     <a href="https://www.linkedin.com/in/marc-dilley-288407a1/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+  <a href="https://github.com/nuinn/"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
