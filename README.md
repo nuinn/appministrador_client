@@ -27,7 +27,7 @@ Key features of Tu Appministrador include:
 <li><strong>Progress Tracking:</strong> Administrators can track incident status through a progress stepper, updating users with relevant information at each stage.
 </ul>
 
-### Technologies Used
+## Technologies Used
 
 The front end of Tu Appministrador is built using the following technologies:
 
@@ -39,7 +39,7 @@ The front end of Tu Appministrador is built using the following technologies:
 </ul>
 The application is hosted on Vercel at tuappministrador.vercel.app.
 
-### Getting Started
+## Getting Started
 
 To get started with Tu Appministrador, follow these steps:
 <ol>
@@ -54,9 +54,9 @@ To install Tu Appministrador locally, follow these steps:
 
 <ol>
 <li>Clone the repository:
-bash
+`bash
 Copy code
-git clone https://github.com/your-username/tu-appministrador.git
+git clone https://github.com/your-username/tu-appministrador.git`
 <li>Navigate to the project directory:
 bash
 Copy code
