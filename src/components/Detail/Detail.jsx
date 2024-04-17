@@ -141,7 +141,7 @@ function Detail(props){
 
   return (
     <>
-      { !loggedUser.isAdmin &&
+      { !loggedUser.isAdmin && params &&
       <NotificationButton
         incidentId={params}
         reload={reload}
