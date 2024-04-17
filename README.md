@@ -56,30 +56,43 @@ To install Tu Appministrador locally, follow these steps:
 <li>Clone the repository:
   
 ```bash
-git clone https://github.com/your-username/tu-appministrador.git
+git clone https://github.com/nuinn/appministrador_client.git
 ```
-
 <li>Navigate to the project directory:
-bash
-Copy code
+  
+```bash
 cd tu-appministrador
+```
 <li>Install dependencies using npm:
-bash
-Copy code
-npm install
-<li>Or using yarn:
 
-bash
-Copy code
+```bash
+npm install
+```
+Or using yarn:
+
+```bash
 yarn install
+```
 <li>Run the development server:
-bash
-Copy code
+
+```bash
 npm run dev
+```
 Or with yarn:
 
-bash
-Copy code
+```bash
+
 yarn dev
-Access the application in your web browser at http://localhost:5173.
+```
+<li>Access the application in your web browser at http://localhost:5173.
 </ol>
+
+Feel free to contribute to Tu Appministrador by submitting pull requests or reporting issues on GitHub. Your feedback is valuable in improving the application and addressing community needs effectively.
+
+<h4 align="center">Licensed and Developed by</h4>
+<p align="center" >Marc Dilley</p>
+<p align="center">
+<a href = "mailto:marcdilley@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+    <a href="https://www.linkedin.com/in/marc-dilley-288407a1/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+</p>
+
