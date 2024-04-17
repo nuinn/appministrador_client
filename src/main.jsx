@@ -7,11 +7,11 @@ import { LoggedUserProvider } from './contexts/loggedUserContext.jsx'
 import AppRouter from './AppRouter.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <LoggedUserProvider>
         <AppRouter />
       </LoggedUserProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )

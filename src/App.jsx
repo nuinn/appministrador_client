@@ -12,22 +12,28 @@ import Login from './components/Login/Login.jsx'
 import appLogo from './assets/logos/transparentWhiteLogoBrand.png'
 import backgroundImg from '../src/assets/images/homeImage.png'
 import homeIcons from './files/homeIcons.js'
+import Captcha from './components/Captcha/Captcha.jsx'
 
 function App() {
   const navigate = useNavigate()
   const { loggedUser } = useLoggedUserContext()
   const { getData, data } = useApi()
   const [personalCommunityImg, setPersonalCommunityImg] = useState('')
+  const [showCaptcha, setShowCaptcha] = useState(false)
+  const siteKey = '6Le6c74pAAAAACKX90Z_-GP2-CwXQTR0JnKro8yh'
 
   // No borréis esto abajo por favor. Luego cuando estén las imagenes bien metidas en el back, lo implementaré.
 
   useEffect(() => {
-    if (loggedUser && loggedUser.community_id.length === 1) {
-      console.log('this is the case')
-      getData({
-        route: `/communities/${loggedUser.community_id}`
-      })
+    if(loggedUser) {
+      setShowCaptcha(true);
     }
+    // if (loggedUser && loggedUser.community_id.length === 1) {
+    //   console.log('this is the case')
+    //   getData({
+    //     route: `/communities/${loggedUser.community_id}`
+    //   })
+    // }
   }, [loggedUser])
 
   useEffect(() => {
@@ -37,10 +43,24 @@ function App() {
     }
   }, [data])
 
+  function onSubmitCaptcha(token) {
+    console.log('Token de reCAPTCHA:', token);
+    console.log();
+    if (loggedUser && loggedUser.community_id.length === 1) {
+      console.log('this is the case')
+      getData({
+        route: `/communities/${loggedUser.community_id}`
+      })
+    }
+  }
+
   return (
     <>
       <main>
-        {loggedUser &&
+        {loggedUser && showCaptcha &&
+          <Captcha siteKey={siteKey} onSubmit={onSubmitCaptcha} />
+        }
+        {loggedUser && !showCaptcha &&
         <>
           <StyledWelcomeLogo>
             <h2>
