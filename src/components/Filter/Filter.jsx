@@ -95,7 +95,7 @@ function FilterComponent({ data, onApplyFilters, onClearFilters, refreshFilter }
       ))}
       <div className='buttons'>
       {/* <button className="filterbutton" onClick={handleApplyFilters}>Apply Filters</button> */}
-      <button className="filterbutton"onClick={handleClearFilters}>Clear Filters</button>
+      <button className="filterbutton"onClick={handleClearFilters}>Limpiar Filtros</button>
       </div>
       </>}
     </div>

@@ -4,16 +4,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: height .5s;
 
   & .filter-container {
-    transition: height .5s;
-    height: 160px;
+    height: 148px;
   }
 
   & .hidden {
-    height: 39px;
-
+    height: 28px;
   }
 `;
 
