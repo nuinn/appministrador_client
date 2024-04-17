@@ -1,7 +1,7 @@
 <h1 align="center">Tu Appministrador
 
 <h3 align="center">Streamlining Incident Management for Residential Communities</h3>
-<br>
+
 ## Project Goals
 
 <ol>
@@ -13,7 +13,7 @@
 
 <li><strong>Efficient Resource Utilization:</strong> Facilitate administrators in finding solutions to incidents by recommending service providers, tracking incident status, and suggesting relevant providers based on incident nature.
 </ol>
-<br>
+
 ## About the Project
 
 Tu Appministrador is a web application designed to assist administrators in managing incidents within residential communities. Initially conceived to improve communication between administrators and homeowners/tenants, the project evolved to focus on incident management due to the prevalence of communication-related issues surrounding community problems.
