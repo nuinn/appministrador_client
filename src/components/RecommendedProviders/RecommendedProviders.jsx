@@ -5,7 +5,7 @@ import StyledMapper from '../../components/styled/Mapper/Mapper.js'
 import Card from '../Card/Card.jsx'
 
 function RecommendedProviders(props) {
-  const { category, incidentId, provider } = props
+  const { category, incidentId, provider, reload } = props
   const { loggedUser } = useLoggedUserContext()
   const { getData, data, error } = useApi()
 
@@ -32,6 +32,7 @@ function RecommendedProviders(props) {
           item={provider}
           button={true}
           incidentId={incidentId}
+          reload={reload}
         />
       )}
       {provider &&

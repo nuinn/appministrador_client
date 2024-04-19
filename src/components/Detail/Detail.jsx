@@ -150,6 +150,7 @@ function Detail(props){
       <StyledWrap className='row'>
         <div className='carouselContainer col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
           <StyledImageCarousel $image={images[imageIndex]}>
+            <div className="arrowsContainer">
             { imageIndex ?
             <img className='leftright' onClick={ () => onClickHandler(-1) } src={left} alt="left arrow" />
             : <span></span>
@@ -157,6 +158,7 @@ function Detail(props){
             { (!!images.length && (imageIndex !== images.length-1)) &&
             <img className='leftright' onClick={ () => onClickHandler(1) } src={right} alt="right arrow" />
             }
+            </div>
             { loggedUser.isAdmin && <FloatingDelete handleDelete={handleDelete} />}
           </StyledImageCarousel>
         </div>
@@ -207,6 +209,7 @@ function Detail(props){
           category={category}
           incidentId={params}
           provider={provider}
+          reload={reload}
         />}
         { loggedUser.isAdmin &&
           <SimilarIncidents
@@ -223,12 +226,6 @@ function Detail(props){
             <StyledButton onClick={ () => nextStep(title) }>Enviar</StyledButton>
           </>
           }
-        </StyledButtonContainer>
-      }
-      {
-        !loggedUser.isAdmin &&
-        <StyledButtonContainer $bottom='90px'>
-
         </StyledButtonContainer>
       }
     </>
