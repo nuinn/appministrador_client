@@ -10,11 +10,11 @@ import phoneCall from '../../assets/icons/phoneCall.jpg'
 import StyledButton from './styled/Button.js'
 
 function Card(props) {
-  const { type, item, onClick, button, incidentId, $margintop } = props
+  const { type, item, onClick, button, incidentId, $margintop, reload } = props
   const { getData, data } = useApi()
 
   useEffect(() => {
-    data && console.log(data)
+    data && reload()
   }, [data])
 
   function addToIncident() {
@@ -26,7 +26,6 @@ function Card(props) {
         provider: item._id,
       }
     }
-    // console.log(petition)
     getData(petition)
   }
 
