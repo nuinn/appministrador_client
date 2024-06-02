@@ -32,9 +32,9 @@ function UserProfilePage() {
   const { data, getData } = useApi();
   const { loggedUser, setLoggedUser } = useLoggedUserContext();
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  
+
   const initialPetition = {
     route: '/users/profile',
   }
@@ -51,13 +51,21 @@ function UserProfilePage() {
   function handleEdit(){
     setIsEditing(true);
   };
-  
+
   function handleLogout(){
     setLoggedUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     navigate('/');
   };
+
+  const guest = {
+    firstName: 'Invitado',
+    email: 'usuario@ejemplo.com',
+    phone: '678910234',
+    enableMediaAccess: true,
+    notifications: false,
+  }
 
   return (
     <div>
@@ -69,12 +77,12 @@ function UserProfilePage() {
         {data && (isEditing ? (
             <EditProfile user={data} setEdit={setIsEditing}/>
           ) : (
-            <UserProfile user={data} onEdit={handleEdit} />
+            <UserProfile user={data.firstName === 'Invitado' ? guest : data} onEdit={handleEdit} />
           ))}
-          
+
           <Button className='button' onClick={handleLogout}>Cerrar sesión</Button>
       </div>
-        
+
       <Footer type="profile" />
     </div>
   );

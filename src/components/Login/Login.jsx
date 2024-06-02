@@ -43,6 +43,18 @@ function Login() {
     }
   }, [data])
 
+  function guestLogin() {
+    const emailInput = document.getElementById('emailInput')
+    const passwordInput = document.getElementById('passwordInput')
+    emailInput.type = 'password'
+    emailInput.value = 'bridgeateam@gmail.com'
+    passwordInput.value = 'theAteam100!'
+    setFormValues({
+      email: emailInput.value,
+      password: passwordInput.value,
+    })
+  }
+
   return (
     <>
       {isLoading && <LoadingSpinner type='white' />}
@@ -54,6 +66,7 @@ function Login() {
           <div className="inputsContainer">
             <StyledInputWrap>
               <input
+              id="emailInput"
               name="email"
               type="text"
               placeholder='correo electrónico'
@@ -65,6 +78,7 @@ function Login() {
             </StyledInputWrap>
             <StyledInputWrap>
               <input
+              id="passwordInput"
               name="password"
               type={passwordVisibility ? "text" : "password"}
               placeholder='contraseña'
@@ -100,8 +114,8 @@ function Login() {
               <div className="errorMessage">{error.msg}</div>
             </>}
           </div>
-          <p>¿No tienes cuenta?</p>
-          <div className="register" onClick={ () => navigate('/incidencias/detalle/param') }>Regístrate</div>
+          <p>¿Estás de visita?</p>
+          <div className="register" onClick={ guestLogin }>Acceso de Invitado</div>
         </div>
       </StyledLoginContainer>}
     </>
