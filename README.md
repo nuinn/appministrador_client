@@ -10,7 +10,6 @@
       <li><a href="#technologies-used">Technologies Used</a></li>
       <li><a href="#getting-started">Getting Started</a></li>
        <li><a href="#installation">Installation</a></li>
-      <li><a href="#licensed-and-developed-by">Creators</a></li>
   </ol>
 </details>
 
