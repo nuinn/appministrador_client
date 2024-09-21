@@ -21,17 +21,21 @@ function Login() {
     email: '',
     password: '',
   })
+  const [isGuestLogin, setIsGuestLogin] = useState(false)
 
   function handleInput(e) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
 
   function submitHandler(e) {
-    e.preventDefault()
+    e && e.preventDefault()
     getData({
       route: '/auth/login',
       method: 'POST',
-      body: formValues,
+      body: isGuestLogin ? {
+        email: 'bridgeateam@gmail.com',
+        password: 'theAteam100!'
+      } : formValues,
     })
     formValues.email = ''
     formValues.password = ''
@@ -43,17 +47,11 @@ function Login() {
     }
   }, [data])
 
-  function guestLogin() {
-    const emailInput = document.getElementById('emailInput')
-    const passwordInput = document.getElementById('passwordInput')
-    emailInput.type = 'password'
-    emailInput.value = 'bridgeateam@gmail.com'
-    passwordInput.value = 'theAteam100!'
-    setFormValues({
-      email: emailInput.value,
-      password: passwordInput.value,
-    })
-  }
+  useEffect(() => {
+    if (isGuestLogin) {
+      submitHandler()
+    }
+  }, [isGuestLogin])
 
   return (
     <>
@@ -68,7 +66,7 @@ function Login() {
               <input
               id="emailInput"
               name="email"
-              type="text"
+              type={ isGuestLogin ? "password" : "email" }
               placeholder='correo electrónico'
               onChange={ handleInput }
               value={ formValues.email }
@@ -112,10 +110,14 @@ function Login() {
                 <img src={errorIcon} alt="" />
               </div>
               <div className="errorMessage">{error.msg}</div>
-            </>}
+            </>
+            }
           </div>
           <p>¿Estás de visita?</p>
-          <div className="register" onClick={ guestLogin }>Acceso de Invitado</div>
+          <div className="register" onClick={ () => {
+              setIsGuestLogin(true)
+            }
+          }>Acceso de Invitado</div>
         </div>
       </StyledLoginContainer>}
     </>
