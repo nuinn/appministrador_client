@@ -70,11 +70,12 @@ Our UX/UI team gave us the blueprint, and we brought it to life! The app's desig
 </ul>
 
 ## Project Preview
-
-### Login ![foto](./screengrabs/IMG_4310.jpg)
-### Incidents ![foto](./screengrabs/IMG_4311.jpg)
-### Incident Detail ![foto](./screengrabs/IMG_4308.jpg)
-### Interactive Stepper ![foto](./screengrabs/IMG_4309.jpg)
+<div style="display: flex">
+<img src="./screengrabs/IMG_4310.jpg" width="360px">
+<img src="./screengrabs/IMG_4311.jpg" width="360px">
+<img src="./screengrabs/IMG_4308.jpg" width="360px">
+<img src="./screengrabs/IMG_4309.jpg" width="360px">
+</div>
 
 ## Using the Web App
 <a href="tuappministrador.vercel.app"><strong>Visit the web app</strong></a>
