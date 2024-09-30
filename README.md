@@ -51,7 +51,7 @@ A real-world project requested by the <strong>Colegio de Adminstradores de Finca
 The front end of Tu Appministrador is built using the following technologies:
 
 <ul>
-<li><strong>React</strong> (components, contexts, hooks) & Javascript ES6+
+<li><strong>React</strong> (components, contexts, hooks) & <strong>Javascript</strong> ES6+
   <img src"https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <li>Responsive Design through <strong>CSS, Bootstrap</strong> and <strong>StyledComponents</strong>
   <li><strong>Firebase</strong> Cloud Storage</li>
