@@ -10,6 +10,7 @@
       <li><a href="#features">Features</a></li>
       <li><a href="#technologies-used">Technologies Used</a></li>
       <li><a href="#styling-and-design">Styling and Design</a></li>
+    <li><a href="project-preview">Project Preview</a></li>
     <li><a href="#using-the-web-app">Using the Web app</a></li>
        <li><a href="#installation">Installation</a></li>
     <li><a href="#future-improvements">Future Improvements</a></li>
@@ -67,6 +68,13 @@ Our UX/UI team gave us the blueprint, and we brought it to life! The app's desig
   <li>Login screen</li>
   <li>Loading spinner</li>
 </ul>
+
+## Project Preview
+
+### Login ![foto](./screengrabs/IMG_4310.jpg)
+### Incidents ![foto](./screengrabs/IMG_4311.jpg)
+### Incident Detail ![foto](./screengrabs/IMG_4308.jpg)
+### Interactive Stepper ![foto](./screengrabs/IMG_4309.jpg)
 
 ## Using the Web App
 <a href="tuappministrador.vercel.app"><strong>Visit the web app</strong></a>
