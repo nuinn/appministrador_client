@@ -5,13 +5,23 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#overview">Overview</a></li>
       <li><a href="#project-goals">Project Goals</a></li>
-      <li><a href="#about-the-project">About the Project</a></li>
+      <li><a href="#features">Features</a></li>
       <li><a href="#technologies-used">Technologies Used</a></li>
-      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#styling-and-design">Styling and Design</a></li>
+    <li><a href="#using-the-web-app">Using the Web app</a></li>
        <li><a href="#installation">Installation</a></li>
+    <li><a href="#future-improvements">Future Improvements</a></li>
   </ol>
 </details>
+
+## Overview
+
+Tu Appministrador is more than just an app—it's the missing link that simplifies life for residential administrators and tenants alike. Born out of the need to untangle messy communication, our app creates a streamlined system for handling the chaos of community issues. From a leaky pipe to neighbour disputes, it all gets handled with clarity and efficiency, bringing peace back to the community.
+
+A real-world project requested by the <strong>Colegio de Adminstradores de Fincas—Valencia y Castellón</strong>, our small development team worked tirelessly over a six-week period to bring forth an award-winning solution, chosen by the clients themselves who commended the insight we had shown into creating a solution that is as effective as it is user-friendly.
+
 
 ## Project Goals
 
@@ -25,17 +35,15 @@
 <li><strong>Efficient Resource Utilization:</strong> Facilitate administrators in finding solutions to incidents by recommending service providers, tracking incident status, and suggesting relevant providers based on incident nature.
 </ol>
 
-## About the Project
+## Features
 
-Tu Appministrador is a web application designed to assist administrators in managing incidents within residential communities. Initially conceived to improve communication between administrators and homeowners/tenants, the project evolved to focus on incident management due to the prevalence of communication-related issues surrounding community problems.
-
-Key features of Tu Appministrador include:
 <ul>
-  <li><strong>Centralized Incident Management:</strong> All incidents are recorded and managed within the application, providing a single point of reference for administrators.
+  <li><strong>All-in-One Incident Management:</strong> Got a problem? Report it in a snap. Every issue—big or small—is recorded and managed within the application, providing a single point of reference for administrators.
   <li><strong>Structured Communication:</strong> Users report incidents via a form, which is reviewed by administrators before being made public, ensuring professional and sanitized communication.
 <li><strong>Efficient Resource Allocation:</strong> The application suggests recommended service providers based on incident nature, allows assignment of providers to incidents, and maintains contact details for future reference.
 <li><strong>User Notifications:</strong> Users can choose to receive notifications for all incidents or specific ones, ensuring timely updates without overwhelming users with unnecessary information.
-<li><strong>Progress Tracking:</strong> Administrators can track incident status through a progress stepper, updating users with relevant information at each stage.
+<li><strong>Progress Tracking:</strong> No more wondering what’s going on. Get real-time updates on the status of your issue with clear progress markers.
+<li><strong>Camera Integration:</strong> Snap a pic of the problem with your phone’s camera and upload it directly through the app, securely stored in the cloud.</li>
 </ul>
 
 ## Technologies Used
@@ -43,25 +51,33 @@ Key features of Tu Appministrador include:
 The front end of Tu Appministrador is built using the following technologies:
 
 <ul>
-<li>React (with Vite)
+<li><strong>React</strong> (components, contexts, hooks) & Javascript ES6+
   <img src"https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-<li>JavaScript, HTML, and CSS
-<li>Bootstrap
-<li>StyledComponents
+<li>Responsive Design through <strong>CSS, Bootstrap</strong> and <strong>StyledComponents</strong>
+  <li><strong>Firebase</strong> Cloud Storage</li>
+  <li><strong>Figma</strong> for collaborating with out UX/UI team and Trello for sprint management</li>
 </ul>
-The application is hosted on Vercel at <a href="tuappministrador.vercel.app.">tuappministrador.vercel.app.</a>
 
-## Getting Started
+## Styling and Design
 
-To get started with Tu Appministrador, follow these steps:
+Our UX/UI team gave us the blueprint, and we brought it to life! The app's design is clean and intuitive, built with a mobile-first philosophy while ensuring it looks great on any screen. I personally invested a lot of time and care to ensure the design was respected in future elements, such as:
+<ul>
+  <li>Interactve Stepper with hideable notes</li>
+  <li>Incident Filter</li>
+  <li>Login screen</li>
+  <li>Loading spinner</li>
+</ul>
+
+## Using the Web App
+<a href="tuappministrador.vercel.app"><strong>Visit the web app</strong></a>
 <ol>
-<li>Clone the repository from GitHub.
-<li>Install dependencies using npm or yarn.
-<li>Run the development server.
-<li>Access the application in your web browser.
+<li>Click "Acceso de Invitado" (Guest login)
+<li>The free server may take some time to connect, so please be patient! :)
+<li>Once inside, you'll have administrative privileges!
+<li>Explore the app, especially the Incidencias section
 </ol>
 
-### Installation
+## Installation
 To install Tu Appministrador locally, follow these steps:
 
 <ol>
@@ -73,7 +89,7 @@ git clone https://github.com/nuinn/appministrador_client.git
 <li>Navigate to the project directory:
   
 ```bash
-cd tu-appministrador
+cd appministrador_client
 ```
 <li>Install dependencies using npm:
 
@@ -98,6 +114,15 @@ yarn dev
 ```
 <li>Access the application in your web browser at http://localhost:5173.
 </ol>
+
+## Future Improvements
+<ul>
+  <li><strong>Multilingual Support:</strong></li> Expand the app’s reach by adding more languages.
+  <li><strong>Detailed Reporting:</strong></li> Create in-depth reports for administrators to analyze incident resolution times and track performance.
+  <li><strong>AI-driven Service Suggestions:</strong></li> Implement AI to recommend service providers based on past performance, user reviews, and incident types.
+  <li><strong>Offline Capabilities:</strong></li>Allow users to submit incidents even when offline, syncing data when back online.
+</ul>
+
 <br>
 
 Feel free to contribute to Tu Appministrador by submitting pull requests or reporting issues on GitHub. Your feedback is valuable in improving the application and addressing community needs effectively.
