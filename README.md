@@ -63,7 +63,7 @@ The front end of Tu Appministrador is built using the following technologies:
 
 Our UX/UI team gave us the blueprint, and we brought it to life! The app's design is clean and intuitive, built with a mobile-first philosophy while ensuring it looks great on any screen. I personally invested a lot of time and care to ensure the design was respected in future elements, such as:
 <ul>
-  <li>Interactve Stepper with hideable notes</li>
+  <li>Interactive Stepper with hideable notes</li>
   <li>Incident Filter</li>
   <li>Login screen</li>
   <li>Loading spinner</li>
